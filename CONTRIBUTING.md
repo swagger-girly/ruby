@@ -43,13 +43,13 @@ If you’d like to use the repository from source, you can either install from g
 To install via git in your `Gemfile`:
 
 ```ruby
-gem "hello-world-testingggg", git: "https://github.com/stainless-sdks/hello-world-testingggg-ruby"
+gem "hello-world-testingggg", git: "https://github.com/swagger-girly/ruby"
 ```
 
 Alternatively, reference local copy of the repo:
 
 ```bash
-$ git clone -- 'https://github.com/stainless-sdks/hello-world-testingggg-ruby' '<path-to-repo>'
+$ git clone -- 'https://github.com/swagger-girly/ruby' '<path-to-repo>'
 ```
 
 ```ruby
