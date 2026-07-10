@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = "apiteam@swagger.io"
   s.homepage = "https://gemdocs.org/gems/hello-world-testingggg"
   s.metadata["homepage_uri"] = s.homepage
-  s.metadata["source_code_uri"] = "https://github.com/stainless-sdks/hello-world-testingggg-ruby"
+  s.metadata["source_code_uri"] = "https://github.com/swagger-girly/ruby"
   s.metadata["rubygems_mfa_required"] = false.to_s
   s.required_ruby_version = ">= 3.2.0"
 
