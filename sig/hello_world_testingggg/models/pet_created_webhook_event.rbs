@@ -1,0 +1,35 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_created_webhook_event =
+      {
+        pet: HelloWorldTestingggg::PetAPI,
+        type: HelloWorldTestingggg::Models::PetCreatedWebhookEvent::type_
+      }
+
+    class PetCreatedWebhookEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor pet: HelloWorldTestingggg::PetAPI
+
+      attr_accessor type: HelloWorldTestingggg::Models::PetCreatedWebhookEvent::type_
+
+      def initialize: (
+        pet: HelloWorldTestingggg::PetAPI,
+        type: HelloWorldTestingggg::Models::PetCreatedWebhookEvent::type_
+      ) -> void
+
+      def to_hash: -> {
+        pet: HelloWorldTestingggg::PetAPI,
+        type: HelloWorldTestingggg::Models::PetCreatedWebhookEvent::type_
+      }
+
+      type type_ = :"pet.created"
+
+      module Type
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        PET_CREATED: :"pet.created"
+
+        def self?.values: -> ::Array[HelloWorldTestingggg::Models::PetCreatedWebhookEvent::type_]
+      end
+    end
+  end
+end

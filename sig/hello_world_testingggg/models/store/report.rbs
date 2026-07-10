@@ -1,0 +1,64 @@
+module HelloWorldTestingggg
+  module Models
+    module Store
+      type report =
+        {
+          id: String,
+          created_at: Time,
+          status: HelloWorldTestingggg::Models::Store::Report::status,
+          completed_at: Time?,
+          filters: ::Hash[Symbol, top],
+          totals: ::Hash[Symbol, Integer]
+        }
+
+      class Report < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor created_at: Time
+
+        attr_accessor status: HelloWorldTestingggg::Models::Store::Report::status
+
+        attr_accessor completed_at: Time?
+
+        attr_reader filters: ::Hash[Symbol, top]?
+
+        def filters=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+        attr_reader totals: ::Hash[Symbol, Integer]?
+
+        def totals=: (::Hash[Symbol, Integer]) -> ::Hash[Symbol, Integer]
+
+        def initialize: (
+          id: String,
+          created_at: Time,
+          status: HelloWorldTestingggg::Models::Store::Report::status,
+          ?completed_at: Time?,
+          ?filters: ::Hash[Symbol, top],
+          ?totals: ::Hash[Symbol, Integer]
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          created_at: Time,
+          status: HelloWorldTestingggg::Models::Store::Report::status,
+          completed_at: Time?,
+          filters: ::Hash[Symbol, top],
+          totals: ::Hash[Symbol, Integer]
+        }
+
+        type status = :queued | :running | :complete | :failed
+
+        module Status
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          QUEUED: :queued
+          RUNNING: :running
+          COMPLETE: :complete
+          FAILED: :failed
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::Store::Report::status]
+        end
+      end
+    end
+  end
+end

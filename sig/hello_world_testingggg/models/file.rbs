@@ -1,0 +1,32 @@
+module HelloWorldTestingggg
+  module Models
+    type file =
+      { last_modified: Time, path: String, size: Integer, content_type: String }
+
+    class File < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor last_modified: Time
+
+      attr_accessor path: String
+
+      attr_accessor size: Integer
+
+      attr_reader content_type: String?
+
+      def content_type=: (String) -> String
+
+      def initialize: (
+        last_modified: Time,
+        path: String,
+        size: Integer,
+        ?content_type: String
+      ) -> void
+
+      def to_hash: -> {
+        last_modified: Time,
+        path: String,
+        size: Integer,
+        content_type: String
+      }
+    end
+  end
+end

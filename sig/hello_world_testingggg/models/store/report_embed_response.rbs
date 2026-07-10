@@ -1,0 +1,7 @@
+module HelloWorldTestingggg
+  module Models
+    module Store
+      class ReportEmbedResponse = String
+    end
+  end
+end

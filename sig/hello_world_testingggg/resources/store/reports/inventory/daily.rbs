@@ -1,0 +1,19 @@
+module HelloWorldTestingggg
+  module Resources
+    class Store
+      class Reports
+        class Inventory
+          class Daily
+            def retrieve: (
+              Date date,
+              report_id: String,
+              ?request_options: HelloWorldTestingggg::request_opts
+            ) -> HelloWorldTestingggg::Store::DailyInventory
+
+            def initialize: (client: HelloWorldTestingggg::Client) -> void
+          end
+        end
+      end
+    end
+  end
+end

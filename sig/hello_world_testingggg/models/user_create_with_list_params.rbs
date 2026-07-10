@@ -1,0 +1,96 @@
+module HelloWorldTestingggg
+  module Models
+    type user_create_with_list_params =
+      { body: ::Array[HelloWorldTestingggg::UserCreateWithListParams::Body] }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class UserCreateWithListParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_reader body: ::Array[HelloWorldTestingggg::UserCreateWithListParams::Body]?
+
+      def body=: (
+        ::Array[HelloWorldTestingggg::UserCreateWithListParams::Body]
+      ) -> ::Array[HelloWorldTestingggg::UserCreateWithListParams::Body]
+
+      def initialize: (
+        ?body: ::Array[HelloWorldTestingggg::UserCreateWithListParams::Body],
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        body: ::Array[HelloWorldTestingggg::UserCreateWithListParams::Body],
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+
+      type body =
+        {
+          id: Integer,
+          email: String,
+          first_name: String,
+          last_name: String,
+          password: String,
+          phone: String,
+          username: String,
+          user_status: Integer
+        }
+
+      class Body < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader id: Integer?
+
+        def id=: (Integer) -> Integer
+
+        attr_reader email: String?
+
+        def email=: (String) -> String
+
+        attr_reader first_name: String?
+
+        def first_name=: (String) -> String
+
+        attr_reader last_name: String?
+
+        def last_name=: (String) -> String
+
+        attr_reader password: String?
+
+        def password=: (String) -> String
+
+        attr_reader phone: String?
+
+        def phone=: (String) -> String
+
+        attr_reader username: String?
+
+        def username=: (String) -> String
+
+        attr_reader user_status: Integer?
+
+        def user_status=: (Integer) -> Integer
+
+        def initialize: (
+          ?id: Integer,
+          ?email: String,
+          ?first_name: String,
+          ?last_name: String,
+          ?password: String,
+          ?phone: String,
+          ?username: String,
+          ?user_status: Integer
+        ) -> void
+
+        def to_hash: -> {
+          id: Integer,
+          email: String,
+          first_name: String,
+          last_name: String,
+          password: String,
+          phone: String,
+          username: String,
+          user_status: Integer
+        }
+      end
+    end
+  end
+end

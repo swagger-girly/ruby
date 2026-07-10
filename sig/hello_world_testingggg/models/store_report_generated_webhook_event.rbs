@@ -1,0 +1,40 @@
+module HelloWorldTestingggg
+  module Models
+    type store_report_generated_webhook_event =
+      {
+        id: String,
+        created_at: Time,
+        metrics: top,
+        report: HelloWorldTestingggg::Store::Report,
+        type: :"store.report.generated"
+      }
+
+    class StoreReportGeneratedWebhookEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor metrics: top
+
+      attr_accessor report: HelloWorldTestingggg::Store::Report
+
+      attr_accessor type: :"store.report.generated"
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        metrics: top,
+        report: HelloWorldTestingggg::Store::Report,
+        ?type: :"store.report.generated"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        metrics: top,
+        report: HelloWorldTestingggg::Store::Report,
+        type: :"store.report.generated"
+      }
+    end
+  end
+end

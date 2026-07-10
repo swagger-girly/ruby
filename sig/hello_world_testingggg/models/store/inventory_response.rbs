@@ -1,0 +1,54 @@
+module HelloWorldTestingggg
+  module Models
+    module Store
+      type inventory_response =
+        { data: ::Array[HelloWorldTestingggg::Store::InventoryResponse::Data] }
+
+      class InventoryResponse < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor data: ::Array[HelloWorldTestingggg::Store::InventoryResponse::Data]
+
+        def initialize: (
+          data: ::Array[HelloWorldTestingggg::Store::InventoryResponse::Data]
+        ) -> void
+
+        def to_hash: -> {
+          data: ::Array[HelloWorldTestingggg::Store::InventoryResponse::Data]
+        }
+
+        type data =
+          {
+            quantity: Integer,
+            sku: String,
+            attributes: ::Hash[Symbol, String],
+            pet_id: Integer?
+          }
+
+        class Data < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor quantity: Integer
+
+          attr_accessor sku: String
+
+          attr_reader attributes: ::Hash[Symbol, String]?
+
+          def attributes=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+          attr_accessor pet_id: Integer?
+
+          def initialize: (
+            quantity: Integer,
+            sku: String,
+            ?attributes: ::Hash[Symbol, String],
+            ?pet_id: Integer?
+          ) -> void
+
+          def to_hash: -> {
+            quantity: Integer,
+            sku: String,
+            attributes: ::Hash[Symbol, String],
+            pet_id: Integer?
+          }
+        end
+      end
+    end
+  end
+end

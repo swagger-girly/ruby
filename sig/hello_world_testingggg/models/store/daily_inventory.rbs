@@ -1,0 +1,24 @@
+module HelloWorldTestingggg
+  module Models
+    module Store
+      type daily_inventory =
+        { date: Date, metrics: top, notes: ::Array[String]? }
+
+      class DailyInventory < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor date: Date
+
+        attr_accessor metrics: top
+
+        attr_accessor notes: ::Array[String]?
+
+        def initialize: (
+          date: Date,
+          metrics: top,
+          ?notes: ::Array[String]?
+        ) -> void
+
+        def to_hash: -> { date: Date, metrics: top, notes: ::Array[String]? }
+      end
+    end
+  end
+end

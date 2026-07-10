@@ -1,0 +1,40 @@
+module HelloWorldTestingggg
+  module Models
+    module Store
+      type report_list_params =
+        { ending_before: String, page_size: Integer, starting_after: String }
+        & HelloWorldTestingggg::Internal::Type::request_parameters
+
+      class ReportListParams < HelloWorldTestingggg::Internal::Type::BaseModel
+        extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+        include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+        attr_reader ending_before: String?
+
+        def ending_before=: (String) -> String
+
+        attr_reader page_size: Integer?
+
+        def page_size=: (Integer) -> Integer
+
+        attr_reader starting_after: String?
+
+        def starting_after=: (String) -> String
+
+        def initialize: (
+          ?ending_before: String,
+          ?page_size: Integer,
+          ?starting_after: String,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          ending_before: String,
+          page_size: Integer,
+          starting_after: String,
+          request_options: HelloWorldTestingggg::RequestOptions
+        }
+      end
+    end
+  end
+end

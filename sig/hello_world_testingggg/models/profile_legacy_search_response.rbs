@@ -1,0 +1,7 @@
+module HelloWorldTestingggg
+  module Models
+    type profile_legacy_search_response = ::Array[HelloWorldTestingggg::Profile]
+
+    ProfileLegacySearchResponse: HelloWorldTestingggg::Internal::Type::Converter
+  end
+end

@@ -1,0 +1,24 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_connect_params =
+      { pet_id: String }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class PetConnectParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_accessor pet_id: String
+
+      def initialize: (
+        pet_id: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        pet_id: String,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+    end
+  end
+end

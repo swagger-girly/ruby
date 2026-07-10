@@ -1,0 +1,26 @@
+module HelloWorldTestingggg
+  module Models
+    module Store
+      type report_retrieve_params =
+        { report_id: String }
+        & HelloWorldTestingggg::Internal::Type::request_parameters
+
+      class ReportRetrieveParams < HelloWorldTestingggg::Internal::Type::BaseModel
+        extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+        include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+        attr_accessor report_id: String
+
+        def initialize: (
+          report_id: String,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          report_id: String,
+          request_options: HelloWorldTestingggg::RequestOptions
+        }
+      end
+    end
+  end
+end

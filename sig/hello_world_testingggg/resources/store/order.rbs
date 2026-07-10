@@ -1,0 +1,29 @@
+module HelloWorldTestingggg
+  module Resources
+    class Store
+      class Order
+        def create: (
+          ?id: Integer,
+          ?complete: bool,
+          ?pet_id: Integer,
+          ?quantity: Integer,
+          ?ship_date: Time,
+          ?status: HelloWorldTestingggg::Models::Store::OrderCreateParams::status,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> HelloWorldTestingggg::Models::Store::OrderCreateResponse
+
+        def retrieve: (
+          Integer order_id,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> HelloWorldTestingggg::Models::Store::OrderRetrieveResponse
+
+        def delete: (
+          Integer order_id,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> nil
+
+        def initialize: (client: HelloWorldTestingggg::Client) -> void
+      end
+    end
+  end
+end

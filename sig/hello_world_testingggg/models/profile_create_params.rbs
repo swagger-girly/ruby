@@ -1,0 +1,26 @@
+module HelloWorldTestingggg
+  module Models
+    type profile_create_params =
+      { idempotency_key: String }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class ProfileCreateParams < HelloWorldTestingggg::Models::ProfileCreateRequest
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      def idempotency_key: -> String?
+
+      def idempotency_key=: (String _) -> String
+
+      def initialize: (
+        ?idempotency_key: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        idempotency_key: String,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+    end
+  end
+end

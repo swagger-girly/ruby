@@ -1,0 +1,34 @@
+module HelloWorldTestingggg
+  module Models
+    module Store
+      module Reports
+        module Inventory
+          type daily_retrieve_params =
+            { report_id: String, date: Date }
+            & HelloWorldTestingggg::Internal::Type::request_parameters
+
+          class DailyRetrieveParams < HelloWorldTestingggg::Internal::Type::BaseModel
+            extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+            include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+            attr_accessor report_id: String
+
+            attr_accessor date: Date
+
+            def initialize: (
+              report_id: String,
+              date: Date,
+              ?request_options: HelloWorldTestingggg::request_opts
+            ) -> void
+
+            def to_hash: -> {
+              report_id: String,
+              date: Date,
+              request_options: HelloWorldTestingggg::RequestOptions
+            }
+          end
+        end
+      end
+    end
+  end
+end

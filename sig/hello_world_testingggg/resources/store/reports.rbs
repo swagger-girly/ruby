@@ -1,0 +1,34 @@
+module HelloWorldTestingggg
+  module Resources
+    class Store
+      class Reports
+        attr_reader inventory: HelloWorldTestingggg::Resources::Store::Reports::Inventory
+
+        def retrieve: (
+          String report_id,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> HelloWorldTestingggg::Store::Report
+
+        def list: (
+          ?ending_before: String,
+          ?page_size: Integer,
+          ?starting_after: String,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> HelloWorldTestingggg::Internal::ReportCursorPage[HelloWorldTestingggg::Store::Report]
+
+        def embed: (
+          String report_id,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> String
+
+        def pause: (
+          String report_id,
+          ?idempotency_key: String,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> nil
+
+        def initialize: (client: HelloWorldTestingggg::Client) -> void
+      end
+    end
+  end
+end

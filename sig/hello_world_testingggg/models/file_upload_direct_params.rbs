@@ -1,0 +1,40 @@
+module HelloWorldTestingggg
+  module Models
+    type file_upload_direct_params =
+      {
+        body: HelloWorldTestingggg::Internal::file_input,
+        path: String,
+        x_file_name: String
+      }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class FileUploadDirectParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_accessor body: HelloWorldTestingggg::Internal::file_input
+
+      attr_reader path: String?
+
+      def path=: (String) -> String
+
+      attr_reader x_file_name: String?
+
+      def x_file_name=: (String) -> String
+
+      def initialize: (
+        body: HelloWorldTestingggg::Internal::file_input,
+        ?path: String,
+        ?x_file_name: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        body: HelloWorldTestingggg::Internal::file_input,
+        path: String,
+        x_file_name: String,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+    end
+  end
+end

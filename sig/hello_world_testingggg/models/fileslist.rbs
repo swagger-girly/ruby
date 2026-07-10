@@ -1,0 +1,13 @@
+module HelloWorldTestingggg
+  module Models
+    type fileslist = { data: ::Array[HelloWorldTestingggg::File] }
+
+    class Fileslist < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor data: ::Array[HelloWorldTestingggg::File]
+
+      def initialize: (data: ::Array[HelloWorldTestingggg::File]) -> void
+
+      def to_hash: -> { data: ::Array[HelloWorldTestingggg::File] }
+    end
+  end
+end

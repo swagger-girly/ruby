@@ -1,0 +1,10 @@
+module HelloWorldTestingggg
+  module Internal
+    extend HelloWorldTestingggg::Internal::Util::SorbetRuntimeSupport
+
+    type file_input =
+      Pathname | StringIO | IO | String | HelloWorldTestingggg::FilePart
+
+    OMIT: Object
+  end
+end

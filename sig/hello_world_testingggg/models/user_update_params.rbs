@@ -1,0 +1,82 @@
+module HelloWorldTestingggg
+  module Models
+    type user_update_params =
+      {
+        path_username: String,
+        id: Integer,
+        email: String,
+        first_name: String,
+        last_name: String,
+        password: String,
+        phone: String,
+        body_username: String,
+        user_status: Integer
+      }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class UserUpdateParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_accessor path_username: String
+
+      attr_reader id: Integer?
+
+      def id=: (Integer) -> Integer
+
+      attr_reader email: String?
+
+      def email=: (String) -> String
+
+      attr_reader first_name: String?
+
+      def first_name=: (String) -> String
+
+      attr_reader last_name: String?
+
+      def last_name=: (String) -> String
+
+      attr_reader password: String?
+
+      def password=: (String) -> String
+
+      attr_reader phone: String?
+
+      def phone=: (String) -> String
+
+      attr_reader body_username: String?
+
+      def body_username=: (String) -> String
+
+      attr_reader user_status: Integer?
+
+      def user_status=: (Integer) -> Integer
+
+      def initialize: (
+        path_username: String,
+        ?id: Integer,
+        ?email: String,
+        ?first_name: String,
+        ?last_name: String,
+        ?password: String,
+        ?phone: String,
+        ?body_username: String,
+        ?user_status: Integer,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        path_username: String,
+        id: Integer,
+        email: String,
+        first_name: String,
+        last_name: String,
+        password: String,
+        phone: String,
+        body_username: String,
+        user_status: Integer,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+    end
+  end
+end

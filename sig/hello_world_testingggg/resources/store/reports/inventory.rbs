@@ -1,0 +1,18 @@
+module HelloWorldTestingggg
+  module Resources
+    class Store
+      class Reports
+        class Inventory
+          attr_reader daily: HelloWorldTestingggg::Resources::Store::Reports::Inventory::Daily
+
+          def list: (
+            String report_id,
+            ?request_options: HelloWorldTestingggg::request_opts
+          ) -> HelloWorldTestingggg::Store::InventoryResponse
+
+          def initialize: (client: HelloWorldTestingggg::Client) -> void
+        end
+      end
+    end
+  end
+end

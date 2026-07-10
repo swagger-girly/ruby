@@ -1,0 +1,24 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_delete_params =
+      { pet_id: Integer }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class PetDeleteParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_accessor pet_id: Integer
+
+      def initialize: (
+        pet_id: Integer,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        pet_id: Integer,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+    end
+  end
+end

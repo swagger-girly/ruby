@@ -1,0 +1,109 @@
+module HelloWorldTestingggg
+  module Models
+    type profile =
+      {
+        id: String,
+        created_at: Time,
+        display_name: String,
+        updated_at: Time,
+        version: Integer,
+        audit_trail: ::Hash[Symbol, top],
+        email: String?,
+        legacy_code: String,
+        metadata: ::Hash[Symbol, String],
+        phone_numbers: ::Array[String]?,
+        preferences: HelloWorldTestingggg::Profile::Preferences
+      }
+
+    class Profile < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor display_name: String
+
+      attr_reader audit_trail: ::Hash[Symbol, top]?
+
+      def audit_trail=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_accessor email: String?
+
+      attr_reader legacy_code: String?
+
+      def legacy_code=: (String) -> String
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_accessor phone_numbers: ::Array[String]?
+
+      attr_reader preferences: HelloWorldTestingggg::Profile::Preferences?
+
+      def preferences=: (
+        HelloWorldTestingggg::Profile::Preferences
+      ) -> HelloWorldTestingggg::Profile::Preferences
+
+      attr_accessor created_at: Time
+
+      attr_accessor updated_at: Time
+
+      attr_accessor version: Integer
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        display_name: String,
+        updated_at: Time,
+        version: Integer,
+        ?audit_trail: ::Hash[Symbol, top],
+        ?email: String?,
+        ?legacy_code: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?phone_numbers: ::Array[String]?,
+        ?preferences: HelloWorldTestingggg::Profile::Preferences
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        display_name: String,
+        updated_at: Time,
+        version: Integer,
+        audit_trail: ::Hash[Symbol, top],
+        email: String?,
+        legacy_code: String,
+        metadata: ::Hash[Symbol, String],
+        phone_numbers: ::Array[String]?,
+        preferences: HelloWorldTestingggg::Profile::Preferences
+      }
+
+      type preferences =
+        { alerts: ::Hash[Symbol, bool], newsletter: bool, score_by_region: top }
+
+      class Preferences < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader alerts: ::Hash[Symbol, bool]?
+
+        def alerts=: (::Hash[Symbol, bool]) -> ::Hash[Symbol, bool]
+
+        attr_reader newsletter: bool?
+
+        def newsletter=: (bool) -> bool
+
+        attr_reader score_by_region: top?
+
+        def score_by_region=: (top) -> top
+
+        def initialize: (
+          ?alerts: ::Hash[Symbol, bool],
+          ?newsletter: bool,
+          ?score_by_region: top
+        ) -> void
+
+        def to_hash: -> {
+          alerts: ::Hash[Symbol, bool],
+          newsletter: bool,
+          score_by_region: top
+        }
+      end
+    end
+  end
+end

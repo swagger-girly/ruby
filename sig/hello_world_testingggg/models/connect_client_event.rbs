@@ -1,0 +1,57 @@
+module HelloWorldTestingggg
+  module Models
+    type connect_client_event =
+      HelloWorldTestingggg::Models::ConnectClientEvent::Ping
+      | HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe
+
+    module ConnectClientEvent
+      extend HelloWorldTestingggg::Internal::Type::Union
+
+      type ping = { type: :ping }
+
+      class Ping < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor type: :ping
+
+        def initialize: (?type: :ping) -> void
+
+        def to_hash: -> { type: :ping }
+      end
+
+      type subscribe =
+        {
+          status: HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::status,
+          type: :subscribe
+        }
+
+      class Subscribe < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor status: HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::status
+
+        attr_accessor type: :subscribe
+
+        def initialize: (
+          status: HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::status,
+          ?type: :subscribe
+        ) -> void
+
+        def to_hash: -> {
+          status: HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::status,
+          type: :subscribe
+        }
+
+        type status = :available | :pending | :sold
+
+        module Status
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          AVAILABLE: :available
+          PENDING: :pending
+          SOLD: :sold
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::status]
+        end
+      end
+
+      def self?.variants: -> ::Array[HelloWorldTestingggg::Models::connect_client_event]
+    end
+  end
+end

@@ -1,0 +1,5 @@
+module HelloWorldTestingggg
+  module Models
+    class UserLoginResponse = String
+  end
+end

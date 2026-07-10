@@ -1,0 +1,32 @@
+module HelloWorldTestingggg
+  module Models
+    type user_login_params =
+      { password: String, username: String }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class UserLoginParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_reader password: String?
+
+      def password=: (String) -> String
+
+      attr_reader username: String?
+
+      def username=: (String) -> String
+
+      def initialize: (
+        ?password: String,
+        ?username: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        password: String,
+        username: String,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+    end
+  end
+end
