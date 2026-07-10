@@ -1,0 +1,7 @@
+module HelloWorldTestingggg
+  module Models
+    type store_list_inventory_response = ::Hash[Symbol, Integer]
+
+    StoreListInventoryResponse: HelloWorldTestingggg::Internal::Type::Converter
+  end
+end

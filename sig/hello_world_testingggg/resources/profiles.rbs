@@ -1,0 +1,36 @@
+module HelloWorldTestingggg
+  module Resources
+    class Profiles
+      def create: (
+        display_name: String,
+        ?email: String?,
+        ?government_id: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?preferences: HelloWorldTestingggg::ProfileCreateRequest::Preferences,
+        ?secret_note: String,
+        ?idempotency_key: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Profile
+
+      def retrieve: (
+        String profile_id,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Profile
+
+      def update: (
+        String profile_id,
+        body: HelloWorldTestingggg::Models::ProfileUpdateParams::body,
+        ?idempotency_key: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Profile
+
+      def legacy_search: (
+        ?include_archived: bool,
+        ?q: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::profile_legacy_search_response
+
+      def initialize: (client: HelloWorldTestingggg::Client) -> void
+    end
+  end
+end

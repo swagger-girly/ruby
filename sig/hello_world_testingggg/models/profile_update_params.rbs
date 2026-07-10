@@ -1,0 +1,155 @@
+module HelloWorldTestingggg
+  module Models
+    type profile_update_params =
+      {
+        profile_id: String,
+        body: HelloWorldTestingggg::Models::ProfileUpdateParams::body,
+        idempotency_key: String
+      }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class ProfileUpdateParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_accessor profile_id: String
+
+      attr_accessor body: HelloWorldTestingggg::Models::ProfileUpdateParams::body
+
+      attr_reader idempotency_key: String?
+
+      def idempotency_key=: (String) -> String
+
+      def initialize: (
+        profile_id: String,
+        body: HelloWorldTestingggg::Models::ProfileUpdateParams::body,
+        ?idempotency_key: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        profile_id: String,
+        body: HelloWorldTestingggg::Models::ProfileUpdateParams::body,
+        idempotency_key: String,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+
+      type body =
+        HelloWorldTestingggg::ProfileUpdateParams::Body::ProfileDetailsUpdate
+        | HelloWorldTestingggg::ProfileUpdateParams::Body::ProfileArchiveUpdate
+
+      module Body
+        extend HelloWorldTestingggg::Internal::Type::Union
+
+        type profile_details_update =
+          {
+            display_name: String,
+            email: String?,
+            metadata: ::Hash[Symbol, String],
+            preferences: HelloWorldTestingggg::ProfileUpdateParams::Body::ProfileDetailsUpdate::Preferences
+          }
+
+        class ProfileDetailsUpdate < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader display_name: String?
+
+          def display_name=: (String) -> String
+
+          attr_accessor email: String?
+
+          attr_reader metadata: ::Hash[Symbol, String]?
+
+          def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+          attr_reader preferences: HelloWorldTestingggg::ProfileUpdateParams::Body::ProfileDetailsUpdate::Preferences?
+
+          def preferences=: (
+            HelloWorldTestingggg::ProfileUpdateParams::Body::ProfileDetailsUpdate::Preferences
+          ) -> HelloWorldTestingggg::ProfileUpdateParams::Body::ProfileDetailsUpdate::Preferences
+
+          def initialize: (
+            ?display_name: String,
+            ?email: String?,
+            ?metadata: ::Hash[Symbol, String],
+            ?preferences: HelloWorldTestingggg::ProfileUpdateParams::Body::ProfileDetailsUpdate::Preferences
+          ) -> void
+
+          def to_hash: -> {
+            display_name: String,
+            email: String?,
+            metadata: ::Hash[Symbol, String],
+            preferences: HelloWorldTestingggg::ProfileUpdateParams::Body::ProfileDetailsUpdate::Preferences
+          }
+
+          type preferences =
+            {
+              alerts: ::Hash[Symbol, bool],
+              newsletter: bool,
+              score_by_region: top
+            }
+
+          class Preferences < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_reader alerts: ::Hash[Symbol, bool]?
+
+            def alerts=: (::Hash[Symbol, bool]) -> ::Hash[Symbol, bool]
+
+            attr_reader newsletter: bool?
+
+            def newsletter=: (bool) -> bool
+
+            attr_reader score_by_region: top?
+
+            def score_by_region=: (top) -> top
+
+            def initialize: (
+              ?alerts: ::Hash[Symbol, bool],
+              ?newsletter: bool,
+              ?score_by_region: top
+            ) -> void
+
+            def to_hash: -> {
+              alerts: ::Hash[Symbol, bool],
+              newsletter: bool,
+              score_by_region: top
+            }
+          end
+        end
+
+        type profile_archive_update =
+          {
+            archived_at: Time,
+            archived_reason: HelloWorldTestingggg::Models::ProfileUpdateParams::Body::ProfileArchiveUpdate::archived_reason
+          }
+
+        class ProfileArchiveUpdate < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor archived_at: Time
+
+          attr_accessor archived_reason: HelloWorldTestingggg::Models::ProfileUpdateParams::Body::ProfileArchiveUpdate::archived_reason
+
+          def initialize: (
+            archived_at: Time,
+            archived_reason: HelloWorldTestingggg::Models::ProfileUpdateParams::Body::ProfileArchiveUpdate::archived_reason
+          ) -> void
+
+          def to_hash: -> {
+            archived_at: Time,
+            archived_reason: HelloWorldTestingggg::Models::ProfileUpdateParams::Body::ProfileArchiveUpdate::archived_reason
+          }
+
+          type archived_reason = :duplicate | :requested | :policy_violation
+
+          module ArchivedReason
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            DUPLICATE: :duplicate
+            REQUESTED: :requested
+            POLICY_VIOLATION: :policy_violation
+
+            def self?.values: -> ::Array[HelloWorldTestingggg::Models::ProfileUpdateParams::Body::ProfileArchiveUpdate::archived_reason]
+          end
+        end
+
+        def self?.variants: -> ::Array[HelloWorldTestingggg::Models::ProfileUpdateParams::body]
+      end
+    end
+  end
+end

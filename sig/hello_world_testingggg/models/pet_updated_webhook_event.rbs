@@ -1,0 +1,77 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_updated_webhook_event =
+      {
+        changed_fields: ::Array[HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::changed_field],
+        pet: HelloWorldTestingggg::PetAPI,
+        type: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::type_,
+        metadata: ::Hash[Symbol, String],
+        previous_status: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::previous_status?
+      }
+
+    class PetUpdatedWebhookEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor changed_fields: ::Array[HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::changed_field]
+
+      attr_accessor pet: HelloWorldTestingggg::PetAPI
+
+      attr_accessor type: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::type_
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_accessor previous_status: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::previous_status?
+
+      def initialize: (
+        changed_fields: ::Array[HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::changed_field],
+        pet: HelloWorldTestingggg::PetAPI,
+        type: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::type_,
+        ?metadata: ::Hash[Symbol, String],
+        ?previous_status: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::previous_status?
+      ) -> void
+
+      def to_hash: -> {
+        changed_fields: ::Array[HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::changed_field],
+        pet: HelloWorldTestingggg::PetAPI,
+        type: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::type_,
+        metadata: ::Hash[Symbol, String],
+        previous_status: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::previous_status?
+      }
+
+      type changed_field = :name | :status | :category | :tags
+
+      module ChangedField
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        NAME: :name
+        STATUS: :status
+        CATEGORY: :category
+        TAGS: :tags
+
+        def self?.values: -> ::Array[HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::changed_field]
+      end
+
+      type type_ = :"pet.updated"
+
+      module Type
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        PET_UPDATED: :"pet.updated"
+
+        def self?.values: -> ::Array[HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::type_]
+      end
+
+      type previous_status = :available | :pending | :sold
+
+      module PreviousStatus
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        AVAILABLE: :available
+        PENDING: :pending
+        SOLD: :sold
+
+        def self?.values: -> ::Array[HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::previous_status]
+      end
+    end
+  end
+end

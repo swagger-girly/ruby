@@ -1,0 +1,44 @@
+module HelloWorldTestingggg
+  module Models
+    type archive =
+      {
+        id: String,
+        status: HelloWorldTestingggg::Models::Archive::status,
+        file_count: Integer
+      }
+
+    class Archive < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor status: HelloWorldTestingggg::Models::Archive::status
+
+      attr_reader file_count: Integer?
+
+      def file_count=: (Integer) -> Integer
+
+      def initialize: (
+        id: String,
+        status: HelloWorldTestingggg::Models::Archive::status,
+        ?file_count: Integer
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        status: HelloWorldTestingggg::Models::Archive::status,
+        file_count: Integer
+      }
+
+      type status = :queued | :processing | :complete
+
+      module Status
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        QUEUED: :queued
+        PROCESSING: :processing
+        COMPLETE: :complete
+
+        def self?.values: -> ::Array[HelloWorldTestingggg::Models::Archive::status]
+      end
+    end
+  end
+end

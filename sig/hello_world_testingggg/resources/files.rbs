@@ -1,0 +1,52 @@
+module HelloWorldTestingggg
+  module Resources
+    class Files
+      def update: (
+        String path,
+        ?file: HelloWorldTestingggg::Internal::file_input,
+        ?metadata: ::Hash[Symbol, String],
+        ?url: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::File
+
+      def list: (
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Fileslist
+
+      def delete: (
+        String path,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> nil
+
+      def create_archive: (
+        files: ::Array[HelloWorldTestingggg::Internal::file_input],
+        ?manifest: HelloWorldTestingggg::FileCreateArchiveParams::Manifest,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Archive
+
+      def download: (
+        String path,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> StringIO
+
+      def upload: (
+        file: HelloWorldTestingggg::Internal::file_input,
+        ?expires_in: Integer,
+        ?metadata: ::Hash[Symbol, String],
+        ?path: String,
+        ?public: bool,
+        ?tags: ::Array[String],
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::File
+
+      def upload_direct: (
+        body: HelloWorldTestingggg::Internal::file_input,
+        ?path: String,
+        ?x_file_name: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::File
+
+      def initialize: (client: HelloWorldTestingggg::Client) -> void
+    end
+  end
+end

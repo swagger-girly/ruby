@@ -1,0 +1,22 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_list_unpaginated_response =
+      { items: ::Array[HelloWorldTestingggg::PetAPI], next_cursor: String? }
+
+    class PetListUnpaginatedResponse < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor items: ::Array[HelloWorldTestingggg::PetAPI]
+
+      attr_accessor next_cursor: String?
+
+      def initialize: (
+        items: ::Array[HelloWorldTestingggg::PetAPI],
+        ?next_cursor: String?
+      ) -> void
+
+      def to_hash: -> {
+        items: ::Array[HelloWorldTestingggg::PetAPI],
+        next_cursor: String?
+      }
+    end
+  end
+end

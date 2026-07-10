@@ -1,0 +1,39 @@
+module HelloWorldTestingggg
+  class Client < HelloWorldTestingggg::Internal::Transport::BaseClient
+    DEFAULT_MAX_RETRIES: 2
+
+    DEFAULT_TIMEOUT_IN_SECONDS: Float
+
+    DEFAULT_INITIAL_RETRY_DELAY: Float
+
+    DEFAULT_MAX_RETRY_DELAY: Float
+
+    attr_reader api_key: String
+
+    attr_reader webhook_secret: String?
+
+    attr_reader pet: HelloWorldTestingggg::Resources::Pet
+
+    attr_reader files: HelloWorldTestingggg::Resources::Files
+
+    attr_reader profiles: HelloWorldTestingggg::Resources::Profiles
+
+    attr_reader webhooks: HelloWorldTestingggg::Resources::Webhooks
+
+    attr_reader store: HelloWorldTestingggg::Resources::Store
+
+    attr_reader user: HelloWorldTestingggg::Resources::User
+
+    private def auth_headers: -> ::Hash[String, String]
+
+    def initialize: (
+      ?api_key: String?,
+      ?webhook_secret: String?,
+      ?base_url: String?,
+      ?max_retries: Integer,
+      ?timeout: Float,
+      ?initial_retry_delay: Float,
+      ?max_retry_delay: Float
+    ) -> void
+  end
+end

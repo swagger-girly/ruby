@@ -1,0 +1,95 @@
+module HelloWorldTestingggg
+  class Archive = HelloWorldTestingggg::Models::Archive
+
+  class File = HelloWorldTestingggg::Models::File
+
+  class FileCreateArchiveParams = HelloWorldTestingggg::Models::FileCreateArchiveParams
+
+  class FileDeleteParams = HelloWorldTestingggg::Models::FileDeleteParams
+
+  class FileDownloadParams = HelloWorldTestingggg::Models::FileDownloadParams
+
+  class FileListParams = HelloWorldTestingggg::Models::FileListParams
+
+  class Fileslist = HelloWorldTestingggg::Models::Fileslist
+
+  class FileUpdateParams = HelloWorldTestingggg::Models::FileUpdateParams
+
+  class FileUploadDirectParams = HelloWorldTestingggg::Models::FileUploadDirectParams
+
+  class FileUploadParams = HelloWorldTestingggg::Models::FileUploadParams
+
+  module ParsedWebhookEvent = HelloWorldTestingggg::Models::ParsedWebhookEvent
+
+  class PetAPI = HelloWorldTestingggg::Models::PetAPI
+
+  class PetConnectParams = HelloWorldTestingggg::Models::PetConnectParams
+
+  class PetCreatedWebhookEvent = HelloWorldTestingggg::Models::PetCreatedWebhookEvent
+
+  class PetCreateParams = HelloWorldTestingggg::Models::PetCreateParams
+
+  class PetDeleteParams = HelloWorldTestingggg::Models::PetDeleteParams
+
+  class PetFindByStatusParams = HelloWorldTestingggg::Models::PetFindByStatusParams
+
+  class PetFindByTagsParams = HelloWorldTestingggg::Models::PetFindByTagsParams
+
+  class PetInventoryLowWebhookEvent = HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent
+
+  class PetListFakePageInferredParams = HelloWorldTestingggg::Models::PetListFakePageInferredParams
+
+  class PetListFakePageParams = HelloWorldTestingggg::Models::PetListFakePageParams
+
+  class PetListParams = HelloWorldTestingggg::Models::PetListParams
+
+  class PetListUnpaginatedParams = HelloWorldTestingggg::Models::PetListUnpaginatedParams
+
+  module PetModerationWebhookEvent = HelloWorldTestingggg::Models::PetModerationWebhookEvent
+
+  class PetRetrieveParams = HelloWorldTestingggg::Models::PetRetrieveParams
+
+  class PetUpdatedWebhookEvent = HelloWorldTestingggg::Models::PetUpdatedWebhookEvent
+
+  class PetUpdateParams = HelloWorldTestingggg::Models::PetUpdateParams
+
+  class PetUpdateWithFormParams = HelloWorldTestingggg::Models::PetUpdateWithFormParams
+
+  class PetUploadImageParams = HelloWorldTestingggg::Models::PetUploadImageParams
+
+  class PetWatchStatusParams = HelloWorldTestingggg::Models::PetWatchStatusParams
+
+  class Profile = HelloWorldTestingggg::Models::Profile
+
+  class ProfileCreateParams = HelloWorldTestingggg::Models::ProfileCreateParams
+
+  class ProfileCreateRequest = HelloWorldTestingggg::Models::ProfileCreateRequest
+
+  class ProfileLegacySearchParams = HelloWorldTestingggg::Models::ProfileLegacySearchParams
+
+  class ProfileRetrieveParams = HelloWorldTestingggg::Models::ProfileRetrieveParams
+
+  class ProfileUpdateParams = HelloWorldTestingggg::Models::ProfileUpdateParams
+
+  module Store = HelloWorldTestingggg::Models::Store
+
+  class StoreListInventoryParams = HelloWorldTestingggg::Models::StoreListInventoryParams
+
+  class StoreReportGeneratedWebhookEvent = HelloWorldTestingggg::Models::StoreReportGeneratedWebhookEvent
+
+  class UserCreateParams = HelloWorldTestingggg::Models::UserCreateParams
+
+  class UserCreateWithListParams = HelloWorldTestingggg::Models::UserCreateWithListParams
+
+  class UserDeleteParams = HelloWorldTestingggg::Models::UserDeleteParams
+
+  class UserLoginParams = HelloWorldTestingggg::Models::UserLoginParams
+
+  class UserLogoutParams = HelloWorldTestingggg::Models::UserLogoutParams
+
+  class UserRetrieveParams = HelloWorldTestingggg::Models::UserRetrieveParams
+
+  class UserUpdateParams = HelloWorldTestingggg::Models::UserUpdateParams
+
+  class WebhookParsedParams = HelloWorldTestingggg::Models::WebhookParsedParams
+end

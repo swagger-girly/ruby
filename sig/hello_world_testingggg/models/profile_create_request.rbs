@@ -1,0 +1,84 @@
+module HelloWorldTestingggg
+  module Models
+    type profile_create_request =
+      {
+        display_name: String,
+        email: String?,
+        government_id: String,
+        metadata: ::Hash[Symbol, String],
+        preferences: HelloWorldTestingggg::ProfileCreateRequest::Preferences,
+        secret_note: String
+      }
+
+    class ProfileCreateRequest < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor display_name: String
+
+      attr_accessor email: String?
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader preferences: HelloWorldTestingggg::ProfileCreateRequest::Preferences?
+
+      def preferences=: (
+        HelloWorldTestingggg::ProfileCreateRequest::Preferences
+      ) -> HelloWorldTestingggg::ProfileCreateRequest::Preferences
+
+      attr_reader government_id: String?
+
+      def government_id=: (String) -> String
+
+      attr_reader secret_note: String?
+
+      def secret_note=: (String) -> String
+
+      def initialize: (
+        display_name: String,
+        ?email: String?,
+        ?government_id: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?preferences: HelloWorldTestingggg::ProfileCreateRequest::Preferences,
+        ?secret_note: String
+      ) -> void
+
+      def to_hash: -> {
+        display_name: String,
+        email: String?,
+        government_id: String,
+        metadata: ::Hash[Symbol, String],
+        preferences: HelloWorldTestingggg::ProfileCreateRequest::Preferences,
+        secret_note: String
+      }
+
+      type preferences =
+        { alerts: ::Hash[Symbol, bool], newsletter: bool, score_by_region: top }
+
+      class Preferences < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader alerts: ::Hash[Symbol, bool]?
+
+        def alerts=: (::Hash[Symbol, bool]) -> ::Hash[Symbol, bool]
+
+        attr_reader newsletter: bool?
+
+        def newsletter=: (bool) -> bool
+
+        attr_reader score_by_region: top?
+
+        def score_by_region=: (top) -> top
+
+        def initialize: (
+          ?alerts: ::Hash[Symbol, bool],
+          ?newsletter: bool,
+          ?score_by_region: top
+        ) -> void
+
+        def to_hash: -> {
+          alerts: ::Hash[Symbol, bool],
+          newsletter: bool,
+          score_by_region: top
+        }
+      end
+    end
+  end
+end

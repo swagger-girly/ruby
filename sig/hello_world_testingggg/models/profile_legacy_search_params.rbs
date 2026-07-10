@@ -1,0 +1,32 @@
+module HelloWorldTestingggg
+  module Models
+    type profile_legacy_search_params =
+      { include_archived: bool, q: String }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class ProfileLegacySearchParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_reader include_archived: bool?
+
+      def include_archived=: (bool) -> bool
+
+      attr_reader q: String?
+
+      def q=: (String) -> String
+
+      def initialize: (
+        ?include_archived: bool,
+        ?q: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        include_archived: bool,
+        q: String,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+    end
+  end
+end

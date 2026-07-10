@@ -1,0 +1,49 @@
+module HelloWorldTestingggg
+  module Models
+    type file_update_params =
+      {
+        path: String,
+        file: HelloWorldTestingggg::Internal::file_input,
+        metadata: ::Hash[Symbol, String],
+        url: String
+      }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class FileUpdateParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_accessor path: String
+
+      attr_reader file: HelloWorldTestingggg::Internal::file_input?
+
+      def file=: (
+        HelloWorldTestingggg::Internal::file_input
+      ) -> HelloWorldTestingggg::Internal::file_input
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader url: String?
+
+      def url=: (String) -> String
+
+      def initialize: (
+        path: String,
+        ?file: HelloWorldTestingggg::Internal::file_input,
+        ?metadata: ::Hash[Symbol, String],
+        ?url: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        path: String,
+        file: HelloWorldTestingggg::Internal::file_input,
+        metadata: ::Hash[Symbol, String],
+        url: String,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+    end
+  end
+end

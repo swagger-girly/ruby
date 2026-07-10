@@ -1,0 +1,3 @@
+module HelloWorldTestingggg
+  VERSION: String
+end

@@ -1,0 +1,26 @@
+module HelloWorldTestingggg
+  module Models
+    module Store
+      type order_delete_params =
+        { order_id: Integer }
+        & HelloWorldTestingggg::Internal::Type::request_parameters
+
+      class OrderDeleteParams < HelloWorldTestingggg::Internal::Type::BaseModel
+        extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+        include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+        attr_accessor order_id: Integer
+
+        def initialize: (
+          order_id: Integer,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          order_id: Integer,
+          request_options: HelloWorldTestingggg::RequestOptions
+        }
+      end
+    end
+  end
+end

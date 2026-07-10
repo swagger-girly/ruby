@@ -1,0 +1,40 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_find_by_status_params =
+      { status: HelloWorldTestingggg::Models::PetFindByStatusParams::status }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class PetFindByStatusParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_reader status: HelloWorldTestingggg::Models::PetFindByStatusParams::status?
+
+      def status=: (
+        HelloWorldTestingggg::Models::PetFindByStatusParams::status
+      ) -> HelloWorldTestingggg::Models::PetFindByStatusParams::status
+
+      def initialize: (
+        ?status: HelloWorldTestingggg::Models::PetFindByStatusParams::status,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        status: HelloWorldTestingggg::Models::PetFindByStatusParams::status,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+
+      type status = :available | :pending | :sold
+
+      module Status
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        AVAILABLE: :available
+        PENDING: :pending
+        SOLD: :sold
+
+        def self?.values: -> ::Array[HelloWorldTestingggg::Models::PetFindByStatusParams::status]
+      end
+    end
+  end
+end

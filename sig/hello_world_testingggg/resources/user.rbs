@@ -1,0 +1,55 @@
+module HelloWorldTestingggg
+  module Resources
+    class User
+      def create: (
+        ?id: Integer,
+        ?email: String,
+        ?first_name: String,
+        ?last_name: String,
+        ?password: String,
+        ?phone: String,
+        ?username: String,
+        ?user_status: Integer,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::UserCreateResponse
+
+      def retrieve: (
+        String username,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::UserRetrieveResponse
+
+      def update: (
+        String path_username,
+        ?id: Integer,
+        ?email: String,
+        ?first_name: String,
+        ?last_name: String,
+        ?password: String,
+        ?phone: String,
+        ?body_username: String,
+        ?user_status: Integer,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> nil
+
+      def delete: (
+        String username,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> nil
+
+      def create_with_list: (
+        ?body: ::Array[HelloWorldTestingggg::UserCreateWithListParams::Body],
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::UserCreateWithListResponse
+
+      def login: (
+        ?password: String,
+        ?username: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> String
+
+      def logout: (?request_options: HelloWorldTestingggg::request_opts) -> nil
+
+      def initialize: (client: HelloWorldTestingggg::Client) -> void
+    end
+  end
+end

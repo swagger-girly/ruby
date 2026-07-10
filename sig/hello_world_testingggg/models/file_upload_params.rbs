@@ -1,0 +1,61 @@
+module HelloWorldTestingggg
+  module Models
+    type file_upload_params =
+      {
+        file: HelloWorldTestingggg::Internal::file_input,
+        expires_in: Integer,
+        metadata: ::Hash[Symbol, String],
+        path: String,
+        public: bool,
+        tags: ::Array[String]
+      }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class FileUploadParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_accessor file: HelloWorldTestingggg::Internal::file_input
+
+      attr_reader expires_in: Integer?
+
+      def expires_in=: (Integer) -> Integer
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader path: String?
+
+      def path=: (String) -> String
+
+      attr_reader public: bool?
+
+      def public=: (bool) -> bool
+
+      attr_reader tags: ::Array[String]?
+
+      def tags=: (::Array[String]) -> ::Array[String]
+
+      def initialize: (
+        file: HelloWorldTestingggg::Internal::file_input,
+        ?expires_in: Integer,
+        ?metadata: ::Hash[Symbol, String],
+        ?path: String,
+        ?public: bool,
+        ?tags: ::Array[String],
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        file: HelloWorldTestingggg::Internal::file_input,
+        expires_in: Integer,
+        metadata: ::Hash[Symbol, String],
+        path: String,
+        public: bool,
+        tags: ::Array[String],
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+    end
+  end
+end

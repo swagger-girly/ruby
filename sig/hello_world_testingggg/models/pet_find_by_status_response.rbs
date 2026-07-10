@@ -1,0 +1,7 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_find_by_status_response = ::Array[HelloWorldTestingggg::PetAPI]
+
+    PetFindByStatusResponse: HelloWorldTestingggg::Internal::Type::Converter
+  end
+end

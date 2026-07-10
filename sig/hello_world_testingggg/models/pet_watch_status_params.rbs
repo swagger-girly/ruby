@@ -1,0 +1,30 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_watch_status_params =
+      { pet_id: Integer, last_event_id: String }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class PetWatchStatusParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_accessor pet_id: Integer
+
+      attr_reader last_event_id: String?
+
+      def last_event_id=: (String) -> String
+
+      def initialize: (
+        pet_id: Integer,
+        ?last_event_id: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        pet_id: Integer,
+        last_event_id: String,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+    end
+  end
+end

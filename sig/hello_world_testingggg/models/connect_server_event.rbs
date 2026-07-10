@@ -1,0 +1,38 @@
+module HelloWorldTestingggg
+  module Models
+    type connect_server_event =
+      HelloWorldTestingggg::Models::ConnectServerEvent::Pong
+      | HelloWorldTestingggg::Models::ConnectServerEvent::Status
+
+    module ConnectServerEvent
+      extend HelloWorldTestingggg::Internal::Type::Union
+
+      type pong = { type: :pong }
+
+      class Pong < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor type: :pong
+
+        def initialize: (?type: :pong) -> void
+
+        def to_hash: -> { type: :pong }
+      end
+
+      type status = { pet: HelloWorldTestingggg::PetAPI, type: :status }
+
+      class Status < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor pet: HelloWorldTestingggg::PetAPI
+
+        attr_accessor type: :status
+
+        def initialize: (
+          pet: HelloWorldTestingggg::PetAPI,
+          ?type: :status
+        ) -> void
+
+        def to_hash: -> { pet: HelloWorldTestingggg::PetAPI, type: :status }
+      end
+
+      def self?.variants: -> ::Array[HelloWorldTestingggg::Models::connect_server_event]
+    end
+  end
+end

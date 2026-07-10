@@ -1,0 +1,103 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_api =
+      {
+        name: String,
+        photo_urls: ::Array[String],
+        id: Integer,
+        category: HelloWorldTestingggg::PetAPI::Category,
+        status: HelloWorldTestingggg::Models::PetAPI::status,
+        tags: ::Array[HelloWorldTestingggg::PetAPI::Tag]
+      }
+
+    class PetAPI < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor name: String
+
+      attr_accessor photo_urls: ::Array[String]
+
+      attr_reader id: Integer?
+
+      def id=: (Integer) -> Integer
+
+      attr_reader category: HelloWorldTestingggg::PetAPI::Category?
+
+      def category=: (
+        HelloWorldTestingggg::PetAPI::Category
+      ) -> HelloWorldTestingggg::PetAPI::Category
+
+      attr_reader status: HelloWorldTestingggg::Models::PetAPI::status?
+
+      def status=: (
+        HelloWorldTestingggg::Models::PetAPI::status
+      ) -> HelloWorldTestingggg::Models::PetAPI::status
+
+      attr_reader tags: ::Array[HelloWorldTestingggg::PetAPI::Tag]?
+
+      def tags=: (
+        ::Array[HelloWorldTestingggg::PetAPI::Tag]
+      ) -> ::Array[HelloWorldTestingggg::PetAPI::Tag]
+
+      def initialize: (
+        name: String,
+        photo_urls: ::Array[String],
+        ?id: Integer,
+        ?category: HelloWorldTestingggg::PetAPI::Category,
+        ?status: HelloWorldTestingggg::Models::PetAPI::status,
+        ?tags: ::Array[HelloWorldTestingggg::PetAPI::Tag]
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        photo_urls: ::Array[String],
+        id: Integer,
+        category: HelloWorldTestingggg::PetAPI::Category,
+        status: HelloWorldTestingggg::Models::PetAPI::status,
+        tags: ::Array[HelloWorldTestingggg::PetAPI::Tag]
+      }
+
+      type category = { id: Integer, name: String }
+
+      class Category < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader id: Integer?
+
+        def id=: (Integer) -> Integer
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (?id: Integer, ?name: String) -> void
+
+        def to_hash: -> { id: Integer, name: String }
+      end
+
+      type status = :available | :pending | :sold
+
+      module Status
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        AVAILABLE: :available
+        PENDING: :pending
+        SOLD: :sold
+
+        def self?.values: -> ::Array[HelloWorldTestingggg::Models::PetAPI::status]
+      end
+
+      type tag = { id: Integer, name: String }
+
+      class Tag < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader id: Integer?
+
+        def id=: (Integer) -> Integer
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (?id: Integer, ?name: String) -> void
+
+        def to_hash: -> { id: Integer, name: String }
+      end
+    end
+  end
+end

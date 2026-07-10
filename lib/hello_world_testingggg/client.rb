@@ -1,0 +1,120 @@
+# frozen_string_literal: true
+
+module HelloWorldTestingggg
+  class Client < HelloWorldTestingggg::Internal::Transport::BaseClient
+    # Default max number of retries to attempt after a failed retryable request.
+    DEFAULT_MAX_RETRIES = 2
+
+    # Default per-request timeout.
+    DEFAULT_TIMEOUT_IN_SECONDS = 60.0
+
+    # Default initial retry delay in seconds.
+    # Overall delay is calculated using exponential backoff + jitter.
+    DEFAULT_INITIAL_RETRY_DELAY = 0.5
+
+    # Default max retry delay in seconds.
+    DEFAULT_MAX_RETRY_DELAY = 8.0
+
+    # The API key for authorization in the header.
+    # @return [String]
+    attr_reader :api_key
+
+    # @return [String, nil]
+    attr_reader :webhook_secret
+
+    # Everything about your Pets
+    # @return [HelloWorldTestingggg::Resources::Pet]
+    attr_reader :pet
+
+    # File storage operations
+    # @return [HelloWorldTestingggg::Resources::Files]
+    attr_reader :files
+
+    # Pet owner profile and compliance operations
+    # @return [HelloWorldTestingggg::Resources::Profiles]
+    attr_reader :profiles
+
+    # @return [HelloWorldTestingggg::Resources::Webhooks]
+    attr_reader :webhooks
+
+    # Access to Petstore orders
+    # @return [HelloWorldTestingggg::Resources::Store]
+    attr_reader :store
+
+    # Operations about user
+    # @return [HelloWorldTestingggg::Resources::User]
+    attr_reader :user
+
+    # @api private
+    #
+    # @return [Hash{String=>String}]
+    private def auth_headers
+      {"api_key" => @api_key}
+    end
+
+    # Creates and returns a new client for interacting with the API.
+    #
+    # @param api_key [String, nil] The API key for authorization in the header. Defaults to `ENV["API_KEY"]`
+    #
+    # @param webhook_secret [String, nil] Defaults to `ENV["PETSTORE_WEBHOOK_SECRET"]`
+    #
+    # @param base_url [String, nil] Override the default base URL for the API, e.g.,
+    # `"https://api.example.com/v2/"`. Defaults to
+    # `ENV["HELLO_WORLD_TESTINGGGG_BASE_URL"]`
+    #
+    # @param max_retries [Integer] Max number of retries to attempt after a failed retryable request.
+    #
+    # @param timeout [Float]
+    #
+    # @param initial_retry_delay [Float]
+    #
+    # @param max_retry_delay [Float]
+    def initialize(
+      api_key: ENV["API_KEY"],
+      webhook_secret: ENV["PETSTORE_WEBHOOK_SECRET"],
+      base_url: ENV["HELLO_WORLD_TESTINGGGG_BASE_URL"],
+      max_retries: self.class::DEFAULT_MAX_RETRIES,
+      timeout: self.class::DEFAULT_TIMEOUT_IN_SECONDS,
+      initial_retry_delay: self.class::DEFAULT_INITIAL_RETRY_DELAY,
+      max_retry_delay: self.class::DEFAULT_MAX_RETRY_DELAY
+    )
+      base_url ||= "/api/v3"
+
+      if api_key.nil?
+        raise ArgumentError.new("api_key is required, and can be set via environ: \"API_KEY\"")
+      end
+
+      headers = {}
+      custom_headers_env = ENV["HELLO_WORLD_TESTINGGGG_CUSTOM_HEADERS"]
+      unless custom_headers_env.nil?
+        parsed = {}
+        custom_headers_env.split("\n").each do |line|
+          colon = line.index(":")
+          unless colon.nil?
+            parsed[line[0...colon].strip] = line[(colon + 1)..].strip
+          end
+        end
+        headers = parsed.merge(headers)
+      end
+
+      @api_key = api_key.to_s
+      @webhook_secret = webhook_secret&.to_s
+
+      super(
+        base_url: base_url,
+        timeout: timeout,
+        max_retries: max_retries,
+        initial_retry_delay: initial_retry_delay,
+        max_retry_delay: max_retry_delay,
+        headers: headers
+      )
+
+      @pet = HelloWorldTestingggg::Resources::Pet.new(client: self)
+      @files = HelloWorldTestingggg::Resources::Files.new(client: self)
+      @profiles = HelloWorldTestingggg::Resources::Profiles.new(client: self)
+      @webhooks = HelloWorldTestingggg::Resources::Webhooks.new(client: self)
+      @store = HelloWorldTestingggg::Resources::Store.new(client: self)
+      @user = HelloWorldTestingggg::Resources::User.new(client: self)
+    end
+  end
+end
