@@ -47,24 +47,11 @@ module HelloWorldTestingggg
       end
       attr_writer :last_order
 
-      sig do
-        returns(
-          T.nilable(
-            T::Array[
-              HelloWorldTestingggg::PetInventoryLowWebhookEvent::Location
-            ]
-          )
-        )
-      end
+      sig { returns(T.nilable(T::Array[HelloWorldTestingggg::Address])) }
       attr_reader :locations
 
       sig do
-        params(
-          locations:
-            T::Array[
-              HelloWorldTestingggg::PetInventoryLowWebhookEvent::Location::OrHash
-            ]
-        ).void
+        params(locations: T::Array[HelloWorldTestingggg::Address::OrHash]).void
       end
       attr_writer :locations
 
@@ -77,10 +64,7 @@ module HelloWorldTestingggg
             HelloWorldTestingggg::PetInventoryLowWebhookEvent::Type::OrSymbol,
           last_order:
             HelloWorldTestingggg::PetInventoryLowWebhookEvent::LastOrder::OrHash,
-          locations:
-            T::Array[
-              HelloWorldTestingggg::PetInventoryLowWebhookEvent::Location::OrHash
-            ]
+          locations: T::Array[HelloWorldTestingggg::Address::OrHash]
         ).returns(T.attached_class)
       end
       def self.new(
@@ -103,10 +87,7 @@ module HelloWorldTestingggg
               HelloWorldTestingggg::PetInventoryLowWebhookEvent::Type::TaggedSymbol,
             last_order:
               HelloWorldTestingggg::PetInventoryLowWebhookEvent::LastOrder,
-            locations:
-              T::Array[
-                HelloWorldTestingggg::PetInventoryLowWebhookEvent::Location
-              ]
+            locations: T::Array[HelloWorldTestingggg::Address]
           }
         )
       end
@@ -199,6 +180,12 @@ module HelloWorldTestingggg
         end
         attr_writer :status
 
+        sig { returns(T.nilable(HelloWorldTestingggg::Money)) }
+        attr_reader :total
+
+        sig { params(total: HelloWorldTestingggg::Money::OrHash).void }
+        attr_writer :total
+
         sig do
           params(
             id: Integer,
@@ -207,7 +194,8 @@ module HelloWorldTestingggg
             quantity: Integer,
             ship_date: Time,
             status:
-              HelloWorldTestingggg::PetInventoryLowWebhookEvent::LastOrder::Status::OrSymbol
+              HelloWorldTestingggg::PetInventoryLowWebhookEvent::LastOrder::Status::OrSymbol,
+            total: HelloWorldTestingggg::Money::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
@@ -217,7 +205,8 @@ module HelloWorldTestingggg
           quantity: nil,
           ship_date: nil,
           # Order Status
-          status: nil
+          status: nil,
+          total: nil
         )
         end
 
@@ -230,7 +219,8 @@ module HelloWorldTestingggg
               quantity: Integer,
               ship_date: Time,
               status:
-                HelloWorldTestingggg::PetInventoryLowWebhookEvent::LastOrder::Status::TaggedSymbol
+                HelloWorldTestingggg::PetInventoryLowWebhookEvent::LastOrder::Status::TaggedSymbol,
+              total: HelloWorldTestingggg::Money
             }
           )
         end
@@ -275,59 +265,6 @@ module HelloWorldTestingggg
           end
           def self.values
           end
-        end
-      end
-
-      class Location < HelloWorldTestingggg::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              HelloWorldTestingggg::PetInventoryLowWebhookEvent::Location,
-              HelloWorldTestingggg::Internal::AnyHash
-            )
-          end
-
-        sig { returns(T.nilable(String)) }
-        attr_reader :city
-
-        sig { params(city: String).void }
-        attr_writer :city
-
-        sig { returns(T.nilable(String)) }
-        attr_reader :state
-
-        sig { params(state: String).void }
-        attr_writer :state
-
-        sig { returns(T.nilable(String)) }
-        attr_reader :street
-
-        sig { params(street: String).void }
-        attr_writer :street
-
-        sig { returns(T.nilable(String)) }
-        attr_reader :zip
-
-        sig { params(zip: String).void }
-        attr_writer :zip
-
-        sig do
-          params(
-            city: String,
-            state: String,
-            street: String,
-            zip: String
-          ).returns(T.attached_class)
-        end
-        def self.new(city: nil, state: nil, street: nil, zip: nil)
-        end
-
-        sig do
-          override.returns(
-            { city: String, state: String, street: String, zip: String }
-          )
-        end
-        def to_hash
         end
       end
     end

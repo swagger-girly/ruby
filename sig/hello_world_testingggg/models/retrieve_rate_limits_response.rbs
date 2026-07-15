@@ -1,0 +1,76 @@
+module HelloWorldTestingggg
+  module Models
+    type retrieve_rate_limits_response =
+      {
+        remaining: Integer,
+        reset_at: Time,
+        tiers: ::Array[HelloWorldTestingggg::Models::RetrieveRateLimitsResponse::Tier]
+      }
+
+    class RetrieveRateLimitsResponse < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor remaining: Integer
+
+      attr_accessor reset_at: Time
+
+      attr_reader tiers: ::Array[HelloWorldTestingggg::Models::RetrieveRateLimitsResponse::Tier]?
+
+      def tiers=: (
+        ::Array[HelloWorldTestingggg::Models::RetrieveRateLimitsResponse::Tier]
+      ) -> ::Array[HelloWorldTestingggg::Models::RetrieveRateLimitsResponse::Tier]
+
+      def initialize: (
+        remaining: Integer,
+        reset_at: Time,
+        ?tiers: ::Array[HelloWorldTestingggg::Models::RetrieveRateLimitsResponse::Tier]
+      ) -> void
+
+      def to_hash: -> {
+        remaining: Integer,
+        reset_at: Time,
+        tiers: ::Array[HelloWorldTestingggg::Models::RetrieveRateLimitsResponse::Tier]
+      }
+
+      type tier =
+        {
+          name: String,
+          quota: HelloWorldTestingggg::Models::RetrieveRateLimitsResponse::Tier::Quota
+        }
+
+      class Tier < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor name: String
+
+        attr_reader quota: HelloWorldTestingggg::Models::RetrieveRateLimitsResponse::Tier::Quota?
+
+        def quota=: (
+          HelloWorldTestingggg::Models::RetrieveRateLimitsResponse::Tier::Quota
+        ) -> HelloWorldTestingggg::Models::RetrieveRateLimitsResponse::Tier::Quota
+
+        def initialize: (
+          name: String,
+          ?quota: HelloWorldTestingggg::Models::RetrieveRateLimitsResponse::Tier::Quota
+        ) -> void
+
+        def to_hash: -> {
+          name: String,
+          quota: HelloWorldTestingggg::Models::RetrieveRateLimitsResponse::Tier::Quota
+        }
+
+        type quota = { requests: Integer, window: String }
+
+        class Quota < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader requests: Integer?
+
+          def requests=: (Integer) -> Integer
+
+          attr_reader window: String?
+
+          def window=: (String) -> String
+
+          def initialize: (?requests: Integer, ?window: String) -> void
+
+          def to_hash: -> { requests: Integer, window: String }
+        end
+      end
+    end
+  end
+end

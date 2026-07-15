@@ -18,7 +18,8 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
         photo_urls: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[String]),
         id: Integer | nil,
         category: HelloWorldTestingggg::PetAPI::Category | nil,
-        status: HelloWorldTestingggg::PetAPI::Status | nil,
+        microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID | nil,
+        status: HelloWorldTestingggg::PetStatus | nil,
         tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI::Tag]) | nil
       }
     end
@@ -39,7 +40,8 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
         photo_urls: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[String]),
         id: Integer | nil,
         category: HelloWorldTestingggg::PetAPI::Category | nil,
-        status: HelloWorldTestingggg::PetAPI::Status | nil,
+        microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID | nil,
+        status: HelloWorldTestingggg::PetStatus | nil,
         tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI::Tag]) | nil
       }
     end
@@ -60,7 +62,8 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
         photo_urls: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[String]),
         id: Integer | nil,
         category: HelloWorldTestingggg::PetAPI::Category | nil,
-        status: HelloWorldTestingggg::PetAPI::Status | nil,
+        microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID | nil,
+        status: HelloWorldTestingggg::PetStatus | nil,
         tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI::Tag]) | nil
       }
     end
@@ -88,7 +91,8 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
         photo_urls: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[String]),
         id: Integer | nil,
         category: HelloWorldTestingggg::PetAPI::Category | nil,
-        status: HelloWorldTestingggg::PetAPI::Status | nil,
+        microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID | nil,
+        status: HelloWorldTestingggg::PetStatus | nil,
         tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI::Tag]) | nil
       }
     end
@@ -130,6 +134,23 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
     response = @hello_world_testingggg.pet.list_fake_page
 
     assert_pattern do
+      response => HelloWorldTestingggg::Models::PetListFakePageResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI]),
+        has_more: HelloWorldTestingggg::Internal::Type::Boolean
+      }
+    end
+  end
+
+  def test_list_fake_page_inferred
+    skip("Mock server tests are disabled")
+
+    response = @hello_world_testingggg.pet.list_fake_page_inferred
+
+    assert_pattern do
       response => HelloWorldTestingggg::Internal::XFakeSinglePage
     end
 
@@ -146,25 +167,9 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
         photo_urls: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[String]),
         id: Integer | nil,
         category: HelloWorldTestingggg::PetAPI::Category | nil,
-        status: HelloWorldTestingggg::PetAPI::Status | nil,
+        microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID | nil,
+        status: HelloWorldTestingggg::PetStatus | nil,
         tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI::Tag]) | nil
-      }
-    end
-  end
-
-  def test_list_fake_page_inferred
-    skip("Mock server tests are disabled")
-
-    response = @hello_world_testingggg.pet.list_fake_page_inferred
-
-    assert_pattern do
-      response => HelloWorldTestingggg::Models::PetListFakePageInferredResponse
-    end
-
-    assert_pattern do
-      response => {
-        data: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI]),
-        has_more: HelloWorldTestingggg::Internal::Type::Boolean
       }
     end
   end
@@ -183,6 +188,16 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
         items: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI]),
         next_cursor: String | nil
       }
+    end
+  end
+
+  def test_retrieve_premium
+    skip("Mock server tests are disabled")
+
+    response = @hello_world_testingggg.pet.retrieve_premium(0)
+
+    assert_pattern do
+      response => HelloWorldTestingggg::Models::PetRetrievePremiumResponse
     end
   end
 

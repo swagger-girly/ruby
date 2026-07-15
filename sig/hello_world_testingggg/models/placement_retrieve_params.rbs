@@ -1,0 +1,24 @@
+module HelloWorldTestingggg
+  module Models
+    type placement_retrieve_params =
+      { placement_id: String }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class PlacementRetrieveParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_accessor placement_id: String
+
+      def initialize: (
+        placement_id: String,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        placement_id: String,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+    end
+  end
+end

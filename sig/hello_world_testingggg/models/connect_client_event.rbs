@@ -18,37 +18,22 @@ module HelloWorldTestingggg
       end
 
       type subscribe =
-        {
-          status: HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::status,
-          type: :subscribe
-        }
+        { status: HelloWorldTestingggg::Models::pet_status, type: :subscribe }
 
       class Subscribe < HelloWorldTestingggg::Internal::Type::BaseModel
-        attr_accessor status: HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::status
+        attr_accessor status: HelloWorldTestingggg::Models::pet_status
 
         attr_accessor type: :subscribe
 
         def initialize: (
-          status: HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::status,
+          status: HelloWorldTestingggg::Models::pet_status,
           ?type: :subscribe
         ) -> void
 
         def to_hash: -> {
-          status: HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::status,
+          status: HelloWorldTestingggg::Models::pet_status,
           type: :subscribe
         }
-
-        type status = :available | :pending | :sold
-
-        module Status
-          extend HelloWorldTestingggg::Internal::Type::Enum
-
-          AVAILABLE: :available
-          PENDING: :pending
-          SOLD: :sold
-
-          def self?.values: -> ::Array[HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::status]
-        end
       end
 
       def self?.variants: -> ::Array[HelloWorldTestingggg::Models::connect_client_event]

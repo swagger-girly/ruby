@@ -39,7 +39,12 @@ module HelloWorldTestingggg
         #   @return [Symbol, HelloWorldTestingggg::Models::Store::OrderCreateParams::Status, nil]
         optional :status, enum: -> { HelloWorldTestingggg::Store::OrderCreateParams::Status }
 
-        # @!method initialize(id: nil, complete: nil, pet_id: nil, quantity: nil, ship_date: nil, status: nil, request_options: {})
+        # @!attribute total
+        #
+        #   @return [HelloWorldTestingggg::Models::Money, nil]
+        optional :total, -> { HelloWorldTestingggg::Money }
+
+        # @!method initialize(id: nil, complete: nil, pet_id: nil, quantity: nil, ship_date: nil, status: nil, total: nil, request_options: {})
         #   @param id [Integer]
         #
         #   @param complete [Boolean]
@@ -51,6 +56,8 @@ module HelloWorldTestingggg
         #   @param ship_date [Time]
         #
         #   @param status [Symbol, HelloWorldTestingggg::Models::Store::OrderCreateParams::Status] Order Status
+        #
+        #   @param total [HelloWorldTestingggg::Models::Money]
         #
         #   @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}]
 

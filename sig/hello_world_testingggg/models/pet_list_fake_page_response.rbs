@@ -1,9 +1,9 @@
 module HelloWorldTestingggg
   module Models
-    type pet_list_fake_page_inferred_response =
+    type pet_list_fake_page_response =
       { data: ::Array[HelloWorldTestingggg::PetAPI], has_more: bool }
 
-    class PetListFakePageInferredResponse < HelloWorldTestingggg::Internal::Type::BaseModel
+    class PetListFakePageResponse < HelloWorldTestingggg::Internal::Type::BaseModel
       attr_accessor data: ::Array[HelloWorldTestingggg::PetAPI]
 
       attr_accessor has_more: bool

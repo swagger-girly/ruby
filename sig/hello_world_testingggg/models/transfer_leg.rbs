@@ -1,0 +1,77 @@
+module HelloWorldTestingggg
+  module Models
+    type transfer_leg =
+      {
+        location: HelloWorldTestingggg::Address,
+        contact: HelloWorldTestingggg::TransferLeg::Contact,
+        cost: HelloWorldTestingggg::Money,
+        window: HelloWorldTestingggg::TransferLeg::Window
+      }
+
+    class TransferLeg < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor location: HelloWorldTestingggg::Address
+
+      attr_reader contact: HelloWorldTestingggg::TransferLeg::Contact?
+
+      def contact=: (
+        HelloWorldTestingggg::TransferLeg::Contact
+      ) -> HelloWorldTestingggg::TransferLeg::Contact
+
+      attr_reader cost: HelloWorldTestingggg::Money?
+
+      def cost=: (HelloWorldTestingggg::Money) -> HelloWorldTestingggg::Money
+
+      attr_reader window: HelloWorldTestingggg::TransferLeg::Window?
+
+      def window=: (
+        HelloWorldTestingggg::TransferLeg::Window
+      ) -> HelloWorldTestingggg::TransferLeg::Window
+
+      def initialize: (
+        location: HelloWorldTestingggg::Address,
+        ?contact: HelloWorldTestingggg::TransferLeg::Contact,
+        ?cost: HelloWorldTestingggg::Money,
+        ?window: HelloWorldTestingggg::TransferLeg::Window
+      ) -> void
+
+      def to_hash: -> {
+        location: HelloWorldTestingggg::Address,
+        contact: HelloWorldTestingggg::TransferLeg::Contact,
+        cost: HelloWorldTestingggg::Money,
+        window: HelloWorldTestingggg::TransferLeg::Window
+      }
+
+      type contact = { name: String, phone: String }
+
+      class Contact < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        attr_reader phone: String?
+
+        def phone=: (String) -> String
+
+        def initialize: (?name: String, ?phone: String) -> void
+
+        def to_hash: -> { name: String, phone: String }
+      end
+
+      type window = { end_: Time, start: Time }
+
+      class Window < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader end_: Time?
+
+        def end_=: (Time) -> Time
+
+        attr_reader start: Time?
+
+        def start=: (Time) -> Time
+
+        def initialize: (?end_: Time, ?start: Time) -> void
+
+        def to_hash: -> { end_: Time, start: Time }
+      end
+    end
+  end
+end

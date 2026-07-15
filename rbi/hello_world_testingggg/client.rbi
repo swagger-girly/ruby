@@ -29,6 +29,17 @@ module HelloWorldTestingggg
     sig { returns(HelloWorldTestingggg::Resources::Profiles) }
     attr_reader :profiles
 
+    # Adoption policies and applications
+    sig { returns(HelloWorldTestingggg::Resources::Adoptions) }
+    attr_reader :adoptions
+
+    # Post-adoption placement tracking
+    sig { returns(HelloWorldTestingggg::Resources::Placements) }
+    attr_reader :placements
+
+    sig { returns(HelloWorldTestingggg::Resources::Veterinary) }
+    attr_reader :veterinary
+
     sig { returns(HelloWorldTestingggg::Resources::Webhooks) }
     attr_reader :webhooks
 
@@ -39,6 +50,24 @@ module HelloWorldTestingggg
     # Operations about user
     sig { returns(HelloWorldTestingggg::Resources::User) }
     attr_reader :user
+
+    # Returns the current API health, including per-service statuses.
+    sig do
+      params(
+        request_options: HelloWorldTestingggg::RequestOptions::OrHash
+      ).returns(HelloWorldTestingggg::SystemHealth)
+    end
+    def health(request_options: {})
+    end
+
+    # Returns the caller's current rate-limit budget.
+    sig do
+      params(
+        request_options: HelloWorldTestingggg::RequestOptions::OrHash
+      ).returns(HelloWorldTestingggg::Models::RetrieveRateLimitsResponse)
+    end
+    def retrieve_rate_limits(request_options: {})
+    end
 
     # @api private
     sig { override.returns(T::Hash[String, String]) }

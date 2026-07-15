@@ -1,0 +1,228 @@
+module HelloWorldTestingggg
+  module Models
+    type medical_summary =
+      {
+        pet_id: Integer,
+        audit: HelloWorldTestingggg::MedicalSummary::Audit,
+        conditions: ::Array[HelloWorldTestingggg::MedicalSummary::Condition],
+        vaccinations: ::Array[HelloWorldTestingggg::VaccinationRecord]
+      }
+
+    class MedicalSummary < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor pet_id: Integer
+
+      attr_reader audit: HelloWorldTestingggg::MedicalSummary::Audit?
+
+      def audit=: (
+        HelloWorldTestingggg::MedicalSummary::Audit
+      ) -> HelloWorldTestingggg::MedicalSummary::Audit
+
+      attr_reader conditions: ::Array[HelloWorldTestingggg::MedicalSummary::Condition]?
+
+      def conditions=: (
+        ::Array[HelloWorldTestingggg::MedicalSummary::Condition]
+      ) -> ::Array[HelloWorldTestingggg::MedicalSummary::Condition]
+
+      attr_reader vaccinations: ::Array[HelloWorldTestingggg::VaccinationRecord]?
+
+      def vaccinations=: (
+        ::Array[HelloWorldTestingggg::VaccinationRecord]
+      ) -> ::Array[HelloWorldTestingggg::VaccinationRecord]
+
+      def initialize: (
+        pet_id: Integer,
+        ?audit: HelloWorldTestingggg::MedicalSummary::Audit,
+        ?conditions: ::Array[HelloWorldTestingggg::MedicalSummary::Condition],
+        ?vaccinations: ::Array[HelloWorldTestingggg::VaccinationRecord]
+      ) -> void
+
+      def to_hash: -> {
+        pet_id: Integer,
+        audit: HelloWorldTestingggg::MedicalSummary::Audit,
+        conditions: ::Array[HelloWorldTestingggg::MedicalSummary::Condition],
+        vaccinations: ::Array[HelloWorldTestingggg::VaccinationRecord]
+      }
+
+      type audit =
+        {
+          recorded_at: Time,
+          recorded_by: String,
+          source: HelloWorldTestingggg::Models::MedicalSummary::Audit::source
+        }
+
+      class Audit < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor recorded_at: Time
+
+        attr_reader recorded_by: String?
+
+        def recorded_by=: (String) -> String
+
+        attr_reader source: HelloWorldTestingggg::Models::MedicalSummary::Audit::source?
+
+        def source=: (
+          HelloWorldTestingggg::Models::MedicalSummary::Audit::source
+        ) -> HelloWorldTestingggg::Models::MedicalSummary::Audit::source
+
+        def initialize: (
+          recorded_at: Time,
+          ?recorded_by: String,
+          ?source: HelloWorldTestingggg::Models::MedicalSummary::Audit::source
+        ) -> void
+
+        def to_hash: -> {
+          recorded_at: Time,
+          recorded_by: String,
+          source: HelloWorldTestingggg::Models::MedicalSummary::Audit::source
+        }
+
+        type source = :manual | :import | :system
+
+        module Source
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          MANUAL: :manual
+          IMPORT: :import
+          SYSTEM: :system
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::MedicalSummary::Audit::source]
+        end
+      end
+
+      type condition =
+        {
+          code: String,
+          severity: HelloWorldTestingggg::Models::MedicalSummary::Condition::severity,
+          treatment: HelloWorldTestingggg::MedicalSummary::Condition::Treatment
+        }
+
+      class Condition < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor code: String
+
+        attr_reader severity: HelloWorldTestingggg::Models::MedicalSummary::Condition::severity?
+
+        def severity=: (
+          HelloWorldTestingggg::Models::MedicalSummary::Condition::severity
+        ) -> HelloWorldTestingggg::Models::MedicalSummary::Condition::severity
+
+        attr_reader treatment: HelloWorldTestingggg::MedicalSummary::Condition::Treatment?
+
+        def treatment=: (
+          HelloWorldTestingggg::MedicalSummary::Condition::Treatment
+        ) -> HelloWorldTestingggg::MedicalSummary::Condition::Treatment
+
+        def initialize: (
+          code: String,
+          ?severity: HelloWorldTestingggg::Models::MedicalSummary::Condition::severity,
+          ?treatment: HelloWorldTestingggg::MedicalSummary::Condition::Treatment
+        ) -> void
+
+        def to_hash: -> {
+          code: String,
+          severity: HelloWorldTestingggg::Models::MedicalSummary::Condition::severity,
+          treatment: HelloWorldTestingggg::MedicalSummary::Condition::Treatment
+        }
+
+        type severity = :mild | :moderate | :severe
+
+        module Severity
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          MILD: :mild
+          MODERATE: :moderate
+          SEVERE: :severe
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::MedicalSummary::Condition::severity]
+        end
+
+        type treatment =
+          {
+            medications: ::Array[HelloWorldTestingggg::MedicalSummary::Condition::Treatment::Medication],
+            plan: String
+          }
+
+        class Treatment < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader medications: ::Array[HelloWorldTestingggg::MedicalSummary::Condition::Treatment::Medication]?
+
+          def medications=: (
+            ::Array[HelloWorldTestingggg::MedicalSummary::Condition::Treatment::Medication]
+          ) -> ::Array[HelloWorldTestingggg::MedicalSummary::Condition::Treatment::Medication]
+
+          attr_reader plan: String?
+
+          def plan=: (String) -> String
+
+          def initialize: (
+            ?medications: ::Array[HelloWorldTestingggg::MedicalSummary::Condition::Treatment::Medication],
+            ?plan: String
+          ) -> void
+
+          def to_hash: -> {
+            medications: ::Array[HelloWorldTestingggg::MedicalSummary::Condition::Treatment::Medication],
+            plan: String
+          }
+
+          type medication =
+            {
+              name: String,
+              dosage: HelloWorldTestingggg::Models::MedicalSummary::Condition::Treatment::Medication::dosage
+            }
+
+          class Medication < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_accessor name: String
+
+            attr_reader dosage: HelloWorldTestingggg::Models::MedicalSummary::Condition::Treatment::Medication::dosage?
+
+            def dosage=: (
+              HelloWorldTestingggg::Models::MedicalSummary::Condition::Treatment::Medication::dosage
+            ) -> HelloWorldTestingggg::Models::MedicalSummary::Condition::Treatment::Medication::dosage
+
+            def initialize: (
+              name: String,
+              ?dosage: HelloWorldTestingggg::Models::MedicalSummary::Condition::Treatment::Medication::dosage
+            ) -> void
+
+            def to_hash: -> {
+              name: String,
+              dosage: HelloWorldTestingggg::Models::MedicalSummary::Condition::Treatment::Medication::dosage
+            }
+
+            type dosage =
+              String
+              | HelloWorldTestingggg::MedicalSummary::Condition::Treatment::Medication::Dosage::StructuredDosage
+
+            module Dosage
+              extend HelloWorldTestingggg::Internal::Type::Union
+
+              type structured_dosage =
+                { amount: Float, unit: String, frequency: String }
+
+              class StructuredDosage < HelloWorldTestingggg::Internal::Type::BaseModel
+                attr_accessor amount: Float
+
+                attr_accessor unit: String
+
+                attr_reader frequency: String?
+
+                def frequency=: (String) -> String
+
+                def initialize: (
+                  amount: Float,
+                  unit: String,
+                  ?frequency: String
+                ) -> void
+
+                def to_hash: -> {
+                  amount: Float,
+                  unit: String,
+                  frequency: String
+                }
+              end
+
+              def self?.variants: -> ::Array[HelloWorldTestingggg::Models::MedicalSummary::Condition::Treatment::Medication::dosage]
+            end
+          end
+        end
+      end
+    end
+  end
+end

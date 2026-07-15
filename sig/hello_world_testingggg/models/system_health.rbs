@@ -1,0 +1,143 @@
+module HelloWorldTestingggg
+  module Models
+    type system_health =
+      {
+        checked_at: Time,
+        status: HelloWorldTestingggg::Models::SystemHealth::status,
+        services: ::Hash[Symbol, HelloWorldTestingggg::SystemHealth::Service]
+      }
+
+    class SystemHealth < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor checked_at: Time
+
+      attr_accessor status: HelloWorldTestingggg::Models::SystemHealth::status
+
+      attr_reader services: ::Hash[Symbol, HelloWorldTestingggg::SystemHealth::Service]?
+
+      def services=: (
+        ::Hash[Symbol, HelloWorldTestingggg::SystemHealth::Service]
+      ) -> ::Hash[Symbol, HelloWorldTestingggg::SystemHealth::Service]
+
+      def initialize: (
+        checked_at: Time,
+        status: HelloWorldTestingggg::Models::SystemHealth::status,
+        ?services: ::Hash[Symbol, HelloWorldTestingggg::SystemHealth::Service]
+      ) -> void
+
+      def to_hash: -> {
+        checked_at: Time,
+        status: HelloWorldTestingggg::Models::SystemHealth::status,
+        services: ::Hash[Symbol, HelloWorldTestingggg::SystemHealth::Service]
+      }
+
+      type status = :ok | :degraded | :down
+
+      module Status
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        OK: :ok
+        DEGRADED: :degraded
+        DOWN: :down
+
+        def self?.values: -> ::Array[HelloWorldTestingggg::Models::SystemHealth::status]
+      end
+
+      type service =
+        {
+          status: HelloWorldTestingggg::Models::SystemHealth::Service::status,
+          last_incident: HelloWorldTestingggg::SystemHealth::Service::LastIncident,
+          latency_ms: Integer
+        }
+
+      class Service < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor status: HelloWorldTestingggg::Models::SystemHealth::Service::status
+
+        attr_reader last_incident: HelloWorldTestingggg::SystemHealth::Service::LastIncident?
+
+        def last_incident=: (
+          HelloWorldTestingggg::SystemHealth::Service::LastIncident
+        ) -> HelloWorldTestingggg::SystemHealth::Service::LastIncident
+
+        attr_reader latency_ms: Integer?
+
+        def latency_ms=: (Integer) -> Integer
+
+        def initialize: (
+          status: HelloWorldTestingggg::Models::SystemHealth::Service::status,
+          ?last_incident: HelloWorldTestingggg::SystemHealth::Service::LastIncident,
+          ?latency_ms: Integer
+        ) -> void
+
+        def to_hash: -> {
+          status: HelloWorldTestingggg::Models::SystemHealth::Service::status,
+          last_incident: HelloWorldTestingggg::SystemHealth::Service::LastIncident,
+          latency_ms: Integer
+        }
+
+        type status = :ok | :degraded | :down
+
+        module Status
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          OK: :ok
+          DEGRADED: :degraded
+          DOWN: :down
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::SystemHealth::Service::status]
+        end
+
+        type last_incident =
+          {
+            opened_at: Time,
+            resolution: HelloWorldTestingggg::Models::SystemHealth::Service::LastIncident::resolution
+          }
+
+        class LastIncident < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader opened_at: Time?
+
+          def opened_at=: (Time) -> Time
+
+          attr_reader resolution: HelloWorldTestingggg::Models::SystemHealth::Service::LastIncident::resolution?
+
+          def resolution=: (
+            HelloWorldTestingggg::Models::SystemHealth::Service::LastIncident::resolution
+          ) -> HelloWorldTestingggg::Models::SystemHealth::Service::LastIncident::resolution
+
+          def initialize: (
+            ?opened_at: Time,
+            ?resolution: HelloWorldTestingggg::Models::SystemHealth::Service::LastIncident::resolution
+          ) -> void
+
+          def to_hash: -> {
+            opened_at: Time,
+            resolution: HelloWorldTestingggg::Models::SystemHealth::Service::LastIncident::resolution
+          }
+
+          type resolution =
+            String
+            | HelloWorldTestingggg::SystemHealth::Service::LastIncident::Resolution::IncidentReference
+
+          module Resolution
+            extend HelloWorldTestingggg::Internal::Type::Union
+
+            type incident_reference = { incident_id: String, url: String }
+
+            class IncidentReference < HelloWorldTestingggg::Internal::Type::BaseModel
+              attr_accessor incident_id: String
+
+              attr_reader url: String?
+
+              def url=: (String) -> String
+
+              def initialize: (incident_id: String, ?url: String) -> void
+
+              def to_hash: -> { incident_id: String, url: String }
+            end
+
+            def self?.variants: -> ::Array[HelloWorldTestingggg::Models::SystemHealth::Service::LastIncident::resolution]
+          end
+        end
+      end
+    end
+  end
+end

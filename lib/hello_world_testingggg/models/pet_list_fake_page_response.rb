@@ -2,8 +2,8 @@
 
 module HelloWorldTestingggg
   module Models
-    # @see HelloWorldTestingggg::Resources::Pet#list_fake_page_inferred
-    class PetListFakePageInferredResponse < HelloWorldTestingggg::Internal::Type::BaseModel
+    # @see HelloWorldTestingggg::Resources::Pet#list_fake_page
+    class PetListFakePageResponse < HelloWorldTestingggg::Internal::Type::BaseModel
       # @!attribute data
       #
       #   @return [Array<HelloWorldTestingggg::Models::PetAPI>]

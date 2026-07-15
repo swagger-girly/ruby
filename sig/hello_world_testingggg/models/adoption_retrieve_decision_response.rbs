@@ -1,0 +1,183 @@
+module HelloWorldTestingggg
+  module Models
+    type adoption_retrieve_decision_response =
+      HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved
+      | HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected
+      | HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated
+
+    module AdoptionRetrieveDecisionResponse
+      extend HelloWorldTestingggg::Internal::Type::Union
+
+      type decision_approved =
+        {
+          approved_at: Time,
+          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::outcome,
+          conditions: ::Array[String]
+        }
+
+      class DecisionApproved < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor approved_at: Time
+
+        attr_accessor outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::outcome
+
+        attr_reader conditions: ::Array[String]?
+
+        def conditions=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          approved_at: Time,
+          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::outcome,
+          ?conditions: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          approved_at: Time,
+          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::outcome,
+          conditions: ::Array[String]
+        }
+
+        type outcome = :approved
+
+        module Outcome
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          APPROVED: :approved
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::outcome]
+        end
+      end
+
+      type decision_rejected =
+        {
+          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::outcome,
+          reason: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::reason,
+          appeal_deadline: Time?
+        }
+
+      class DecisionRejected < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::outcome
+
+        attr_accessor reason: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::reason
+
+        attr_accessor appeal_deadline: Time?
+
+        def initialize: (
+          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::outcome,
+          reason: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::reason,
+          ?appeal_deadline: Time?
+        ) -> void
+
+        def to_hash: -> {
+          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::outcome,
+          reason: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::reason,
+          appeal_deadline: Time?
+        }
+
+        type outcome = :rejected
+
+        module Outcome
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          REJECTED: :rejected
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::outcome]
+        end
+
+        type reason = :policy | :capacity | :incomplete
+
+        module Reason
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          POLICY: :policy
+          CAPACITY: :capacity
+          INCOMPLETE: :incomplete
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::reason]
+        end
+      end
+
+      type decision_escalated =
+        {
+          escalated_to: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo,
+          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::outcome,
+          review_after: Time
+        }
+
+      class DecisionEscalated < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor escalated_to: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo
+
+        attr_accessor outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::outcome
+
+        attr_reader review_after: Time?
+
+        def review_after=: (Time) -> Time
+
+        def initialize: (
+          escalated_to: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo,
+          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::outcome,
+          ?review_after: Time
+        ) -> void
+
+        def to_hash: -> {
+          escalated_to: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo,
+          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::outcome,
+          review_after: Time
+        }
+
+        type escalated_to =
+          {
+            team: String,
+            contact: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo::Contact
+          }
+
+        class EscalatedTo < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor team: String
+
+          attr_reader contact: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo::Contact?
+
+          def contact=: (
+            HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo::Contact
+          ) -> HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo::Contact
+
+          def initialize: (
+            team: String,
+            ?contact: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo::Contact
+          ) -> void
+
+          def to_hash: -> {
+            team: String,
+            contact: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo::Contact
+          }
+
+          type contact = { email: String, hours: String }
+
+          class Contact < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_reader email: String?
+
+            def email=: (String) -> String
+
+            attr_reader hours: String?
+
+            def hours=: (String) -> String
+
+            def initialize: (?email: String, ?hours: String) -> void
+
+            def to_hash: -> { email: String, hours: String }
+          end
+        end
+
+        type outcome = :escalated
+
+        module Outcome
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          ESCALATED: :escalated
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::outcome]
+        end
+      end
+
+      def self?.variants: -> ::Array[HelloWorldTestingggg::Models::adoption_retrieve_decision_response]
+    end
+  end
+end

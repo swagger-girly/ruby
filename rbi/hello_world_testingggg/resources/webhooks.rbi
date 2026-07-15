@@ -15,7 +15,9 @@ module HelloWorldTestingggg
             HelloWorldTestingggg::PetInventoryLowWebhookEvent,
             HelloWorldTestingggg::ParsedWebhookEvent::PetModerationApprovedEvent,
             HelloWorldTestingggg::ParsedWebhookEvent::PetModerationRejectedEvent,
-            HelloWorldTestingggg::StoreReportGeneratedWebhookEvent
+            HelloWorldTestingggg::StoreReportGeneratedWebhookEvent,
+            HelloWorldTestingggg::AdoptionsPolicyChangedWebhookEvent,
+            HelloWorldTestingggg::PlacementEventRecordedWebhookEvent
           )
         )
       end

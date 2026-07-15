@@ -1,0 +1,15 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_status = :available | :pending | :sold
+
+    module PetStatus
+      extend HelloWorldTestingggg::Internal::Type::Enum
+
+      AVAILABLE: :available
+      PENDING: :pending
+      SOLD: :sold
+
+      def self?.values: -> ::Array[HelloWorldTestingggg::Models::pet_status]
+    end
+  end
+end

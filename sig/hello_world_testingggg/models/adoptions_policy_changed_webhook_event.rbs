@@ -1,0 +1,136 @@
+module HelloWorldTestingggg
+  module Models
+    type adoptions_policy_changed_webhook_event =
+      {
+        id: String,
+        created_at: Time,
+        policy: HelloWorldTestingggg::Adoptions::Policy,
+        type: :"adoptions.policy.changed",
+        previous: HelloWorldTestingggg::AdoptionsPolicyChangedWebhookEvent::Previous
+      }
+
+    class AdoptionsPolicyChangedWebhookEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor policy: HelloWorldTestingggg::Adoptions::Policy
+
+      attr_accessor type: :"adoptions.policy.changed"
+
+      attr_reader previous: HelloWorldTestingggg::AdoptionsPolicyChangedWebhookEvent::Previous?
+
+      def previous=: (
+        HelloWorldTestingggg::AdoptionsPolicyChangedWebhookEvent::Previous
+      ) -> HelloWorldTestingggg::AdoptionsPolicyChangedWebhookEvent::Previous
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        policy: HelloWorldTestingggg::Adoptions::Policy,
+        ?previous: HelloWorldTestingggg::AdoptionsPolicyChangedWebhookEvent::Previous,
+        ?type: :"adoptions.policy.changed"
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        policy: HelloWorldTestingggg::Adoptions::Policy,
+        type: :"adoptions.policy.changed",
+        previous: HelloWorldTestingggg::AdoptionsPolicyChangedWebhookEvent::Previous
+      }
+
+      type previous =
+        {
+          notification_target: HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::notification_target,
+          status: HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::status
+        }
+
+      class Previous < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader notification_target: HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::notification_target?
+
+        def notification_target=: (
+          HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::notification_target
+        ) -> HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::notification_target
+
+        attr_reader status: HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::status?
+
+        def status=: (
+          HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::status
+        ) -> HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::status
+
+        def initialize: (
+          ?notification_target: HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::notification_target,
+          ?status: HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::status
+        ) -> void
+
+        def to_hash: -> {
+          notification_target: HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::notification_target,
+          status: HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::status
+        }
+
+        type notification_target =
+          String
+          | HelloWorldTestingggg::AdoptionsPolicyChangedWebhookEvent::Previous::NotificationTarget::WebhookSink
+
+        module NotificationTarget
+          extend HelloWorldTestingggg::Internal::Type::Union
+
+          type webhook_sink =
+            {
+              url: String,
+              events: ::Array[HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::NotificationTarget::WebhookSink::event],
+              secret: String
+            }
+
+          class WebhookSink < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_accessor url: String
+
+            attr_reader events: ::Array[HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::NotificationTarget::WebhookSink::event]?
+
+            def events=: (
+              ::Array[HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::NotificationTarget::WebhookSink::event]
+            ) -> ::Array[HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::NotificationTarget::WebhookSink::event]
+
+            def initialize: (
+              url: String,
+              ?events: ::Array[HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::NotificationTarget::WebhookSink::event]
+            ) -> void
+
+            def to_hash: -> {
+              url: String,
+              events: ::Array[HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::NotificationTarget::WebhookSink::event],
+              secret: String
+            }
+
+            type event = :approved | :rejected | :escalated
+
+            module Event
+              extend HelloWorldTestingggg::Internal::Type::Enum
+
+              APPROVED: :approved
+              REJECTED: :rejected
+              ESCALATED: :escalated
+
+              def self?.values: -> ::Array[HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::NotificationTarget::WebhookSink::event]
+            end
+          end
+
+          def self?.variants: -> ::Array[HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::notification_target]
+        end
+
+        type status = :draft | :active | :archived
+
+        module Status
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          DRAFT: :draft
+          ACTIVE: :active
+          ARCHIVED: :archived
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent::Previous::status]
+        end
+      end
+    end
+  end
+end

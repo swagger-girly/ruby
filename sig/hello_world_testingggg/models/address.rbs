@@ -1,0 +1,64 @@
+module HelloWorldTestingggg
+  module Models
+    type address =
+      {
+        city: String,
+        geo: HelloWorldTestingggg::Address::Geo,
+        state: String,
+        street: String,
+        zip: String
+      }
+
+    class Address < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_reader city: String?
+
+      def city=: (String) -> String
+
+      attr_reader geo: HelloWorldTestingggg::Address::Geo?
+
+      def geo=: (
+        HelloWorldTestingggg::Address::Geo
+      ) -> HelloWorldTestingggg::Address::Geo
+
+      attr_reader state: String?
+
+      def state=: (String) -> String
+
+      attr_reader street: String?
+
+      def street=: (String) -> String
+
+      attr_reader zip: String?
+
+      def zip=: (String) -> String
+
+      def initialize: (
+        ?city: String,
+        ?geo: HelloWorldTestingggg::Address::Geo,
+        ?state: String,
+        ?street: String,
+        ?zip: String
+      ) -> void
+
+      def to_hash: -> {
+        city: String,
+        geo: HelloWorldTestingggg::Address::Geo,
+        state: String,
+        street: String,
+        zip: String
+      }
+
+      type geo = { latitude: Float, longitude: Float }
+
+      class Geo < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor latitude: Float
+
+        attr_accessor longitude: Float
+
+        def initialize: (latitude: Float, longitude: Float) -> void
+
+        def to_hash: -> { latitude: Float, longitude: Float }
+      end
+    end
+  end
+end

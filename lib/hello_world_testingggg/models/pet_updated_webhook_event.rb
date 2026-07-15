@@ -25,18 +25,21 @@ module HelloWorldTestingggg
       optional :metadata, HelloWorldTestingggg::Internal::Type::HashOf[String]
 
       # @!attribute previous_status
+      #   pet status in the store
       #
-      #   @return [Symbol, HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::PreviousStatus, nil]
-      optional :previous_status,
-               enum: -> { HelloWorldTestingggg::PetUpdatedWebhookEvent::PreviousStatus },
-               nil?: true
+      #   @return [Symbol, HelloWorldTestingggg::Models::PetStatus, nil]
+      optional :previous_status, enum: -> { HelloWorldTestingggg::PetStatus }, nil?: true
 
       # @!method initialize(changed_fields:, pet:, type:, metadata: nil, previous_status: nil)
       #   @param changed_fields [Array<Symbol, HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::ChangedField>]
+      #
       #   @param pet [HelloWorldTestingggg::Models::PetAPI]
+      #
       #   @param type [Symbol, HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::Type]
+      #
       #   @param metadata [Hash{Symbol=>String}]
-      #   @param previous_status [Symbol, HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::PreviousStatus, nil]
+      #
+      #   @param previous_status [Symbol, HelloWorldTestingggg::Models::PetStatus, nil] pet status in the store
 
       module ChangedField
         extend HelloWorldTestingggg::Internal::Type::Enum
@@ -55,18 +58,6 @@ module HelloWorldTestingggg
         extend HelloWorldTestingggg::Internal::Type::Enum
 
         PET_UPDATED = :"pet.updated"
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # @see HelloWorldTestingggg::Models::PetUpdatedWebhookEvent#previous_status
-      module PreviousStatus
-        extend HelloWorldTestingggg::Internal::Type::Enum
-
-        AVAILABLE = :available
-        PENDING = :pending
-        SOLD = :sold
 
         # @!method self.values
         #   @return [Array<Symbol>]

@@ -7,7 +7,7 @@ module HelloWorldTestingggg
       class Order
         # Place a new order in the store
         #
-        # @overload create(id: nil, complete: nil, pet_id: nil, quantity: nil, ship_date: nil, status: nil, request_options: {})
+        # @overload create(id: nil, complete: nil, pet_id: nil, quantity: nil, ship_date: nil, status: nil, total: nil, request_options: {})
         #
         # @param id [Integer]
         #
@@ -20,6 +20,8 @@ module HelloWorldTestingggg
         # @param ship_date [Time]
         #
         # @param status [Symbol, HelloWorldTestingggg::Models::Store::OrderCreateParams::Status] Order Status
+        #
+        # @param total [HelloWorldTestingggg::Models::Money]
         #
         # @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}, nil]
         #

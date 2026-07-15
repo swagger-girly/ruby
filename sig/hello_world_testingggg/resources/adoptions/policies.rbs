@@ -1,0 +1,36 @@
+module HelloWorldTestingggg
+  module Resources
+    class Adoptions
+      class Policies
+        def create: (
+          name: String,
+          rules: ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule],
+          ?escalation: HelloWorldTestingggg::Adoptions::PolicyCreateParams::Escalation,
+          ?fee_cap: HelloWorldTestingggg::Money,
+          ?notification_target: HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::notification_target,
+          ?regional_overrides: ::Hash[Symbol, HelloWorldTestingggg::Models::Adoptions::condition_value],
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> HelloWorldTestingggg::Adoptions::Policy
+
+        def retrieve: (
+          String policy_id,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> HelloWorldTestingggg::Adoptions::Policy
+
+        def update: (
+          String policy_id,
+          body: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::body,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> HelloWorldTestingggg::Adoptions::Policy
+
+        def list: (
+          ?cursor: String,
+          ?limit: Integer,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> HelloWorldTestingggg::Internal::CustomCursorPage[HelloWorldTestingggg::Adoptions::Policy]
+
+        def initialize: (client: HelloWorldTestingggg::Client) -> void
+      end
+    end
+  end
+end

@@ -443,11 +443,11 @@ module HelloWorldTestingggg
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `pet_api` is a `HelloWorldTestingggg::PetAPI`
-        #   pet_api => {
-        #     name: name,
-        #     photo_urls: photo_urls,
-        #     id: id
+        #   # `address` is a `HelloWorldTestingggg::Address`
+        #   address => {
+        #     city: city,
+        #     geo: geo,
+        #     state: state
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

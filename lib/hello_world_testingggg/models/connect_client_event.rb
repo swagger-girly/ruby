@@ -23,9 +23,10 @@ module HelloWorldTestingggg
 
       class Subscribe < HelloWorldTestingggg::Internal::Type::BaseModel
         # @!attribute status
+        #   pet status in the store
         #
-        #   @return [Symbol, HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::Status]
-        required :status, enum: -> { HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::Status }
+        #   @return [Symbol, HelloWorldTestingggg::Models::PetStatus]
+        required :status, enum: -> { HelloWorldTestingggg::PetStatus }
 
         # @!attribute type
         #
@@ -33,20 +34,9 @@ module HelloWorldTestingggg
         required :type, const: :subscribe
 
         # @!method initialize(status:, type: :subscribe)
-        #   @param status [Symbol, HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::Status]
+        #   @param status [Symbol, HelloWorldTestingggg::Models::PetStatus] pet status in the store
+        #
         #   @param type [Symbol, :subscribe]
-
-        # @see HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe#status
-        module Status
-          extend HelloWorldTestingggg::Internal::Type::Enum
-
-          AVAILABLE = :available
-          PENDING = :pending
-          SOLD = :sold
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
       end
 
       # @!method self.variants

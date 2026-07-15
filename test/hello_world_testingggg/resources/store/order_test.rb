@@ -19,7 +19,8 @@ class HelloWorldTestingggg::Test::Resources::Store::OrderTest < HelloWorldTestin
         pet_id: Integer | nil,
         quantity: Integer | nil,
         ship_date: Time | nil,
-        status: HelloWorldTestingggg::Models::Store::OrderCreateResponse::Status | nil
+        status: HelloWorldTestingggg::Models::Store::OrderCreateResponse::Status | nil,
+        total: HelloWorldTestingggg::Money | nil
       }
     end
   end
@@ -40,7 +41,8 @@ class HelloWorldTestingggg::Test::Resources::Store::OrderTest < HelloWorldTestin
         pet_id: Integer | nil,
         quantity: Integer | nil,
         ship_date: Time | nil,
-        status: HelloWorldTestingggg::Models::Store::OrderRetrieveResponse::Status | nil
+        status: HelloWorldTestingggg::Models::Store::OrderRetrieveResponse::Status | nil,
+        total: HelloWorldTestingggg::Money | nil
       }
     end
   end

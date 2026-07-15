@@ -6,7 +6,8 @@ module HelloWorldTestingggg
         photo_urls: ::Array[String],
         id: Integer,
         category: HelloWorldTestingggg::PetAPI::Category,
-        status: HelloWorldTestingggg::Models::PetAPI::status,
+        microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id,
+        status: HelloWorldTestingggg::Models::pet_status,
         tags: ::Array[HelloWorldTestingggg::PetAPI::Tag]
       }
 
@@ -25,11 +26,17 @@ module HelloWorldTestingggg
         HelloWorldTestingggg::PetAPI::Category
       ) -> HelloWorldTestingggg::PetAPI::Category
 
-      attr_reader status: HelloWorldTestingggg::Models::PetAPI::status?
+      attr_reader microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id?
+
+      def microchip_id=: (
+        HelloWorldTestingggg::Models::PetAPI::microchip_id
+      ) -> HelloWorldTestingggg::Models::PetAPI::microchip_id
+
+      attr_reader status: HelloWorldTestingggg::Models::pet_status?
 
       def status=: (
-        HelloWorldTestingggg::Models::PetAPI::status
-      ) -> HelloWorldTestingggg::Models::PetAPI::status
+        HelloWorldTestingggg::Models::pet_status
+      ) -> HelloWorldTestingggg::Models::pet_status
 
       attr_reader tags: ::Array[HelloWorldTestingggg::PetAPI::Tag]?
 
@@ -42,7 +49,8 @@ module HelloWorldTestingggg
         photo_urls: ::Array[String],
         ?id: Integer,
         ?category: HelloWorldTestingggg::PetAPI::Category,
-        ?status: HelloWorldTestingggg::Models::PetAPI::status,
+        ?microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id,
+        ?status: HelloWorldTestingggg::Models::pet_status,
         ?tags: ::Array[HelloWorldTestingggg::PetAPI::Tag]
       ) -> void
 
@@ -51,11 +59,12 @@ module HelloWorldTestingggg
         photo_urls: ::Array[String],
         id: Integer,
         category: HelloWorldTestingggg::PetAPI::Category,
-        status: HelloWorldTestingggg::Models::PetAPI::status,
+        microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id,
+        status: HelloWorldTestingggg::Models::pet_status,
         tags: ::Array[HelloWorldTestingggg::PetAPI::Tag]
       }
 
-      type category = { id: Integer, name: String }
+      type category = { id: Integer, name: String, subcategories: ::Array[top] }
 
       class Category < HelloWorldTestingggg::Internal::Type::BaseModel
         attr_reader id: Integer?
@@ -66,21 +75,29 @@ module HelloWorldTestingggg
 
         def name=: (String) -> String
 
-        def initialize: (?id: Integer, ?name: String) -> void
+        attr_reader subcategories: ::Array[top]?
 
-        def to_hash: -> { id: Integer, name: String }
+        def subcategories=: (::Array[top]) -> ::Array[top]
+
+        def initialize: (
+          ?id: Integer,
+          ?name: String,
+          ?subcategories: ::Array[top]
+        ) -> void
+
+        def to_hash: -> {
+          id: Integer,
+          name: String,
+          subcategories: ::Array[top]
+        }
       end
 
-      type status = :available | :pending | :sold
+      type microchip_id = String | Integer
 
-      module Status
-        extend HelloWorldTestingggg::Internal::Type::Enum
+      module MicrochipID
+        extend HelloWorldTestingggg::Internal::Type::Union
 
-        AVAILABLE: :available
-        PENDING: :pending
-        SOLD: :sold
-
-        def self?.values: -> ::Array[HelloWorldTestingggg::Models::PetAPI::status]
+        def self?.variants: -> ::Array[HelloWorldTestingggg::Models::PetAPI::microchip_id]
       end
 
       type tag = { id: Integer, name: String }

@@ -6,7 +6,8 @@ module HelloWorldTestingggg
         photo_urls: ::Array[String],
         ?id: Integer,
         ?category: HelloWorldTestingggg::PetAPI::Category,
-        ?status: HelloWorldTestingggg::Models::PetAPI::status,
+        ?microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id,
+        ?status: HelloWorldTestingggg::Models::pet_status,
         ?tags: ::Array[HelloWorldTestingggg::PetAPI::Tag],
         ?request_options: HelloWorldTestingggg::request_opts
       ) -> HelloWorldTestingggg::PetAPI
@@ -21,7 +22,8 @@ module HelloWorldTestingggg
         photo_urls: ::Array[String],
         ?id: Integer,
         ?category: HelloWorldTestingggg::PetAPI::Category,
-        ?status: HelloWorldTestingggg::Models::PetAPI::status,
+        ?microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id,
+        ?status: HelloWorldTestingggg::Models::pet_status,
         ?tags: ::Array[HelloWorldTestingggg::PetAPI::Tag],
         ?request_options: HelloWorldTestingggg::request_opts
       ) -> HelloWorldTestingggg::PetAPI
@@ -49,17 +51,22 @@ module HelloWorldTestingggg
 
       def list_fake_page: (
         ?request_options: HelloWorldTestingggg::request_opts
-      ) -> HelloWorldTestingggg::Internal::XFakeSinglePage[HelloWorldTestingggg::PetAPI]
+      ) -> HelloWorldTestingggg::Models::PetListFakePageResponse
 
       def list_fake_page_inferred: (
         ?request_options: HelloWorldTestingggg::request_opts
-      ) -> HelloWorldTestingggg::Models::PetListFakePageInferredResponse
+      ) -> HelloWorldTestingggg::Internal::XFakeSinglePage[HelloWorldTestingggg::PetAPI]
 
       def list_unpaginated: (
         ?cursor: String,
         ?limit: Integer,
         ?request_options: HelloWorldTestingggg::request_opts
       ) -> HelloWorldTestingggg::Models::PetListUnpaginatedResponse
+
+      def retrieve_premium: (
+        Integer pet_id,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::PetRetrievePremiumResponse
 
       def update_with_form: (
         Integer pet_id,

@@ -1,0 +1,7 @@
+module HelloWorldTestingggg
+  module Resources
+    class Veterinary
+      def initialize: (client: HelloWorldTestingggg::Client) -> void
+    end
+  end
+end
