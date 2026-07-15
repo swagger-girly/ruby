@@ -1,0 +1,15 @@
+module HelloWorldTestingggg
+  module Models
+    module Adoptions
+      type condition_value = String | Integer | Float | ::Array[String] | Time
+
+      module ConditionValue
+        extend HelloWorldTestingggg::Internal::Type::Union
+
+        def self?.variants: -> ::Array[HelloWorldTestingggg::Models::Adoptions::condition_value]
+
+        StringArray: HelloWorldTestingggg::Internal::Type::Converter
+      end
+    end
+  end
+end

@@ -1,0 +1,24 @@
+module HelloWorldTestingggg
+  module Resources
+    class Adoptions
+      attr_reader policies: HelloWorldTestingggg::Resources::Adoptions::Policies
+
+      def create: (
+        body: HelloWorldTestingggg::Models::AdoptionCreateParams::body,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Application
+
+      def retrieve: (
+        String application_id,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Application
+
+      def retrieve_decision: (
+        String application_id,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::adoption_retrieve_decision_response
+
+      def initialize: (client: HelloWorldTestingggg::Client) -> void
+    end
+  end
+end

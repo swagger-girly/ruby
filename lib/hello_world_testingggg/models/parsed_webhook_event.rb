@@ -17,6 +17,10 @@ module HelloWorldTestingggg
 
       variant -> { HelloWorldTestingggg::StoreReportGeneratedWebhookEvent }
 
+      variant -> { HelloWorldTestingggg::AdoptionsPolicyChangedWebhookEvent }
+
+      variant -> { HelloWorldTestingggg::PlacementEventRecordedWebhookEvent }
+
       class PetModerationApprovedEvent < HelloWorldTestingggg::Internal::Type::BaseModel
         # @!attribute approved_at
         #
@@ -180,7 +184,7 @@ module HelloWorldTestingggg
       end
 
       # @!method self.variants
-      #   @return [Array(HelloWorldTestingggg::Models::PetCreatedWebhookEvent, HelloWorldTestingggg::Models::PetUpdatedWebhookEvent, HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent, HelloWorldTestingggg::Models::ParsedWebhookEvent::PetModerationApprovedEvent, HelloWorldTestingggg::Models::ParsedWebhookEvent::PetModerationRejectedEvent, HelloWorldTestingggg::Models::StoreReportGeneratedWebhookEvent)]
+      #   @return [Array(HelloWorldTestingggg::Models::PetCreatedWebhookEvent, HelloWorldTestingggg::Models::PetUpdatedWebhookEvent, HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent, HelloWorldTestingggg::Models::ParsedWebhookEvent::PetModerationApprovedEvent, HelloWorldTestingggg::Models::ParsedWebhookEvent::PetModerationRejectedEvent, HelloWorldTestingggg::Models::StoreReportGeneratedWebhookEvent, HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent, HelloWorldTestingggg::Models::PlacementEventRecordedWebhookEvent)]
     end
   end
 end

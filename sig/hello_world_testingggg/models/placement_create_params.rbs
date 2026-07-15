@@ -1,0 +1,208 @@
+module HelloWorldTestingggg
+  module Models
+    type placement_create_params =
+      {
+        application_id: String,
+        initial_event: HelloWorldTestingggg::Models::placement_event,
+        logistics: HelloWorldTestingggg::PlacementCreateParams::Logistics,
+        scheduled_for: Time
+      }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class PlacementCreateParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_accessor application_id: String
+
+      attr_reader initial_event: HelloWorldTestingggg::Models::placement_event?
+
+      def initial_event=: (
+        HelloWorldTestingggg::Models::placement_event
+      ) -> HelloWorldTestingggg::Models::placement_event
+
+      attr_reader logistics: HelloWorldTestingggg::PlacementCreateParams::Logistics?
+
+      def logistics=: (
+        HelloWorldTestingggg::PlacementCreateParams::Logistics
+      ) -> HelloWorldTestingggg::PlacementCreateParams::Logistics
+
+      attr_reader scheduled_for: Time?
+
+      def scheduled_for=: (Time) -> Time
+
+      def initialize: (
+        application_id: String,
+        ?initial_event: HelloWorldTestingggg::Models::placement_event,
+        ?logistics: HelloWorldTestingggg::PlacementCreateParams::Logistics,
+        ?scheduled_for: Time,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        application_id: String,
+        initial_event: HelloWorldTestingggg::Models::placement_event,
+        logistics: HelloWorldTestingggg::PlacementCreateParams::Logistics,
+        scheduled_for: Time,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+
+      type logistics =
+        {
+          delivery: HelloWorldTestingggg::TransferLeg,
+          handler: HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler,
+          pickup: HelloWorldTestingggg::TransferLeg
+        }
+
+      class Logistics < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader delivery: HelloWorldTestingggg::TransferLeg?
+
+        def delivery=: (
+          HelloWorldTestingggg::TransferLeg
+        ) -> HelloWorldTestingggg::TransferLeg
+
+        attr_reader handler: HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler?
+
+        def handler=: (
+          HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler
+        ) -> HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler
+
+        attr_reader pickup: HelloWorldTestingggg::TransferLeg?
+
+        def pickup=: (
+          HelloWorldTestingggg::TransferLeg
+        ) -> HelloWorldTestingggg::TransferLeg
+
+        def initialize: (
+          ?delivery: HelloWorldTestingggg::TransferLeg,
+          ?handler: HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler,
+          ?pickup: HelloWorldTestingggg::TransferLeg
+        ) -> void
+
+        def to_hash: -> {
+          delivery: HelloWorldTestingggg::TransferLeg,
+          handler: HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler,
+          pickup: HelloWorldTestingggg::TransferLeg
+        }
+
+        type handler =
+          {
+            certification: HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler::Certification,
+            name: String
+          }
+
+        class Handler < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader certification: HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler::Certification?
+
+          def certification=: (
+            HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler::Certification
+          ) -> HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler::Certification
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          def initialize: (
+            ?certification: HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler::Certification,
+            ?name: String
+          ) -> void
+
+          def to_hash: -> {
+            certification: HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler::Certification,
+            name: String
+          }
+
+          type certification =
+            {
+              level: HelloWorldTestingggg::Models::PlacementCreateParams::Logistics::Handler::Certification::level,
+              audit: HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler::Certification::Audit,
+              issued_by: String
+            }
+
+          class Certification < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_accessor level: HelloWorldTestingggg::Models::PlacementCreateParams::Logistics::Handler::Certification::level
+
+            attr_reader audit: HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler::Certification::Audit?
+
+            def audit=: (
+              HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler::Certification::Audit
+            ) -> HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler::Certification::Audit
+
+            attr_reader issued_by: String?
+
+            def issued_by=: (String) -> String
+
+            def initialize: (
+              level: HelloWorldTestingggg::Models::PlacementCreateParams::Logistics::Handler::Certification::level,
+              ?audit: HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler::Certification::Audit,
+              ?issued_by: String
+            ) -> void
+
+            def to_hash: -> {
+              level: HelloWorldTestingggg::Models::PlacementCreateParams::Logistics::Handler::Certification::level,
+              audit: HelloWorldTestingggg::PlacementCreateParams::Logistics::Handler::Certification::Audit,
+              issued_by: String
+            }
+
+            type level = :standard | :advanced | :specialist
+
+            module Level
+              extend HelloWorldTestingggg::Internal::Type::Enum
+
+              STANDARD: :standard
+              ADVANCED: :advanced
+              SPECIALIST: :specialist
+
+              def self?.values: -> ::Array[HelloWorldTestingggg::Models::PlacementCreateParams::Logistics::Handler::Certification::level]
+            end
+
+            type audit =
+              {
+                recorded_at: Time,
+                recorded_by: String,
+                source: HelloWorldTestingggg::Models::PlacementCreateParams::Logistics::Handler::Certification::Audit::source
+              }
+
+            class Audit < HelloWorldTestingggg::Internal::Type::BaseModel
+              attr_accessor recorded_at: Time
+
+              attr_reader recorded_by: String?
+
+              def recorded_by=: (String) -> String
+
+              attr_reader source: HelloWorldTestingggg::Models::PlacementCreateParams::Logistics::Handler::Certification::Audit::source?
+
+              def source=: (
+                HelloWorldTestingggg::Models::PlacementCreateParams::Logistics::Handler::Certification::Audit::source
+              ) -> HelloWorldTestingggg::Models::PlacementCreateParams::Logistics::Handler::Certification::Audit::source
+
+              def initialize: (
+                recorded_at: Time,
+                ?recorded_by: String,
+                ?source: HelloWorldTestingggg::Models::PlacementCreateParams::Logistics::Handler::Certification::Audit::source
+              ) -> void
+
+              def to_hash: -> {
+                recorded_at: Time,
+                recorded_by: String,
+                source: HelloWorldTestingggg::Models::PlacementCreateParams::Logistics::Handler::Certification::Audit::source
+              }
+
+              type source = :manual | :import | :system
+
+              module Source
+                extend HelloWorldTestingggg::Internal::Type::Enum
+
+                MANUAL: :manual
+                IMPORT: :import
+                SYSTEM: :system
+
+                def self?.values: -> ::Array[HelloWorldTestingggg::Models::PlacementCreateParams::Logistics::Handler::Certification::Audit::source]
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

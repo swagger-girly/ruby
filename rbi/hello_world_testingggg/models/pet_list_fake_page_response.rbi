@@ -2,11 +2,11 @@
 
 module HelloWorldTestingggg
   module Models
-    class PetListFakePageInferredResponse < HelloWorldTestingggg::Internal::Type::BaseModel
+    class PetListFakePageResponse < HelloWorldTestingggg::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            HelloWorldTestingggg::Models::PetListFakePageInferredResponse,
+            HelloWorldTestingggg::Models::PetListFakePageResponse,
             HelloWorldTestingggg::Internal::AnyHash
           )
         end

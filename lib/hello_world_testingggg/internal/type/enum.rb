@@ -15,6 +15,31 @@ module HelloWorldTestingggg
       #
       # We can therefore convert string values to Symbols, but can't convert other
       # values safely.
+      #
+      # @example
+      #   # `pet_status` is a `HelloWorldTestingggg::PetStatus`
+      #   case pet_status
+      #   when HelloWorldTestingggg::PetStatus::AVAILABLE
+      #     # ...
+      #   when HelloWorldTestingggg::PetStatus::PENDING
+      #     # ...
+      #   when HelloWorldTestingggg::PetStatus::SOLD
+      #     # ...
+      #   else
+      #     puts(pet_status)
+      #   end
+      #
+      # @example
+      #   case pet_status
+      #   in :available
+      #     # ...
+      #   in :pending
+      #     # ...
+      #   in :sold
+      #     # ...
+      #   else
+      #     puts(pet_status)
+      #   end
       module Enum
         include HelloWorldTestingggg::Internal::Type::Converter
         include HelloWorldTestingggg::Internal::Util::SorbetRuntimeSupport

@@ -1,0 +1,32 @@
+module HelloWorldTestingggg
+  module Resources
+    class Placements
+      def create: (
+        application_id: String,
+        ?initial_event: HelloWorldTestingggg::Models::placement_event,
+        ?logistics: HelloWorldTestingggg::PlacementCreateParams::Logistics,
+        ?scheduled_for: Time,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Placement
+
+      def retrieve: (
+        String placement_id,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Placement
+
+      def list: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Internal::CustomCursorPage[HelloWorldTestingggg::Placement]
+
+      def record_event: (
+        String placement_id,
+        placement_event: HelloWorldTestingggg::Models::placement_event,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Placement
+
+      def initialize: (client: HelloWorldTestingggg::Client) -> void
+    end
+  end
+end

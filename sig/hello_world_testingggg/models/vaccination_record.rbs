@@ -1,0 +1,187 @@
+module HelloWorldTestingggg
+  module Models
+    type vaccination_record =
+      {
+        id: String,
+        administered_at: Time,
+        vaccine: String,
+        audit: HelloWorldTestingggg::VaccinationRecord::Audit,
+        booster_schedule: ::Array[HelloWorldTestingggg::VaccinationRecord::BoosterSchedule],
+        veterinarian: HelloWorldTestingggg::VaccinationRecord::Veterinarian
+      }
+
+    class VaccinationRecord < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor administered_at: Time
+
+      attr_accessor vaccine: String
+
+      attr_reader audit: HelloWorldTestingggg::VaccinationRecord::Audit?
+
+      def audit=: (
+        HelloWorldTestingggg::VaccinationRecord::Audit
+      ) -> HelloWorldTestingggg::VaccinationRecord::Audit
+
+      attr_reader booster_schedule: ::Array[HelloWorldTestingggg::VaccinationRecord::BoosterSchedule]?
+
+      def booster_schedule=: (
+        ::Array[HelloWorldTestingggg::VaccinationRecord::BoosterSchedule]
+      ) -> ::Array[HelloWorldTestingggg::VaccinationRecord::BoosterSchedule]
+
+      attr_reader veterinarian: HelloWorldTestingggg::VaccinationRecord::Veterinarian?
+
+      def veterinarian=: (
+        HelloWorldTestingggg::VaccinationRecord::Veterinarian
+      ) -> HelloWorldTestingggg::VaccinationRecord::Veterinarian
+
+      def initialize: (
+        id: String,
+        administered_at: Time,
+        vaccine: String,
+        ?audit: HelloWorldTestingggg::VaccinationRecord::Audit,
+        ?booster_schedule: ::Array[HelloWorldTestingggg::VaccinationRecord::BoosterSchedule],
+        ?veterinarian: HelloWorldTestingggg::VaccinationRecord::Veterinarian
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        administered_at: Time,
+        vaccine: String,
+        audit: HelloWorldTestingggg::VaccinationRecord::Audit,
+        booster_schedule: ::Array[HelloWorldTestingggg::VaccinationRecord::BoosterSchedule],
+        veterinarian: HelloWorldTestingggg::VaccinationRecord::Veterinarian
+      }
+
+      type audit =
+        {
+          recorded_at: Time,
+          recorded_by: String,
+          source: HelloWorldTestingggg::Models::VaccinationRecord::Audit::source
+        }
+
+      class Audit < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor recorded_at: Time
+
+        attr_reader recorded_by: String?
+
+        def recorded_by=: (String) -> String
+
+        attr_reader source: HelloWorldTestingggg::Models::VaccinationRecord::Audit::source?
+
+        def source=: (
+          HelloWorldTestingggg::Models::VaccinationRecord::Audit::source
+        ) -> HelloWorldTestingggg::Models::VaccinationRecord::Audit::source
+
+        def initialize: (
+          recorded_at: Time,
+          ?recorded_by: String,
+          ?source: HelloWorldTestingggg::Models::VaccinationRecord::Audit::source
+        ) -> void
+
+        def to_hash: -> {
+          recorded_at: Time,
+          recorded_by: String,
+          source: HelloWorldTestingggg::Models::VaccinationRecord::Audit::source
+        }
+
+        type source = :manual | :import | :system
+
+        module Source
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          MANUAL: :manual
+          IMPORT: :import
+          SYSTEM: :system
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::VaccinationRecord::Audit::source]
+        end
+      end
+
+      type booster_schedule =
+        {
+          due: Time,
+          completed: bool,
+          dose: HelloWorldTestingggg::Models::VaccinationRecord::BoosterSchedule::dose
+        }
+
+      class BoosterSchedule < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor due: Time
+
+        attr_reader completed: bool?
+
+        def completed=: (bool) -> bool
+
+        attr_reader dose: HelloWorldTestingggg::Models::VaccinationRecord::BoosterSchedule::dose?
+
+        def dose=: (
+          HelloWorldTestingggg::Models::VaccinationRecord::BoosterSchedule::dose
+        ) -> HelloWorldTestingggg::Models::VaccinationRecord::BoosterSchedule::dose
+
+        def initialize: (
+          due: Time,
+          ?completed: bool,
+          ?dose: HelloWorldTestingggg::Models::VaccinationRecord::BoosterSchedule::dose
+        ) -> void
+
+        def to_hash: -> {
+          due: Time,
+          completed: bool,
+          dose: HelloWorldTestingggg::Models::VaccinationRecord::BoosterSchedule::dose
+        }
+
+        type dose = Float | String
+
+        module Dose
+          extend HelloWorldTestingggg::Internal::Type::Union
+
+          def self?.variants: -> ::Array[HelloWorldTestingggg::Models::VaccinationRecord::BoosterSchedule::dose]
+        end
+      end
+
+      type veterinarian =
+        {
+          license: HelloWorldTestingggg::VaccinationRecord::Veterinarian::License,
+          name: String
+        }
+
+      class Veterinarian < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader license: HelloWorldTestingggg::VaccinationRecord::Veterinarian::License?
+
+        def license=: (
+          HelloWorldTestingggg::VaccinationRecord::Veterinarian::License
+        ) -> HelloWorldTestingggg::VaccinationRecord::Veterinarian::License
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (
+          ?license: HelloWorldTestingggg::VaccinationRecord::Veterinarian::License,
+          ?name: String
+        ) -> void
+
+        def to_hash: -> {
+          license: HelloWorldTestingggg::VaccinationRecord::Veterinarian::License,
+          name: String
+        }
+
+        type license = { number: String, region: String }
+
+        class License < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader number: String?
+
+          def number=: (String) -> String
+
+          attr_reader region: String?
+
+          def region=: (String) -> String
+
+          def initialize: (?number: String, ?region: String) -> void
+
+          def to_hash: -> { number: String, region: String }
+        end
+      end
+    end
+  end
+end

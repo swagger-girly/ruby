@@ -3,6 +3,9 @@
 module HelloWorldTestingggg
   module Test
     module Resources
+      module Adoptions
+      end
+
       module Inventory
       end
 

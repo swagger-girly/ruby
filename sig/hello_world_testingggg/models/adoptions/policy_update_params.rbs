@@ -1,0 +1,226 @@
+module HelloWorldTestingggg
+  module Models
+    module Adoptions
+      type policy_update_params =
+        {
+          policy_id: String,
+          body: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::body
+        }
+        & HelloWorldTestingggg::Internal::Type::request_parameters
+
+      class PolicyUpdateParams < HelloWorldTestingggg::Internal::Type::BaseModel
+        extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+        include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+        attr_accessor policy_id: String
+
+        attr_accessor body: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::body
+
+        def initialize: (
+          policy_id: String,
+          body: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::body,
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          policy_id: String,
+          body: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::body,
+          request_options: HelloWorldTestingggg::RequestOptions
+        }
+
+        type body =
+          HelloWorldTestingggg::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate
+          | HelloWorldTestingggg::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyLifecycleUpdate
+
+        module Body
+          extend HelloWorldTestingggg::Internal::Type::Union
+
+          type adoption_policy_details_update =
+            {
+              escalation: HelloWorldTestingggg::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::Escalation,
+              name: String,
+              notification_target: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::notification_target
+            }
+
+          class AdoptionPolicyDetailsUpdate < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_reader escalation: HelloWorldTestingggg::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::Escalation?
+
+            def escalation=: (
+              HelloWorldTestingggg::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::Escalation
+            ) -> HelloWorldTestingggg::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::Escalation
+
+            attr_reader name: String?
+
+            def name=: (String) -> String
+
+            attr_reader notification_target: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::notification_target?
+
+            def notification_target=: (
+              HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::notification_target
+            ) -> HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::notification_target
+
+            def initialize: (
+              ?escalation: HelloWorldTestingggg::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::Escalation,
+              ?name: String,
+              ?notification_target: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::notification_target
+            ) -> void
+
+            def to_hash: -> {
+              escalation: HelloWorldTestingggg::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::Escalation,
+              name: String,
+              notification_target: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::notification_target
+            }
+
+            type escalation =
+              {
+                operator: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::Escalation::operator,
+                groups: ::Array[top],
+                rules: ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule]
+              }
+
+            class Escalation < HelloWorldTestingggg::Internal::Type::BaseModel
+              attr_accessor operator: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::Escalation::operator
+
+              attr_reader groups: ::Array[top]?
+
+              def groups=: (::Array[top]) -> ::Array[top]
+
+              attr_reader rules: ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule]?
+
+              def rules=: (
+                ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule]
+              ) -> ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule]
+
+              def initialize: (
+                operator: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::Escalation::operator,
+                ?groups: ::Array[top],
+                ?rules: ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule]
+              ) -> void
+
+              def to_hash: -> {
+                operator: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::Escalation::operator,
+                groups: ::Array[top],
+                rules: ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule]
+              }
+
+              type operator = :ALL | :ANY
+
+              module Operator
+                extend HelloWorldTestingggg::Internal::Type::Enum
+
+                ALL: :ALL
+                ANY: :ANY
+
+                def self?.values: -> ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::Escalation::operator]
+              end
+            end
+
+            type notification_target =
+              String
+              | HelloWorldTestingggg::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::NotificationTarget::WebhookSink
+
+            module NotificationTarget
+              extend HelloWorldTestingggg::Internal::Type::Union
+
+              type webhook_sink =
+                {
+                  url: String,
+                  events: ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::NotificationTarget::WebhookSink::event],
+                  secret: String
+                }
+
+              class WebhookSink < HelloWorldTestingggg::Internal::Type::BaseModel
+                attr_accessor url: String
+
+                attr_reader events: ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::NotificationTarget::WebhookSink::event]?
+
+                def events=: (
+                  ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::NotificationTarget::WebhookSink::event]
+                ) -> ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::NotificationTarget::WebhookSink::event]
+
+                attr_reader secret: String?
+
+                def secret=: (String) -> String
+
+                def initialize: (
+                  url: String,
+                  ?events: ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::NotificationTarget::WebhookSink::event],
+                  ?secret: String
+                ) -> void
+
+                def to_hash: -> {
+                  url: String,
+                  events: ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::NotificationTarget::WebhookSink::event],
+                  secret: String
+                }
+
+                type event = :approved | :rejected | :escalated
+
+                module Event
+                  extend HelloWorldTestingggg::Internal::Type::Enum
+
+                  APPROVED: :approved
+                  REJECTED: :rejected
+                  ESCALATED: :escalated
+
+                  def self?.values: -> ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::NotificationTarget::WebhookSink::event]
+                end
+              end
+
+              def self?.variants: -> ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyDetailsUpdate::notification_target]
+            end
+          end
+
+          type adoption_policy_lifecycle_update =
+            {
+              actor: String,
+              status: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyLifecycleUpdate::status,
+              acted_at: Time,
+              reason: String
+            }
+
+          class AdoptionPolicyLifecycleUpdate < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_accessor actor: String
+
+            attr_accessor status: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyLifecycleUpdate::status
+
+            attr_reader acted_at: Time?
+
+            def acted_at=: (Time) -> Time
+
+            attr_reader reason: String?
+
+            def reason=: (String) -> String
+
+            def initialize: (
+              actor: String,
+              status: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyLifecycleUpdate::status,
+              ?acted_at: Time,
+              ?reason: String
+            ) -> void
+
+            def to_hash: -> {
+              actor: String,
+              status: HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyLifecycleUpdate::status,
+              acted_at: Time,
+              reason: String
+            }
+
+            type status = :active | :archived
+
+            module Status
+              extend HelloWorldTestingggg::Internal::Type::Enum
+
+              ACTIVE: :active
+              ARCHIVED: :archived
+
+              def self?.values: -> ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::Body::AdoptionPolicyLifecycleUpdate::status]
+            end
+          end
+
+          def self?.variants: -> ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyUpdateParams::body]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,621 @@
+module HelloWorldTestingggg
+  module Models
+    type application =
+      {
+        id: String,
+        applicant: HelloWorldTestingggg::Models::Application::applicant,
+        status: HelloWorldTestingggg::Models::Application::status,
+        submitted_at: Time,
+        decision: HelloWorldTestingggg::Models::Application::decision,
+        fee: HelloWorldTestingggg::Money,
+        history: ::Array[HelloWorldTestingggg::Application::History],
+        latest_rejection: HelloWorldTestingggg::Application::LatestRejection,
+        pet: HelloWorldTestingggg::PetAPI
+      }
+
+    class Application < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor applicant: HelloWorldTestingggg::Models::Application::applicant
+
+      attr_accessor status: HelloWorldTestingggg::Models::Application::status
+
+      attr_reader decision: HelloWorldTestingggg::Models::Application::decision?
+
+      def decision=: (
+        HelloWorldTestingggg::Models::Application::decision
+      ) -> HelloWorldTestingggg::Models::Application::decision
+
+      attr_reader fee: HelloWorldTestingggg::Money?
+
+      def fee=: (HelloWorldTestingggg::Money) -> HelloWorldTestingggg::Money
+
+      attr_reader history: ::Array[HelloWorldTestingggg::Application::History]?
+
+      def history=: (
+        ::Array[HelloWorldTestingggg::Application::History]
+      ) -> ::Array[HelloWorldTestingggg::Application::History]
+
+      attr_reader latest_rejection: HelloWorldTestingggg::Application::LatestRejection?
+
+      def latest_rejection=: (
+        HelloWorldTestingggg::Application::LatestRejection
+      ) -> HelloWorldTestingggg::Application::LatestRejection
+
+      attr_reader pet: HelloWorldTestingggg::PetAPI?
+
+      def pet=: (HelloWorldTestingggg::PetAPI) -> HelloWorldTestingggg::PetAPI
+
+      attr_accessor submitted_at: Time
+
+      def initialize: (
+        id: String,
+        applicant: HelloWorldTestingggg::Models::Application::applicant,
+        status: HelloWorldTestingggg::Models::Application::status,
+        submitted_at: Time,
+        ?decision: HelloWorldTestingggg::Models::Application::decision,
+        ?fee: HelloWorldTestingggg::Money,
+        ?history: ::Array[HelloWorldTestingggg::Application::History],
+        ?latest_rejection: HelloWorldTestingggg::Application::LatestRejection,
+        ?pet: HelloWorldTestingggg::PetAPI
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        applicant: HelloWorldTestingggg::Models::Application::applicant,
+        status: HelloWorldTestingggg::Models::Application::status,
+        submitted_at: Time,
+        decision: HelloWorldTestingggg::Models::Application::decision,
+        fee: HelloWorldTestingggg::Money,
+        history: ::Array[HelloWorldTestingggg::Application::History],
+        latest_rejection: HelloWorldTestingggg::Application::LatestRejection,
+        pet: HelloWorldTestingggg::PetAPI
+      }
+
+      type applicant =
+        HelloWorldTestingggg::Application::Applicant::Individual
+        | HelloWorldTestingggg::Application::Applicant::Organization
+
+      module Applicant
+        extend HelloWorldTestingggg::Internal::Type::Union
+
+        type individual =
+          {
+            applicant_type: :individual,
+            name: String,
+            address: HelloWorldTestingggg::Address,
+            age: Integer,
+            email: String
+          }
+
+        class Individual < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor applicant_type: :individual
+
+          attr_accessor name: String
+
+          attr_reader address: HelloWorldTestingggg::Address?
+
+          def address=: (
+            HelloWorldTestingggg::Address
+          ) -> HelloWorldTestingggg::Address
+
+          attr_reader age: Integer?
+
+          def age=: (Integer) -> Integer
+
+          attr_reader email: String?
+
+          def email=: (String) -> String
+
+          def initialize: (
+            name: String,
+            ?address: HelloWorldTestingggg::Address,
+            ?age: Integer,
+            ?email: String,
+            ?applicant_type: :individual
+          ) -> void
+
+          def to_hash: -> {
+            applicant_type: :individual,
+            name: String,
+            address: HelloWorldTestingggg::Address,
+            age: Integer,
+            email: String
+          }
+        end
+
+        type organization =
+          {
+            applicant_type: :organization,
+            name: String,
+            shelter: HelloWorldTestingggg::Application::Applicant::Organization::Shelter,
+            tax_id: String
+          }
+
+        class Organization < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor applicant_type: :organization
+
+          attr_accessor name: String
+
+          attr_reader shelter: HelloWorldTestingggg::Application::Applicant::Organization::Shelter?
+
+          def shelter=: (
+            HelloWorldTestingggg::Application::Applicant::Organization::Shelter
+          ) -> HelloWorldTestingggg::Application::Applicant::Organization::Shelter
+
+          attr_reader tax_id: String?
+
+          def tax_id=: (String) -> String
+
+          def initialize: (
+            name: String,
+            ?shelter: HelloWorldTestingggg::Application::Applicant::Organization::Shelter,
+            ?tax_id: String,
+            ?applicant_type: :organization
+          ) -> void
+
+          def to_hash: -> {
+            applicant_type: :organization,
+            name: String,
+            shelter: HelloWorldTestingggg::Application::Applicant::Organization::Shelter,
+            tax_id: String
+          }
+
+          type shelter =
+            {
+              name: String,
+              address: HelloWorldTestingggg::Address,
+              contact: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact,
+              location: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location
+            }
+
+          class Shelter < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_accessor name: String
+
+            attr_reader address: HelloWorldTestingggg::Address?
+
+            def address=: (
+              HelloWorldTestingggg::Address
+            ) -> HelloWorldTestingggg::Address
+
+            attr_reader contact: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact?
+
+            def contact=: (
+              HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact
+            ) -> HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact
+
+            attr_reader location: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location?
+
+            def location=: (
+              HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location
+            ) -> HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location
+
+            def initialize: (
+              name: String,
+              ?address: HelloWorldTestingggg::Address,
+              ?contact: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact,
+              ?location: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location
+            ) -> void
+
+            def to_hash: -> {
+              name: String,
+              address: HelloWorldTestingggg::Address,
+              contact: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact,
+              location: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location
+            }
+
+            type contact =
+              {
+                primary: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary
+              }
+
+            class Contact < HelloWorldTestingggg::Internal::Type::BaseModel
+              attr_reader primary: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary?
+
+              def primary=: (
+                HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary
+              ) -> HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary
+
+              def initialize: (
+                ?primary: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary
+              ) -> void
+
+              def to_hash: -> {
+                primary: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary
+              }
+
+              type primary =
+                {
+                  availability: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability,
+                  name: String,
+                  phone: String
+                }
+
+              class Primary < HelloWorldTestingggg::Internal::Type::BaseModel
+                attr_reader availability: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability?
+
+                def availability=: (
+                  HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability
+                ) -> HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability
+
+                attr_reader name: String?
+
+                def name=: (String) -> String
+
+                attr_reader phone: String?
+
+                def phone=: (String) -> String
+
+                def initialize: (
+                  ?availability: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability,
+                  ?name: String,
+                  ?phone: String
+                ) -> void
+
+                def to_hash: -> {
+                  availability: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability,
+                  name: String,
+                  phone: String
+                }
+
+                type availability =
+                  {
+                    weekday: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability::Weekday,
+                    weekend: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability::Weekend?
+                  }
+
+                class Availability < HelloWorldTestingggg::Internal::Type::BaseModel
+                  attr_reader weekday: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability::Weekday?
+
+                  def weekday=: (
+                    HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability::Weekday
+                  ) -> HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability::Weekday
+
+                  attr_accessor weekend: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability::Weekend?
+
+                  def initialize: (
+                    ?weekday: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability::Weekday,
+                    ?weekend: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability::Weekend?
+                  ) -> void
+
+                  def to_hash: -> {
+                    weekday: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability::Weekday,
+                    weekend: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::Primary::Availability::Weekend?
+                  }
+
+                  type weekday = { close: String, open_: String }
+
+                  class Weekday < HelloWorldTestingggg::Internal::Type::BaseModel
+                    attr_reader close: String?
+
+                    def close=: (String) -> String
+
+                    attr_reader open_: String?
+
+                    def open_=: (String) -> String
+
+                    def initialize: (?close: String, ?open_: String) -> void
+
+                    def to_hash: -> { close: String, open_: String }
+                  end
+
+                  type weekend = { close: String, open_: String }
+
+                  class Weekend < HelloWorldTestingggg::Internal::Type::BaseModel
+                    attr_reader close: String?
+
+                    def close=: (String) -> String
+
+                    attr_reader open_: String?
+
+                    def open_=: (String) -> String
+
+                    def initialize: (?close: String, ?open_: String) -> void
+
+                    def to_hash: -> { close: String, open_: String }
+                  end
+                end
+              end
+            end
+
+            type location = { latitude: Float, longitude: Float }
+
+            class Location < HelloWorldTestingggg::Internal::Type::BaseModel
+              attr_accessor latitude: Float
+
+              attr_accessor longitude: Float
+
+              def initialize: (latitude: Float, longitude: Float) -> void
+
+              def to_hash: -> { latitude: Float, longitude: Float }
+            end
+          end
+        end
+
+        def self?.variants: -> ::Array[HelloWorldTestingggg::Models::Application::applicant]
+      end
+
+      type status = :received | :under_review | :approved | :rejected
+
+      module Status
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        RECEIVED: :received
+        UNDER_REVIEW: :under_review
+        APPROVED: :approved
+        REJECTED: :rejected
+
+        def self?.values: -> ::Array[HelloWorldTestingggg::Models::Application::status]
+      end
+
+      type decision =
+        HelloWorldTestingggg::Application::Decision::DecisionApproved
+        | HelloWorldTestingggg::Application::Decision::DecisionRejected
+        | HelloWorldTestingggg::Application::Decision::DecisionEscalated
+
+      module Decision
+        extend HelloWorldTestingggg::Internal::Type::Union
+
+        type decision_approved =
+          {
+            approved_at: Time,
+            outcome: HelloWorldTestingggg::Models::Application::Decision::DecisionApproved::outcome,
+            conditions: ::Array[String]
+          }
+
+        class DecisionApproved < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor approved_at: Time
+
+          attr_accessor outcome: HelloWorldTestingggg::Models::Application::Decision::DecisionApproved::outcome
+
+          attr_reader conditions: ::Array[String]?
+
+          def conditions=: (::Array[String]) -> ::Array[String]
+
+          def initialize: (
+            approved_at: Time,
+            outcome: HelloWorldTestingggg::Models::Application::Decision::DecisionApproved::outcome,
+            ?conditions: ::Array[String]
+          ) -> void
+
+          def to_hash: -> {
+            approved_at: Time,
+            outcome: HelloWorldTestingggg::Models::Application::Decision::DecisionApproved::outcome,
+            conditions: ::Array[String]
+          }
+
+          type outcome = :approved
+
+          module Outcome
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            APPROVED: :approved
+
+            def self?.values: -> ::Array[HelloWorldTestingggg::Models::Application::Decision::DecisionApproved::outcome]
+          end
+        end
+
+        type decision_rejected =
+          {
+            outcome: HelloWorldTestingggg::Models::Application::Decision::DecisionRejected::outcome,
+            reason: HelloWorldTestingggg::Models::Application::Decision::DecisionRejected::reason,
+            appeal_deadline: Time?
+          }
+
+        class DecisionRejected < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor outcome: HelloWorldTestingggg::Models::Application::Decision::DecisionRejected::outcome
+
+          attr_accessor reason: HelloWorldTestingggg::Models::Application::Decision::DecisionRejected::reason
+
+          attr_accessor appeal_deadline: Time?
+
+          def initialize: (
+            outcome: HelloWorldTestingggg::Models::Application::Decision::DecisionRejected::outcome,
+            reason: HelloWorldTestingggg::Models::Application::Decision::DecisionRejected::reason,
+            ?appeal_deadline: Time?
+          ) -> void
+
+          def to_hash: -> {
+            outcome: HelloWorldTestingggg::Models::Application::Decision::DecisionRejected::outcome,
+            reason: HelloWorldTestingggg::Models::Application::Decision::DecisionRejected::reason,
+            appeal_deadline: Time?
+          }
+
+          type outcome = :rejected
+
+          module Outcome
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            REJECTED: :rejected
+
+            def self?.values: -> ::Array[HelloWorldTestingggg::Models::Application::Decision::DecisionRejected::outcome]
+          end
+
+          type reason = :policy | :capacity | :incomplete
+
+          module Reason
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            POLICY: :policy
+            CAPACITY: :capacity
+            INCOMPLETE: :incomplete
+
+            def self?.values: -> ::Array[HelloWorldTestingggg::Models::Application::Decision::DecisionRejected::reason]
+          end
+        end
+
+        type decision_escalated =
+          {
+            escalated_to: HelloWorldTestingggg::Application::Decision::DecisionEscalated::EscalatedTo,
+            outcome: HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated::outcome,
+            review_after: Time
+          }
+
+        class DecisionEscalated < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor escalated_to: HelloWorldTestingggg::Application::Decision::DecisionEscalated::EscalatedTo
+
+          attr_accessor outcome: HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated::outcome
+
+          attr_reader review_after: Time?
+
+          def review_after=: (Time) -> Time
+
+          def initialize: (
+            escalated_to: HelloWorldTestingggg::Application::Decision::DecisionEscalated::EscalatedTo,
+            outcome: HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated::outcome,
+            ?review_after: Time
+          ) -> void
+
+          def to_hash: -> {
+            escalated_to: HelloWorldTestingggg::Application::Decision::DecisionEscalated::EscalatedTo,
+            outcome: HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated::outcome,
+            review_after: Time
+          }
+
+          type escalated_to =
+            {
+              team: String,
+              contact: HelloWorldTestingggg::Application::Decision::DecisionEscalated::EscalatedTo::Contact
+            }
+
+          class EscalatedTo < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_accessor team: String
+
+            attr_reader contact: HelloWorldTestingggg::Application::Decision::DecisionEscalated::EscalatedTo::Contact?
+
+            def contact=: (
+              HelloWorldTestingggg::Application::Decision::DecisionEscalated::EscalatedTo::Contact
+            ) -> HelloWorldTestingggg::Application::Decision::DecisionEscalated::EscalatedTo::Contact
+
+            def initialize: (
+              team: String,
+              ?contact: HelloWorldTestingggg::Application::Decision::DecisionEscalated::EscalatedTo::Contact
+            ) -> void
+
+            def to_hash: -> {
+              team: String,
+              contact: HelloWorldTestingggg::Application::Decision::DecisionEscalated::EscalatedTo::Contact
+            }
+
+            type contact = { email: String, hours: String }
+
+            class Contact < HelloWorldTestingggg::Internal::Type::BaseModel
+              attr_reader email: String?
+
+              def email=: (String) -> String
+
+              attr_reader hours: String?
+
+              def hours=: (String) -> String
+
+              def initialize: (?email: String, ?hours: String) -> void
+
+              def to_hash: -> { email: String, hours: String }
+            end
+          end
+
+          type outcome = :escalated
+
+          module Outcome
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            ESCALATED: :escalated
+
+            def self?.values: -> ::Array[HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated::outcome]
+          end
+        end
+
+        def self?.variants: -> ::Array[HelloWorldTestingggg::Models::Application::decision]
+      end
+
+      type history =
+        {
+          changed_at: Time,
+          status: HelloWorldTestingggg::Models::Application::History::status,
+          note: String?
+        }
+
+      class History < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor changed_at: Time
+
+        attr_accessor status: HelloWorldTestingggg::Models::Application::History::status
+
+        attr_accessor note: String?
+
+        def initialize: (
+          changed_at: Time,
+          status: HelloWorldTestingggg::Models::Application::History::status,
+          ?note: String?
+        ) -> void
+
+        def to_hash: -> {
+          changed_at: Time,
+          status: HelloWorldTestingggg::Models::Application::History::status,
+          note: String?
+        }
+
+        type status = :received | :under_review | :approved | :rejected
+
+        module Status
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          RECEIVED: :received
+          UNDER_REVIEW: :under_review
+          APPROVED: :approved
+          REJECTED: :rejected
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::Application::History::status]
+        end
+      end
+
+      type latest_rejection =
+        {
+          outcome: HelloWorldTestingggg::Models::Application::LatestRejection::outcome,
+          reason: HelloWorldTestingggg::Models::Application::LatestRejection::reason,
+          appeal_deadline: Time?
+        }
+
+      class LatestRejection < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor outcome: HelloWorldTestingggg::Models::Application::LatestRejection::outcome
+
+        attr_accessor reason: HelloWorldTestingggg::Models::Application::LatestRejection::reason
+
+        attr_accessor appeal_deadline: Time?
+
+        def initialize: (
+          outcome: HelloWorldTestingggg::Models::Application::LatestRejection::outcome,
+          reason: HelloWorldTestingggg::Models::Application::LatestRejection::reason,
+          ?appeal_deadline: Time?
+        ) -> void
+
+        def to_hash: -> {
+          outcome: HelloWorldTestingggg::Models::Application::LatestRejection::outcome,
+          reason: HelloWorldTestingggg::Models::Application::LatestRejection::reason,
+          appeal_deadline: Time?
+        }
+
+        type outcome = :rejected
+
+        module Outcome
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          REJECTED: :rejected
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::Application::LatestRejection::outcome]
+        end
+
+        type reason = :policy | :capacity | :incomplete
+
+        module Reason
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          POLICY: :policy
+          CAPACITY: :capacity
+          INCOMPLETE: :incomplete
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::Application::LatestRejection::reason]
+        end
+      end
+    end
+  end
+end

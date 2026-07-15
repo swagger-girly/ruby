@@ -39,13 +39,8 @@ module HelloWorldTestingggg
       sig { params(metadata: T::Hash[Symbol, String]).void }
       attr_writer :metadata
 
-      sig do
-        returns(
-          T.nilable(
-            HelloWorldTestingggg::PetUpdatedWebhookEvent::PreviousStatus::TaggedSymbol
-          )
-        )
-      end
+      # pet status in the store
+      sig { returns(T.nilable(HelloWorldTestingggg::PetStatus::TaggedSymbol)) }
       attr_accessor :previous_status
 
       sig do
@@ -57,10 +52,7 @@ module HelloWorldTestingggg
           pet: HelloWorldTestingggg::PetAPI::OrHash,
           type: HelloWorldTestingggg::PetUpdatedWebhookEvent::Type::OrSymbol,
           metadata: T::Hash[Symbol, String],
-          previous_status:
-            T.nilable(
-              HelloWorldTestingggg::PetUpdatedWebhookEvent::PreviousStatus::OrSymbol
-            )
+          previous_status: T.nilable(HelloWorldTestingggg::PetStatus::OrSymbol)
         ).returns(T.attached_class)
       end
       def self.new(
@@ -68,6 +60,7 @@ module HelloWorldTestingggg
         pet:,
         type:,
         metadata: nil,
+        # pet status in the store
         previous_status: nil
       )
       end
@@ -84,9 +77,7 @@ module HelloWorldTestingggg
               HelloWorldTestingggg::PetUpdatedWebhookEvent::Type::TaggedSymbol,
             metadata: T::Hash[Symbol, String],
             previous_status:
-              T.nilable(
-                HelloWorldTestingggg::PetUpdatedWebhookEvent::PreviousStatus::TaggedSymbol
-              )
+              T.nilable(HelloWorldTestingggg::PetStatus::TaggedSymbol)
           }
         )
       end
@@ -156,45 +147,6 @@ module HelloWorldTestingggg
           override.returns(
             T::Array[
               HelloWorldTestingggg::PetUpdatedWebhookEvent::Type::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
-      end
-
-      module PreviousStatus
-        extend HelloWorldTestingggg::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(
-              Symbol,
-              HelloWorldTestingggg::PetUpdatedWebhookEvent::PreviousStatus
-            )
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        AVAILABLE =
-          T.let(
-            :available,
-            HelloWorldTestingggg::PetUpdatedWebhookEvent::PreviousStatus::TaggedSymbol
-          )
-        PENDING =
-          T.let(
-            :pending,
-            HelloWorldTestingggg::PetUpdatedWebhookEvent::PreviousStatus::TaggedSymbol
-          )
-        SOLD =
-          T.let(
-            :sold,
-            HelloWorldTestingggg::PetUpdatedWebhookEvent::PreviousStatus::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              HelloWorldTestingggg::PetUpdatedWebhookEvent::PreviousStatus::TaggedSymbol
             ]
           )
         end

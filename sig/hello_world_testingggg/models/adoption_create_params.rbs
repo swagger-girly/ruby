@@ -1,0 +1,287 @@
+module HelloWorldTestingggg
+  module Models
+    type adoption_create_params =
+      { body: HelloWorldTestingggg::Models::AdoptionCreateParams::body }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class AdoptionCreateParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_accessor body: HelloWorldTestingggg::Models::AdoptionCreateParams::body
+
+      def initialize: (
+        body: HelloWorldTestingggg::Models::AdoptionCreateParams::body,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        body: HelloWorldTestingggg::Models::AdoptionCreateParams::body,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+
+      type body =
+        HelloWorldTestingggg::AdoptionCreateParams::Body::Individual
+        | HelloWorldTestingggg::AdoptionCreateParams::Body::Organization
+
+      module Body
+        extend HelloWorldTestingggg::Internal::Type::Union
+
+        type individual =
+          {
+            applicant_type: :individual,
+            name: String,
+            address: HelloWorldTestingggg::Address,
+            age: Integer,
+            email: String
+          }
+
+        class Individual < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor applicant_type: :individual
+
+          attr_accessor name: String
+
+          attr_reader address: HelloWorldTestingggg::Address?
+
+          def address=: (
+            HelloWorldTestingggg::Address
+          ) -> HelloWorldTestingggg::Address
+
+          attr_reader age: Integer?
+
+          def age=: (Integer) -> Integer
+
+          attr_reader email: String?
+
+          def email=: (String) -> String
+
+          def initialize: (
+            name: String,
+            ?address: HelloWorldTestingggg::Address,
+            ?age: Integer,
+            ?email: String,
+            ?applicant_type: :individual
+          ) -> void
+
+          def to_hash: -> {
+            applicant_type: :individual,
+            name: String,
+            address: HelloWorldTestingggg::Address,
+            age: Integer,
+            email: String
+          }
+        end
+
+        type organization =
+          {
+            applicant_type: :organization,
+            name: String,
+            shelter: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter,
+            tax_id: String
+          }
+
+        class Organization < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor applicant_type: :organization
+
+          attr_accessor name: String
+
+          attr_reader shelter: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter?
+
+          def shelter=: (
+            HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter
+          ) -> HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter
+
+          attr_reader tax_id: String?
+
+          def tax_id=: (String) -> String
+
+          def initialize: (
+            name: String,
+            ?shelter: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter,
+            ?tax_id: String,
+            ?applicant_type: :organization
+          ) -> void
+
+          def to_hash: -> {
+            applicant_type: :organization,
+            name: String,
+            shelter: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter,
+            tax_id: String
+          }
+
+          type shelter =
+            {
+              name: String,
+              address: HelloWorldTestingggg::Address,
+              contact: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact,
+              location: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Location
+            }
+
+          class Shelter < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_accessor name: String
+
+            attr_reader address: HelloWorldTestingggg::Address?
+
+            def address=: (
+              HelloWorldTestingggg::Address
+            ) -> HelloWorldTestingggg::Address
+
+            attr_reader contact: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact?
+
+            def contact=: (
+              HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact
+            ) -> HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact
+
+            attr_reader location: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Location?
+
+            def location=: (
+              HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Location
+            ) -> HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Location
+
+            def initialize: (
+              name: String,
+              ?address: HelloWorldTestingggg::Address,
+              ?contact: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact,
+              ?location: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Location
+            ) -> void
+
+            def to_hash: -> {
+              name: String,
+              address: HelloWorldTestingggg::Address,
+              contact: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact,
+              location: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Location
+            }
+
+            type contact =
+              {
+                primary: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary
+              }
+
+            class Contact < HelloWorldTestingggg::Internal::Type::BaseModel
+              attr_reader primary: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary?
+
+              def primary=: (
+                HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary
+              ) -> HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary
+
+              def initialize: (
+                ?primary: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary
+              ) -> void
+
+              def to_hash: -> {
+                primary: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary
+              }
+
+              type primary =
+                {
+                  availability: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability,
+                  name: String,
+                  phone: String
+                }
+
+              class Primary < HelloWorldTestingggg::Internal::Type::BaseModel
+                attr_reader availability: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability?
+
+                def availability=: (
+                  HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability
+                ) -> HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability
+
+                attr_reader name: String?
+
+                def name=: (String) -> String
+
+                attr_reader phone: String?
+
+                def phone=: (String) -> String
+
+                def initialize: (
+                  ?availability: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability,
+                  ?name: String,
+                  ?phone: String
+                ) -> void
+
+                def to_hash: -> {
+                  availability: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability,
+                  name: String,
+                  phone: String
+                }
+
+                type availability =
+                  {
+                    weekday: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability::Weekday,
+                    weekend: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability::Weekend?
+                  }
+
+                class Availability < HelloWorldTestingggg::Internal::Type::BaseModel
+                  attr_reader weekday: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability::Weekday?
+
+                  def weekday=: (
+                    HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability::Weekday
+                  ) -> HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability::Weekday
+
+                  attr_accessor weekend: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability::Weekend?
+
+                  def initialize: (
+                    ?weekday: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability::Weekday,
+                    ?weekend: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability::Weekend?
+                  ) -> void
+
+                  def to_hash: -> {
+                    weekday: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability::Weekday,
+                    weekend: HelloWorldTestingggg::AdoptionCreateParams::Body::Organization::Shelter::Contact::Primary::Availability::Weekend?
+                  }
+
+                  type weekday = { close: String, open_: String }
+
+                  class Weekday < HelloWorldTestingggg::Internal::Type::BaseModel
+                    attr_reader close: String?
+
+                    def close=: (String) -> String
+
+                    attr_reader open_: String?
+
+                    def open_=: (String) -> String
+
+                    def initialize: (?close: String, ?open_: String) -> void
+
+                    def to_hash: -> { close: String, open_: String }
+                  end
+
+                  type weekend = { close: String, open_: String }
+
+                  class Weekend < HelloWorldTestingggg::Internal::Type::BaseModel
+                    attr_reader close: String?
+
+                    def close=: (String) -> String
+
+                    attr_reader open_: String?
+
+                    def open_=: (String) -> String
+
+                    def initialize: (?close: String, ?open_: String) -> void
+
+                    def to_hash: -> { close: String, open_: String }
+                  end
+                end
+              end
+            end
+
+            type location = { latitude: Float, longitude: Float }
+
+            class Location < HelloWorldTestingggg::Internal::Type::BaseModel
+              attr_accessor latitude: Float
+
+              attr_accessor longitude: Float
+
+              def initialize: (latitude: Float, longitude: Float) -> void
+
+              def to_hash: -> { latitude: Float, longitude: Float }
+            end
+          end
+        end
+
+        def self?.variants: -> ::Array[HelloWorldTestingggg::Models::AdoptionCreateParams::body]
+      end
+    end
+  end
+end

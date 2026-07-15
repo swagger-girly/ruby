@@ -8,7 +8,8 @@ module HelloWorldTestingggg
           pet_id: Integer,
           quantity: Integer,
           ship_date: Time,
-          status: HelloWorldTestingggg::Models::Store::OrderRetrieveResponse::status
+          status: HelloWorldTestingggg::Models::Store::OrderRetrieveResponse::status,
+          total: HelloWorldTestingggg::Money
         }
 
       class OrderRetrieveResponse < HelloWorldTestingggg::Internal::Type::BaseModel
@@ -38,13 +39,18 @@ module HelloWorldTestingggg
           HelloWorldTestingggg::Models::Store::OrderRetrieveResponse::status
         ) -> HelloWorldTestingggg::Models::Store::OrderRetrieveResponse::status
 
+        attr_reader total: HelloWorldTestingggg::Money?
+
+        def total=: (HelloWorldTestingggg::Money) -> HelloWorldTestingggg::Money
+
         def initialize: (
           ?id: Integer,
           ?complete: bool,
           ?pet_id: Integer,
           ?quantity: Integer,
           ?ship_date: Time,
-          ?status: HelloWorldTestingggg::Models::Store::OrderRetrieveResponse::status
+          ?status: HelloWorldTestingggg::Models::Store::OrderRetrieveResponse::status,
+          ?total: HelloWorldTestingggg::Money
         ) -> void
 
         def to_hash: -> {
@@ -53,7 +59,8 @@ module HelloWorldTestingggg
           pet_id: Integer,
           quantity: Integer,
           ship_date: Time,
-          status: HelloWorldTestingggg::Models::Store::OrderRetrieveResponse::status
+          status: HelloWorldTestingggg::Models::Store::OrderRetrieveResponse::status,
+          total: HelloWorldTestingggg::Money
         }
 
         type status = :placed | :approved | :delivered

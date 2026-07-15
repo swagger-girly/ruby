@@ -277,10 +277,10 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :available
-puts(HelloWorldTestingggg::PetAPI::Status::AVAILABLE)
+puts(HelloWorldTestingggg::PetStatus::AVAILABLE)
 
-# Revealed type: `T.all(HelloWorldTestingggg::PetAPI::Status, Symbol)`
-T.reveal_type(HelloWorldTestingggg::PetAPI::Status::AVAILABLE)
+# Revealed type: `T.all(HelloWorldTestingggg::PetStatus, Symbol)`
+T.reveal_type(HelloWorldTestingggg::PetStatus::AVAILABLE)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -288,7 +288,7 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 hello_world_testingggg.pet.create(
-  status: HelloWorldTestingggg::PetAPI::Status::AVAILABLE,
+  status: HelloWorldTestingggg::PetStatus::AVAILABLE,
   # …
 )
 

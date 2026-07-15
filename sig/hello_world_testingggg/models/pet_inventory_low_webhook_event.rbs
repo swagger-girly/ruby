@@ -7,7 +7,7 @@ module HelloWorldTestingggg
         threshold: Integer,
         type: HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::type_,
         last_order: HelloWorldTestingggg::PetInventoryLowWebhookEvent::LastOrder,
-        locations: ::Array[HelloWorldTestingggg::PetInventoryLowWebhookEvent::Location]
+        locations: ::Array[HelloWorldTestingggg::Address]
       }
 
     class PetInventoryLowWebhookEvent < HelloWorldTestingggg::Internal::Type::BaseModel
@@ -25,11 +25,11 @@ module HelloWorldTestingggg
         HelloWorldTestingggg::PetInventoryLowWebhookEvent::LastOrder
       ) -> HelloWorldTestingggg::PetInventoryLowWebhookEvent::LastOrder
 
-      attr_reader locations: ::Array[HelloWorldTestingggg::PetInventoryLowWebhookEvent::Location]?
+      attr_reader locations: ::Array[HelloWorldTestingggg::Address]?
 
       def locations=: (
-        ::Array[HelloWorldTestingggg::PetInventoryLowWebhookEvent::Location]
-      ) -> ::Array[HelloWorldTestingggg::PetInventoryLowWebhookEvent::Location]
+        ::Array[HelloWorldTestingggg::Address]
+      ) -> ::Array[HelloWorldTestingggg::Address]
 
       def initialize: (
         pet: HelloWorldTestingggg::PetAPI,
@@ -37,7 +37,7 @@ module HelloWorldTestingggg
         threshold: Integer,
         type: HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::type_,
         ?last_order: HelloWorldTestingggg::PetInventoryLowWebhookEvent::LastOrder,
-        ?locations: ::Array[HelloWorldTestingggg::PetInventoryLowWebhookEvent::Location]
+        ?locations: ::Array[HelloWorldTestingggg::Address]
       ) -> void
 
       def to_hash: -> {
@@ -46,7 +46,7 @@ module HelloWorldTestingggg
         threshold: Integer,
         type: HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::type_,
         last_order: HelloWorldTestingggg::PetInventoryLowWebhookEvent::LastOrder,
-        locations: ::Array[HelloWorldTestingggg::PetInventoryLowWebhookEvent::Location]
+        locations: ::Array[HelloWorldTestingggg::Address]
       }
 
       type type_ = :"pet.inventory-low"
@@ -66,7 +66,8 @@ module HelloWorldTestingggg
           pet_id: Integer,
           quantity: Integer,
           ship_date: Time,
-          status: HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::LastOrder::status
+          status: HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::LastOrder::status,
+          total: HelloWorldTestingggg::Money
         }
 
       class LastOrder < HelloWorldTestingggg::Internal::Type::BaseModel
@@ -96,13 +97,18 @@ module HelloWorldTestingggg
           HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::LastOrder::status
         ) -> HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::LastOrder::status
 
+        attr_reader total: HelloWorldTestingggg::Money?
+
+        def total=: (HelloWorldTestingggg::Money) -> HelloWorldTestingggg::Money
+
         def initialize: (
           ?id: Integer,
           ?complete: bool,
           ?pet_id: Integer,
           ?quantity: Integer,
           ?ship_date: Time,
-          ?status: HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::LastOrder::status
+          ?status: HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::LastOrder::status,
+          ?total: HelloWorldTestingggg::Money
         ) -> void
 
         def to_hash: -> {
@@ -111,7 +117,8 @@ module HelloWorldTestingggg
           pet_id: Integer,
           quantity: Integer,
           ship_date: Time,
-          status: HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::LastOrder::status
+          status: HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::LastOrder::status,
+          total: HelloWorldTestingggg::Money
         }
 
         type status = :placed | :approved | :delivered
@@ -125,41 +132,6 @@ module HelloWorldTestingggg
 
           def self?.values: -> ::Array[HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::LastOrder::status]
         end
-      end
-
-      type location =
-        { city: String, state: String, street: String, zip: String }
-
-      class Location < HelloWorldTestingggg::Internal::Type::BaseModel
-        attr_reader city: String?
-
-        def city=: (String) -> String
-
-        attr_reader state: String?
-
-        def state=: (String) -> String
-
-        attr_reader street: String?
-
-        def street=: (String) -> String
-
-        attr_reader zip: String?
-
-        def zip=: (String) -> String
-
-        def initialize: (
-          ?city: String,
-          ?state: String,
-          ?street: String,
-          ?zip: String
-        ) -> void
-
-        def to_hash: -> {
-          city: String,
-          state: String,
-          street: String,
-          zip: String
-        }
       end
     end
   end

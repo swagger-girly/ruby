@@ -15,6 +15,7 @@ module HelloWorldTestingggg
             ship_date: Time,
             status:
               HelloWorldTestingggg::Store::OrderCreateParams::Status::OrSymbol,
+            total: HelloWorldTestingggg::Money::OrHash,
             request_options: HelloWorldTestingggg::RequestOptions::OrHash
           ).returns(HelloWorldTestingggg::Models::Store::OrderCreateResponse)
         end
@@ -26,6 +27,7 @@ module HelloWorldTestingggg
           ship_date: nil,
           # Order Status
           status: nil,
+          total: nil,
           request_options: {}
         )
         end

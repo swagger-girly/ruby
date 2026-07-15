@@ -1,0 +1,61 @@
+module HelloWorldTestingggg
+  module Models
+    class AdoptionRule = Adoptions::AdoptionRule
+
+    module Adoptions
+      type adoption_rule =
+        {
+          attribute: HelloWorldTestingggg::Models::Adoptions::rule_attribute,
+          operation: HelloWorldTestingggg::Models::Adoptions::AdoptionRule::operation,
+          value: HelloWorldTestingggg::Models::Adoptions::condition_value
+        }
+
+      class AdoptionRule < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor attribute: HelloWorldTestingggg::Models::Adoptions::rule_attribute
+
+        attr_accessor operation: HelloWorldTestingggg::Models::Adoptions::AdoptionRule::operation
+
+        attr_reader value: HelloWorldTestingggg::Models::Adoptions::condition_value?
+
+        def value=: (
+          HelloWorldTestingggg::Models::Adoptions::condition_value
+        ) -> HelloWorldTestingggg::Models::Adoptions::condition_value
+
+        def initialize: (
+          attribute: HelloWorldTestingggg::Models::Adoptions::rule_attribute,
+          operation: HelloWorldTestingggg::Models::Adoptions::AdoptionRule::operation,
+          ?value: HelloWorldTestingggg::Models::Adoptions::condition_value
+        ) -> void
+
+        def to_hash: -> {
+          attribute: HelloWorldTestingggg::Models::Adoptions::rule_attribute,
+          operation: HelloWorldTestingggg::Models::Adoptions::AdoptionRule::operation,
+          value: HelloWorldTestingggg::Models::Adoptions::condition_value
+        }
+
+        type operation =
+          :IS_ONE_OF
+          | :IS_NOT_ONE_OF
+          | :MATCHES
+          | :IS_GREATER_THAN
+          | :IS_LESS_THAN
+          | :IS_BEFORE
+          | :IS_AFTER
+
+        module Operation
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          IS_ONE_OF: :IS_ONE_OF
+          IS_NOT_ONE_OF: :IS_NOT_ONE_OF
+          MATCHES: :MATCHES
+          IS_GREATER_THAN: :IS_GREATER_THAN
+          IS_LESS_THAN: :IS_LESS_THAN
+          IS_BEFORE: :IS_BEFORE
+          IS_AFTER: :IS_AFTER
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::Adoptions::AdoptionRule::operation]
+        end
+      end
+    end
+  end
+end
