@@ -63,6 +63,12 @@ module HelloWorldTestingggg
         end
         attr_writer :status
 
+        sig { returns(T.nilable(HelloWorldTestingggg::Money)) }
+        attr_reader :total
+
+        sig { params(total: HelloWorldTestingggg::Money::OrHash).void }
+        attr_writer :total
+
         sig do
           params(
             id: Integer,
@@ -72,6 +78,7 @@ module HelloWorldTestingggg
             ship_date: Time,
             status:
               HelloWorldTestingggg::Store::OrderCreateParams::Status::OrSymbol,
+            total: HelloWorldTestingggg::Money::OrHash,
             request_options: HelloWorldTestingggg::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -83,6 +90,7 @@ module HelloWorldTestingggg
           ship_date: nil,
           # Order Status
           status: nil,
+          total: nil,
           request_options: {}
         )
         end
@@ -97,6 +105,7 @@ module HelloWorldTestingggg
               ship_date: Time,
               status:
                 HelloWorldTestingggg::Store::OrderCreateParams::Status::OrSymbol,
+              total: HelloWorldTestingggg::Money,
               request_options: HelloWorldTestingggg::RequestOptions
             }
           )

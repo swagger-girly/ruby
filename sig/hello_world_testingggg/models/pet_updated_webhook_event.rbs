@@ -6,7 +6,7 @@ module HelloWorldTestingggg
         pet: HelloWorldTestingggg::PetAPI,
         type: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::type_,
         metadata: ::Hash[Symbol, String],
-        previous_status: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::previous_status?
+        previous_status: HelloWorldTestingggg::Models::pet_status?
       }
 
     class PetUpdatedWebhookEvent < HelloWorldTestingggg::Internal::Type::BaseModel
@@ -20,14 +20,14 @@ module HelloWorldTestingggg
 
       def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
 
-      attr_accessor previous_status: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::previous_status?
+      attr_accessor previous_status: HelloWorldTestingggg::Models::pet_status?
 
       def initialize: (
         changed_fields: ::Array[HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::changed_field],
         pet: HelloWorldTestingggg::PetAPI,
         type: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::type_,
         ?metadata: ::Hash[Symbol, String],
-        ?previous_status: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::previous_status?
+        ?previous_status: HelloWorldTestingggg::Models::pet_status?
       ) -> void
 
       def to_hash: -> {
@@ -35,7 +35,7 @@ module HelloWorldTestingggg
         pet: HelloWorldTestingggg::PetAPI,
         type: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::type_,
         metadata: ::Hash[Symbol, String],
-        previous_status: HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::previous_status?
+        previous_status: HelloWorldTestingggg::Models::pet_status?
       }
 
       type changed_field = :name | :status | :category | :tags
@@ -59,18 +59,6 @@ module HelloWorldTestingggg
         PET_UPDATED: :"pet.updated"
 
         def self?.values: -> ::Array[HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::type_]
-      end
-
-      type previous_status = :available | :pending | :sold
-
-      module PreviousStatus
-        extend HelloWorldTestingggg::Internal::Type::Enum
-
-        AVAILABLE: :available
-        PENDING: :pending
-        SOLD: :sold
-
-        def self?.values: -> ::Array[HelloWorldTestingggg::Models::PetUpdatedWebhookEvent::previous_status]
       end
     end
   end

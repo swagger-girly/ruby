@@ -1,0 +1,17 @@
+module HelloWorldTestingggg
+  module Models
+    type client_health_params =
+      {  } & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class ClientHealthParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      def initialize: (
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> { request_options: HelloWorldTestingggg::RequestOptions }
+    end
+  end
+end

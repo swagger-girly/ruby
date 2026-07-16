@@ -8,7 +8,8 @@ module HelloWorldTestingggg
           pet_id: Integer,
           quantity: Integer,
           ship_date: Time,
-          status: HelloWorldTestingggg::Models::Store::OrderCreateParams::status
+          status: HelloWorldTestingggg::Models::Store::OrderCreateParams::status,
+          total: HelloWorldTestingggg::Money
         }
         & HelloWorldTestingggg::Internal::Type::request_parameters
 
@@ -42,6 +43,10 @@ module HelloWorldTestingggg
           HelloWorldTestingggg::Models::Store::OrderCreateParams::status
         ) -> HelloWorldTestingggg::Models::Store::OrderCreateParams::status
 
+        attr_reader total: HelloWorldTestingggg::Money?
+
+        def total=: (HelloWorldTestingggg::Money) -> HelloWorldTestingggg::Money
+
         def initialize: (
           ?id: Integer,
           ?complete: bool,
@@ -49,6 +54,7 @@ module HelloWorldTestingggg
           ?quantity: Integer,
           ?ship_date: Time,
           ?status: HelloWorldTestingggg::Models::Store::OrderCreateParams::status,
+          ?total: HelloWorldTestingggg::Money,
           ?request_options: HelloWorldTestingggg::request_opts
         ) -> void
 
@@ -59,6 +65,7 @@ module HelloWorldTestingggg
           quantity: Integer,
           ship_date: Time,
           status: HelloWorldTestingggg::Models::Store::OrderCreateParams::status,
+          total: HelloWorldTestingggg::Money,
           request_options: HelloWorldTestingggg::RequestOptions
         }
 

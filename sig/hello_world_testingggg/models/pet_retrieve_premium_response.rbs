@@ -1,0 +1,174 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_retrieve_premium_response =
+      {
+        premium_since: Time,
+        coverage_limit: HelloWorldTestingggg::Models::PetRetrievePremiumResponse::coverage_limit,
+        insurance: HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Insurance,
+        pedigree: HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Pedigree
+      }
+
+    class PetRetrievePremiumResponse < HelloWorldTestingggg::Models::PetAPI
+      def premium_since: -> Time
+
+      def premium_since=: (Time _) -> Time
+
+      def coverage_limit: -> HelloWorldTestingggg::Models::PetRetrievePremiumResponse::coverage_limit?
+
+      def coverage_limit=: (
+        HelloWorldTestingggg::Models::PetRetrievePremiumResponse::coverage_limit _
+      ) -> HelloWorldTestingggg::Models::PetRetrievePremiumResponse::coverage_limit
+
+      def insurance: -> HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Insurance?
+
+      def insurance=: (
+        HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Insurance _
+      ) -> HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Insurance
+
+      def pedigree: -> HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Pedigree?
+
+      def pedigree=: (
+        HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Pedigree _
+      ) -> HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Pedigree
+
+      def initialize: (
+        premium_since: Time,
+        ?coverage_limit: HelloWorldTestingggg::Models::PetRetrievePremiumResponse::coverage_limit,
+        ?insurance: HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Insurance,
+        ?pedigree: HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Pedigree
+      ) -> void
+
+      def to_hash: -> {
+        premium_since: Time,
+        coverage_limit: HelloWorldTestingggg::Models::PetRetrievePremiumResponse::coverage_limit,
+        insurance: HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Insurance,
+        pedigree: HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Pedigree
+      }
+
+      type coverage_limit =
+        Integer
+        | HelloWorldTestingggg::Models::PetRetrievePremiumResponse::CoverageLimit::CustomLimit
+
+      module CoverageLimit
+        extend HelloWorldTestingggg::Internal::Type::Union
+
+        type custom_limit =
+          { amount: Integer, currency: String, negotiated: bool }
+
+        class CustomLimit < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor amount: Integer
+
+          attr_reader currency: String?
+
+          def currency=: (String) -> String
+
+          attr_reader negotiated: bool?
+
+          def negotiated=: (bool) -> bool
+
+          def initialize: (
+            amount: Integer,
+            ?currency: String,
+            ?negotiated: bool
+          ) -> void
+
+          def to_hash: -> {
+            amount: Integer,
+            currency: String,
+            negotiated: bool
+          }
+        end
+
+        def self?.variants: -> ::Array[HelloWorldTestingggg::Models::PetRetrievePremiumResponse::coverage_limit]
+      end
+
+      type insurance =
+        {
+          plan_id: String,
+          provider: String,
+          deductible: Integer,
+          premium: HelloWorldTestingggg::Money,
+          tier: HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Insurance::tier
+        }
+
+      class Insurance < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor plan_id: String
+
+        attr_accessor provider: String
+
+        attr_reader deductible: Integer?
+
+        def deductible=: (Integer) -> Integer
+
+        attr_reader premium: HelloWorldTestingggg::Money?
+
+        def premium=: (
+          HelloWorldTestingggg::Money
+        ) -> HelloWorldTestingggg::Money
+
+        attr_reader tier: HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Insurance::tier?
+
+        def tier=: (
+          HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Insurance::tier
+        ) -> HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Insurance::tier
+
+        def initialize: (
+          plan_id: String,
+          provider: String,
+          ?deductible: Integer,
+          ?premium: HelloWorldTestingggg::Money,
+          ?tier: HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Insurance::tier
+        ) -> void
+
+        def to_hash: -> {
+          plan_id: String,
+          provider: String,
+          deductible: Integer,
+          premium: HelloWorldTestingggg::Money,
+          tier: HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Insurance::tier
+        }
+
+        type tier = :basic | :plus | :platinum
+
+        module Tier
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          BASIC: :basic
+          PLUS: :plus
+          PLATINUM: :platinum
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::PetRetrievePremiumResponse::Insurance::tier]
+        end
+      end
+
+      type pedigree =
+        { certified: bool, lineage: ::Array[String], registry: String }
+
+      class Pedigree < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader certified: bool?
+
+        def certified=: (bool) -> bool
+
+        attr_reader lineage: ::Array[String]?
+
+        def lineage=: (::Array[String]) -> ::Array[String]
+
+        attr_reader registry: String?
+
+        def registry=: (String) -> String
+
+        def initialize: (
+          ?certified: bool,
+          ?lineage: ::Array[String],
+          ?registry: String
+        ) -> void
+
+        def to_hash: -> {
+          certified: bool,
+          lineage: ::Array[String],
+          registry: String
+        }
+      end
+    end
+  end
+end

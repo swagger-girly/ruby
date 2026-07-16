@@ -6,7 +6,7 @@ module HelloWorldTestingggg
     class Pet
       # Add a new pet to the store
       #
-      # @overload create(name:, photo_urls:, id: nil, category: nil, status: nil, tags: nil, request_options: {})
+      # @overload create(name:, photo_urls:, id: nil, category: nil, microchip_id: nil, status: nil, tags: nil, request_options: {})
       #
       # @param name [String]
       #
@@ -16,7 +16,9 @@ module HelloWorldTestingggg
       #
       # @param category [HelloWorldTestingggg::Models::PetAPI::Category]
       #
-      # @param status [Symbol, HelloWorldTestingggg::Models::PetAPI::Status] pet status in the store
+      # @param microchip_id [String, Integer] Microchip identifier; legacy chips used numeric identifiers.
+      #
+      # @param status [Symbol, HelloWorldTestingggg::Models::PetStatus] pet status in the store
       #
       # @param tags [Array<HelloWorldTestingggg::Models::PetAPI::Tag>]
       #
@@ -58,7 +60,7 @@ module HelloWorldTestingggg
 
       # Update an existing pet by Id
       #
-      # @overload update(name:, photo_urls:, id: nil, category: nil, status: nil, tags: nil, request_options: {})
+      # @overload update(name:, photo_urls:, id: nil, category: nil, microchip_id: nil, status: nil, tags: nil, request_options: {})
       #
       # @param name [String]
       #
@@ -68,7 +70,9 @@ module HelloWorldTestingggg
       #
       # @param category [HelloWorldTestingggg::Models::PetAPI::Category]
       #
-      # @param status [Symbol, HelloWorldTestingggg::Models::PetAPI::Status] pet status in the store
+      # @param microchip_id [String, Integer] Microchip identifier; legacy chips used numeric identifiers.
+      #
+      # @param status [Symbol, HelloWorldTestingggg::Models::PetStatus] pet status in the store
       #
       # @param tags [Array<HelloWorldTestingggg::Models::PetAPI::Tag>]
       #
@@ -187,34 +191,34 @@ module HelloWorldTestingggg
       #
       # @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [HelloWorldTestingggg::Internal::XFakeSinglePage<HelloWorldTestingggg::Models::PetAPI>]
+      # @return [HelloWorldTestingggg::Models::PetListFakePageResponse]
       #
       # @see HelloWorldTestingggg::Models::PetListFakePageParams
       def list_fake_page(params = {})
         @client.request(
           method: :get,
           path: "pet/fake-page",
-          page: HelloWorldTestingggg::Internal::XFakeSinglePage,
-          model: HelloWorldTestingggg::PetAPI,
+          model: HelloWorldTestingggg::Models::PetListFakePageResponse,
           options: params[:request_options]
         )
       end
 
       # Returns a single page-shaped pet response whose fake pagination behavior is
-      # inferred from the Stainless config scheme.
+      # inferred from the config scheme.
       #
       # @overload list_fake_page_inferred(request_options: {})
       #
       # @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [HelloWorldTestingggg::Models::PetListFakePageInferredResponse]
+      # @return [HelloWorldTestingggg::Internal::XFakeSinglePage<HelloWorldTestingggg::Models::PetAPI>]
       #
       # @see HelloWorldTestingggg::Models::PetListFakePageInferredParams
       def list_fake_page_inferred(params = {})
         @client.request(
           method: :get,
           path: "pet/fake-page-inferred",
-          model: HelloWorldTestingggg::Models::PetListFakePageInferredResponse,
+          page: HelloWorldTestingggg::Internal::XFakeSinglePage,
+          model: HelloWorldTestingggg::PetAPI,
           options: params[:request_options]
         )
       end
@@ -242,6 +246,27 @@ module HelloWorldTestingggg
           query: query,
           model: HelloWorldTestingggg::Models::PetListUnpaginatedResponse,
           options: options
+        )
+      end
+
+      # Returns the premium profile for a pet, extending the base pet with pedigree and
+      # insurance details.
+      #
+      # @overload retrieve_premium(pet_id, request_options: {})
+      #
+      # @param pet_id [Integer] ID of pet to return the premium profile for
+      #
+      # @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [HelloWorldTestingggg::Models::PetRetrievePremiumResponse]
+      #
+      # @see HelloWorldTestingggg::Models::PetRetrievePremiumParams
+      def retrieve_premium(pet_id, params = {})
+        @client.request(
+          method: :get,
+          path: ["pet/%1$s/premium", pet_id],
+          model: HelloWorldTestingggg::Models::PetRetrievePremiumResponse,
+          options: params[:request_options]
         )
       end
 

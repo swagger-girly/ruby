@@ -43,11 +43,8 @@ module HelloWorldTestingggg
             )
           end
 
-        sig do
-          returns(
-            HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::Status::OrSymbol
-          )
-        end
+        # pet status in the store
+        sig { returns(HelloWorldTestingggg::PetStatus::OrSymbol) }
         attr_accessor :status
 
         sig { returns(Symbol) }
@@ -55,63 +52,23 @@ module HelloWorldTestingggg
 
         sig do
           params(
-            status:
-              HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::Status::OrSymbol,
+            status: HelloWorldTestingggg::PetStatus::OrSymbol,
             type: Symbol
           ).returns(T.attached_class)
         end
-        def self.new(status:, type: :subscribe)
+        def self.new(
+          # pet status in the store
+          status:,
+          type: :subscribe
+        )
         end
 
         sig do
           override.returns(
-            {
-              status:
-                HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::Status::OrSymbol,
-              type: Symbol
-            }
+            { status: HelloWorldTestingggg::PetStatus::OrSymbol, type: Symbol }
           )
         end
         def to_hash
-        end
-
-        module Status
-          extend HelloWorldTestingggg::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::Status
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          AVAILABLE =
-            T.let(
-              :available,
-              HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::Status::TaggedSymbol
-            )
-          PENDING =
-            T.let(
-              :pending,
-              HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::Status::TaggedSymbol
-            )
-          SOLD =
-            T.let(
-              :sold,
-              HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::Status::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                HelloWorldTestingggg::Models::ConnectClientEvent::Subscribe::Status::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
       end
 

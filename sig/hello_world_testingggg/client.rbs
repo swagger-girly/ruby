@@ -18,11 +18,25 @@ module HelloWorldTestingggg
 
     attr_reader profiles: HelloWorldTestingggg::Resources::Profiles
 
+    attr_reader adoptions: HelloWorldTestingggg::Resources::Adoptions
+
+    attr_reader placements: HelloWorldTestingggg::Resources::Placements
+
+    attr_reader veterinary: HelloWorldTestingggg::Resources::Veterinary
+
     attr_reader webhooks: HelloWorldTestingggg::Resources::Webhooks
 
     attr_reader store: HelloWorldTestingggg::Resources::Store
 
     attr_reader user: HelloWorldTestingggg::Resources::User
+
+    def health: (
+      ?request_options: HelloWorldTestingggg::request_opts
+    ) -> HelloWorldTestingggg::SystemHealth
+
+    def retrieve_rate_limits: (
+      ?request_options: HelloWorldTestingggg::request_opts
+    ) -> HelloWorldTestingggg::Models::RetrieveRateLimitsResponse
 
     private def auth_headers: -> ::Hash[String, String]
 

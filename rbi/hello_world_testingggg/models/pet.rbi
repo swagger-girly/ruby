@@ -31,15 +31,24 @@ module HelloWorldTestingggg
       end
       attr_writer :category
 
-      # pet status in the store
+      # Microchip identifier; legacy chips used numeric identifiers.
       sig do
-        returns(T.nilable(HelloWorldTestingggg::PetAPI::Status::TaggedSymbol))
+        returns(T.nilable(HelloWorldTestingggg::PetAPI::MicrochipID::Variants))
       end
-      attr_reader :status
+      attr_reader :microchip_id
 
       sig do
-        params(status: HelloWorldTestingggg::PetAPI::Status::OrSymbol).void
+        params(
+          microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants
+        ).void
       end
+      attr_writer :microchip_id
+
+      # pet status in the store
+      sig { returns(T.nilable(HelloWorldTestingggg::PetStatus::TaggedSymbol)) }
+      attr_reader :status
+
+      sig { params(status: HelloWorldTestingggg::PetStatus::OrSymbol).void }
       attr_writer :status
 
       sig { returns(T.nilable(T::Array[HelloWorldTestingggg::PetAPI::Tag])) }
@@ -56,7 +65,8 @@ module HelloWorldTestingggg
           photo_urls: T::Array[String],
           id: Integer,
           category: HelloWorldTestingggg::PetAPI::Category::OrHash,
-          status: HelloWorldTestingggg::PetAPI::Status::OrSymbol,
+          microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
+          status: HelloWorldTestingggg::PetStatus::OrSymbol,
           tags: T::Array[HelloWorldTestingggg::PetAPI::Tag::OrHash]
         ).returns(T.attached_class)
       end
@@ -65,6 +75,8 @@ module HelloWorldTestingggg
         photo_urls:,
         id: nil,
         category: nil,
+        # Microchip identifier; legacy chips used numeric identifiers.
+        microchip_id: nil,
         # pet status in the store
         status: nil,
         tags: nil
@@ -78,7 +90,8 @@ module HelloWorldTestingggg
             photo_urls: T::Array[String],
             id: Integer,
             category: HelloWorldTestingggg::PetAPI::Category,
-            status: HelloWorldTestingggg::PetAPI::Status::TaggedSymbol,
+            microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
+            status: HelloWorldTestingggg::PetStatus::TaggedSymbol,
             tags: T::Array[HelloWorldTestingggg::PetAPI::Tag]
           }
         )
@@ -107,35 +120,49 @@ module HelloWorldTestingggg
         sig { params(name: String).void }
         attr_writer :name
 
-        sig { params(id: Integer, name: String).returns(T.attached_class) }
-        def self.new(id: nil, name: nil)
+        # Nested subcategories; the tree can recurse arbitrarily deep.
+        sig { returns(T.nilable(T::Array[T.anything])) }
+        attr_reader :subcategories
+
+        sig { params(subcategories: T::Array[T.anything]).void }
+        attr_writer :subcategories
+
+        sig do
+          params(
+            id: Integer,
+            name: String,
+            subcategories: T::Array[T.anything]
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          id: nil,
+          name: nil,
+          # Nested subcategories; the tree can recurse arbitrarily deep.
+          subcategories: nil
+        )
         end
 
-        sig { override.returns({ id: Integer, name: String }) }
+        sig do
+          override.returns(
+            { id: Integer, name: String, subcategories: T::Array[T.anything] }
+          )
+        end
         def to_hash
         end
       end
 
-      # pet status in the store
-      module Status
-        extend HelloWorldTestingggg::Internal::Type::Enum
+      # Microchip identifier; legacy chips used numeric identifiers.
+      module MicrochipID
+        extend HelloWorldTestingggg::Internal::Type::Union
 
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, HelloWorldTestingggg::PetAPI::Status) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        AVAILABLE =
-          T.let(:available, HelloWorldTestingggg::PetAPI::Status::TaggedSymbol)
-        PENDING =
-          T.let(:pending, HelloWorldTestingggg::PetAPI::Status::TaggedSymbol)
-        SOLD = T.let(:sold, HelloWorldTestingggg::PetAPI::Status::TaggedSymbol)
+        Variants = T.type_alias { T.any(String, Integer) }
 
         sig do
           override.returns(
-            T::Array[HelloWorldTestingggg::PetAPI::Status::TaggedSymbol]
+            T::Array[HelloWorldTestingggg::PetAPI::MicrochipID::Variants]
           )
         end
-        def self.values
+        def self.variants
         end
       end
 

@@ -1,0 +1,168 @@
+module HelloWorldTestingggg
+  module Models
+    module Adoptions
+      type policy_create_params =
+        {
+          name: String,
+          rules: ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule],
+          escalation: HelloWorldTestingggg::Adoptions::PolicyCreateParams::Escalation,
+          fee_cap: HelloWorldTestingggg::Money,
+          notification_target: HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::notification_target,
+          regional_overrides: ::Hash[Symbol, HelloWorldTestingggg::Models::Adoptions::condition_value]
+        }
+        & HelloWorldTestingggg::Internal::Type::request_parameters
+
+      class PolicyCreateParams < HelloWorldTestingggg::Internal::Type::BaseModel
+        extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+        include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+        attr_accessor name: String
+
+        attr_accessor rules: ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule]
+
+        attr_reader escalation: HelloWorldTestingggg::Adoptions::PolicyCreateParams::Escalation?
+
+        def escalation=: (
+          HelloWorldTestingggg::Adoptions::PolicyCreateParams::Escalation
+        ) -> HelloWorldTestingggg::Adoptions::PolicyCreateParams::Escalation
+
+        attr_reader fee_cap: HelloWorldTestingggg::Money?
+
+        def fee_cap=: (
+          HelloWorldTestingggg::Money
+        ) -> HelloWorldTestingggg::Money
+
+        attr_reader notification_target: HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::notification_target?
+
+        def notification_target=: (
+          HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::notification_target
+        ) -> HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::notification_target
+
+        attr_reader regional_overrides: ::Hash[Symbol, HelloWorldTestingggg::Models::Adoptions::condition_value]?
+
+        def regional_overrides=: (
+          ::Hash[Symbol, HelloWorldTestingggg::Models::Adoptions::condition_value]
+        ) -> ::Hash[Symbol, HelloWorldTestingggg::Models::Adoptions::condition_value]
+
+        def initialize: (
+          name: String,
+          rules: ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule],
+          ?escalation: HelloWorldTestingggg::Adoptions::PolicyCreateParams::Escalation,
+          ?fee_cap: HelloWorldTestingggg::Money,
+          ?notification_target: HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::notification_target,
+          ?regional_overrides: ::Hash[Symbol, HelloWorldTestingggg::Models::Adoptions::condition_value],
+          ?request_options: HelloWorldTestingggg::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          name: String,
+          rules: ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule],
+          escalation: HelloWorldTestingggg::Adoptions::PolicyCreateParams::Escalation,
+          fee_cap: HelloWorldTestingggg::Money,
+          notification_target: HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::notification_target,
+          regional_overrides: ::Hash[Symbol, HelloWorldTestingggg::Models::Adoptions::condition_value],
+          request_options: HelloWorldTestingggg::RequestOptions
+        }
+
+        type escalation =
+          {
+            operator: HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::Escalation::operator,
+            groups: ::Array[top],
+            rules: ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule]
+          }
+
+        class Escalation < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor operator: HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::Escalation::operator
+
+          attr_reader groups: ::Array[top]?
+
+          def groups=: (::Array[top]) -> ::Array[top]
+
+          attr_reader rules: ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule]?
+
+          def rules=: (
+            ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule]
+          ) -> ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule]
+
+          def initialize: (
+            operator: HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::Escalation::operator,
+            ?groups: ::Array[top],
+            ?rules: ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule]
+          ) -> void
+
+          def to_hash: -> {
+            operator: HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::Escalation::operator,
+            groups: ::Array[top],
+            rules: ::Array[HelloWorldTestingggg::Adoptions::AdoptionRule]
+          }
+
+          type operator = :ALL | :ANY
+
+          module Operator
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            ALL: :ALL
+            ANY: :ANY
+
+            def self?.values: -> ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::Escalation::operator]
+          end
+        end
+
+        type notification_target =
+          String
+          | HelloWorldTestingggg::Adoptions::PolicyCreateParams::NotificationTarget::WebhookSink
+
+        module NotificationTarget
+          extend HelloWorldTestingggg::Internal::Type::Union
+
+          type webhook_sink =
+            {
+              url: String,
+              events: ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::NotificationTarget::WebhookSink::event],
+              secret: String
+            }
+
+          class WebhookSink < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_accessor url: String
+
+            attr_reader events: ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::NotificationTarget::WebhookSink::event]?
+
+            def events=: (
+              ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::NotificationTarget::WebhookSink::event]
+            ) -> ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::NotificationTarget::WebhookSink::event]
+
+            attr_reader secret: String?
+
+            def secret=: (String) -> String
+
+            def initialize: (
+              url: String,
+              ?events: ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::NotificationTarget::WebhookSink::event],
+              ?secret: String
+            ) -> void
+
+            def to_hash: -> {
+              url: String,
+              events: ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::NotificationTarget::WebhookSink::event],
+              secret: String
+            }
+
+            type event = :approved | :rejected | :escalated
+
+            module Event
+              extend HelloWorldTestingggg::Internal::Type::Enum
+
+              APPROVED: :approved
+              REJECTED: :rejected
+              ESCALATED: :escalated
+
+              def self?.values: -> ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::NotificationTarget::WebhookSink::event]
+            end
+          end
+
+          def self?.variants: -> ::Array[HelloWorldTestingggg::Models::Adoptions::PolicyCreateParams::notification_target]
+        end
+      end
+    end
+  end
+end

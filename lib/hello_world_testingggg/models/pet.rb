@@ -24,18 +24,24 @@ module HelloWorldTestingggg
       #   @return [HelloWorldTestingggg::Models::PetAPI::Category, nil]
       optional :category, -> { HelloWorldTestingggg::PetAPI::Category }
 
+      # @!attribute microchip_id
+      #   Microchip identifier; legacy chips used numeric identifiers.
+      #
+      #   @return [String, Integer, nil]
+      optional :microchip_id, union: -> { HelloWorldTestingggg::PetAPI::MicrochipID }, api_name: :microchipId
+
       # @!attribute status
       #   pet status in the store
       #
-      #   @return [Symbol, HelloWorldTestingggg::Models::PetAPI::Status, nil]
-      optional :status, enum: -> { HelloWorldTestingggg::PetAPI::Status }
+      #   @return [Symbol, HelloWorldTestingggg::Models::PetStatus, nil]
+      optional :status, enum: -> { HelloWorldTestingggg::PetStatus }
 
       # @!attribute tags
       #
       #   @return [Array<HelloWorldTestingggg::Models::PetAPI::Tag>, nil]
       optional :tags, -> { HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI::Tag] }
 
-      # @!method initialize(name:, photo_urls:, id: nil, category: nil, status: nil, tags: nil)
+      # @!method initialize(name:, photo_urls:, id: nil, category: nil, microchip_id: nil, status: nil, tags: nil)
       #   @param name [String]
       #
       #   @param photo_urls [Array<String>]
@@ -44,7 +50,9 @@ module HelloWorldTestingggg
       #
       #   @param category [HelloWorldTestingggg::Models::PetAPI::Category]
       #
-      #   @param status [Symbol, HelloWorldTestingggg::Models::PetAPI::Status] pet status in the store
+      #   @param microchip_id [String, Integer] Microchip identifier; legacy chips used numeric identifiers.
+      #
+      #   @param status [Symbol, HelloWorldTestingggg::Models::PetStatus] pet status in the store
       #
       #   @param tags [Array<HelloWorldTestingggg::Models::PetAPI::Tag>]
 
@@ -60,23 +68,33 @@ module HelloWorldTestingggg
         #   @return [String, nil]
         optional :name, String
 
-        # @!method initialize(id: nil, name: nil)
+        # @!attribute subcategories
+        #   Nested subcategories; the tree can recurse arbitrarily deep.
+        #
+        #   @return [Array<Object>, nil]
+        optional :subcategories,
+                 HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::Internal::Type::Unknown]
+
+        # @!method initialize(id: nil, name: nil, subcategories: nil)
         #   @param id [Integer]
+        #
         #   @param name [String]
+        #
+        #   @param subcategories [Array<Object>] Nested subcategories; the tree can recurse arbitrarily deep.
       end
 
-      # pet status in the store
+      # Microchip identifier; legacy chips used numeric identifiers.
       #
-      # @see HelloWorldTestingggg::Models::PetAPI#status
-      module Status
-        extend HelloWorldTestingggg::Internal::Type::Enum
+      # @see HelloWorldTestingggg::Models::PetAPI#microchip_id
+      module MicrochipID
+        extend HelloWorldTestingggg::Internal::Type::Union
 
-        AVAILABLE = :available
-        PENDING = :pending
-        SOLD = :sold
+        variant String
 
-        # @!method self.values
-        #   @return [Array<Symbol>]
+        variant Integer
+
+        # @!method self.variants
+        #   @return [Array(String, Integer)]
       end
 
       class Tag < HelloWorldTestingggg::Internal::Type::BaseModel

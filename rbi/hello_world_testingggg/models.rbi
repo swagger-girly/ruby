@@ -1,7 +1,28 @@
 # typed: strong
 
 module HelloWorldTestingggg
+  Address = HelloWorldTestingggg::Models::Address
+
+  AdoptionCreateParams = HelloWorldTestingggg::Models::AdoptionCreateParams
+
+  AdoptionRetrieveDecisionParams =
+    HelloWorldTestingggg::Models::AdoptionRetrieveDecisionParams
+
+  AdoptionRetrieveParams = HelloWorldTestingggg::Models::AdoptionRetrieveParams
+
+  Adoptions = HelloWorldTestingggg::Models::Adoptions
+
+  AdoptionsPolicyChangedWebhookEvent =
+    HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent
+
+  Application = HelloWorldTestingggg::Models::Application
+
   Archive = HelloWorldTestingggg::Models::Archive
+
+  ClientHealthParams = HelloWorldTestingggg::Models::ClientHealthParams
+
+  ClientRetrieveRateLimitsParams =
+    HelloWorldTestingggg::Models::ClientRetrieveRateLimitsParams
 
   File = HelloWorldTestingggg::Models::File
 
@@ -21,6 +42,10 @@ module HelloWorldTestingggg
   FileUploadDirectParams = HelloWorldTestingggg::Models::FileUploadDirectParams
 
   FileUploadParams = HelloWorldTestingggg::Models::FileUploadParams
+
+  MedicalSummary = HelloWorldTestingggg::Models::MedicalSummary
+
+  Money = HelloWorldTestingggg::Models::Money
 
   ParsedWebhookEvent = HelloWorldTestingggg::Models::ParsedWebhookEvent
 
@@ -56,6 +81,11 @@ module HelloWorldTestingggg
 
   PetRetrieveParams = HelloWorldTestingggg::Models::PetRetrieveParams
 
+  PetRetrievePremiumParams =
+    HelloWorldTestingggg::Models::PetRetrievePremiumParams
+
+  PetStatus = HelloWorldTestingggg::Models::PetStatus
+
   PetUpdatedWebhookEvent = HelloWorldTestingggg::Models::PetUpdatedWebhookEvent
 
   PetUpdateParams = HelloWorldTestingggg::Models::PetUpdateParams
@@ -66,6 +96,23 @@ module HelloWorldTestingggg
   PetUploadImageParams = HelloWorldTestingggg::Models::PetUploadImageParams
 
   PetWatchStatusParams = HelloWorldTestingggg::Models::PetWatchStatusParams
+
+  Placement = HelloWorldTestingggg::Models::Placement
+
+  PlacementCreateParams = HelloWorldTestingggg::Models::PlacementCreateParams
+
+  PlacementEvent = HelloWorldTestingggg::Models::PlacementEvent
+
+  PlacementEventRecordedWebhookEvent =
+    HelloWorldTestingggg::Models::PlacementEventRecordedWebhookEvent
+
+  PlacementListParams = HelloWorldTestingggg::Models::PlacementListParams
+
+  PlacementRecordEventParams =
+    HelloWorldTestingggg::Models::PlacementRecordEventParams
+
+  PlacementRetrieveParams =
+    HelloWorldTestingggg::Models::PlacementRetrieveParams
 
   Profile = HelloWorldTestingggg::Models::Profile
 
@@ -88,6 +135,10 @@ module HelloWorldTestingggg
   StoreReportGeneratedWebhookEvent =
     HelloWorldTestingggg::Models::StoreReportGeneratedWebhookEvent
 
+  SystemHealth = HelloWorldTestingggg::Models::SystemHealth
+
+  TransferLeg = HelloWorldTestingggg::Models::TransferLeg
+
   UserCreateParams = HelloWorldTestingggg::Models::UserCreateParams
 
   UserCreateWithListParams =
@@ -102,6 +153,8 @@ module HelloWorldTestingggg
   UserRetrieveParams = HelloWorldTestingggg::Models::UserRetrieveParams
 
   UserUpdateParams = HelloWorldTestingggg::Models::UserUpdateParams
+
+  VaccinationRecord = HelloWorldTestingggg::Models::VaccinationRecord
 
   WebhookParsedParams = HelloWorldTestingggg::Models::WebhookParsedParams
 end

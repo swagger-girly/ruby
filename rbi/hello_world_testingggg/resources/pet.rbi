@@ -11,7 +11,8 @@ module HelloWorldTestingggg
           photo_urls: T::Array[String],
           id: Integer,
           category: HelloWorldTestingggg::PetAPI::Category::OrHash,
-          status: HelloWorldTestingggg::PetAPI::Status::OrSymbol,
+          microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
+          status: HelloWorldTestingggg::PetStatus::OrSymbol,
           tags: T::Array[HelloWorldTestingggg::PetAPI::Tag::OrHash],
           request_options: HelloWorldTestingggg::RequestOptions::OrHash
         ).returns(HelloWorldTestingggg::PetAPI)
@@ -21,6 +22,8 @@ module HelloWorldTestingggg
         photo_urls:,
         id: nil,
         category: nil,
+        # Microchip identifier; legacy chips used numeric identifiers.
+        microchip_id: nil,
         # pet status in the store
         status: nil,
         tags: nil,
@@ -49,7 +52,8 @@ module HelloWorldTestingggg
           photo_urls: T::Array[String],
           id: Integer,
           category: HelloWorldTestingggg::PetAPI::Category::OrHash,
-          status: HelloWorldTestingggg::PetAPI::Status::OrSymbol,
+          microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
+          status: HelloWorldTestingggg::PetStatus::OrSymbol,
           tags: T::Array[HelloWorldTestingggg::PetAPI::Tag::OrHash],
           request_options: HelloWorldTestingggg::RequestOptions::OrHash
         ).returns(HelloWorldTestingggg::PetAPI)
@@ -59,6 +63,8 @@ module HelloWorldTestingggg
         photo_urls:,
         id: nil,
         category: nil,
+        # Microchip identifier; legacy chips used numeric identifiers.
+        microchip_id: nil,
         # pet status in the store
         status: nil,
         tags: nil,
@@ -134,21 +140,21 @@ module HelloWorldTestingggg
       sig do
         params(
           request_options: HelloWorldTestingggg::RequestOptions::OrHash
-        ).returns(
-          HelloWorldTestingggg::Internal::XFakeSinglePage[
-            HelloWorldTestingggg::PetAPI
-          ]
-        )
+        ).returns(HelloWorldTestingggg::Models::PetListFakePageResponse)
       end
       def list_fake_page(request_options: {})
       end
 
       # Returns a single page-shaped pet response whose fake pagination behavior is
-      # inferred from the Stainless config scheme.
+      # inferred from the config scheme.
       sig do
         params(
           request_options: HelloWorldTestingggg::RequestOptions::OrHash
-        ).returns(HelloWorldTestingggg::Models::PetListFakePageInferredResponse)
+        ).returns(
+          HelloWorldTestingggg::Internal::XFakeSinglePage[
+            HelloWorldTestingggg::PetAPI
+          ]
+        )
       end
       def list_fake_page_inferred(request_options: {})
       end
@@ -167,6 +173,21 @@ module HelloWorldTestingggg
         cursor: nil,
         # Maximum number of pets to return.
         limit: nil,
+        request_options: {}
+      )
+      end
+
+      # Returns the premium profile for a pet, extending the base pet with pedigree and
+      # insurance details.
+      sig do
+        params(
+          pet_id: Integer,
+          request_options: HelloWorldTestingggg::RequestOptions::OrHash
+        ).returns(HelloWorldTestingggg::Models::PetRetrievePremiumResponse)
+      end
+      def retrieve_premium(
+        # ID of pet to return the premium profile for
+        pet_id,
         request_options: {}
       )
       end

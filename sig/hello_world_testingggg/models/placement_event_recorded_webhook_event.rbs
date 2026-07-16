@@ -1,0 +1,49 @@
+module HelloWorldTestingggg
+  module Models
+    type placement_event_recorded_webhook_event =
+      {
+        event: HelloWorldTestingggg::Models::placement_event,
+        placement_id: String,
+        type: HelloWorldTestingggg::Models::PlacementEventRecordedWebhookEvent::type_,
+        trigger_value: HelloWorldTestingggg::Models::Adoptions::condition_value
+      }
+
+    class PlacementEventRecordedWebhookEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor event: HelloWorldTestingggg::Models::placement_event
+
+      attr_accessor placement_id: String
+
+      attr_accessor type: HelloWorldTestingggg::Models::PlacementEventRecordedWebhookEvent::type_
+
+      attr_reader trigger_value: HelloWorldTestingggg::Models::Adoptions::condition_value?
+
+      def trigger_value=: (
+        HelloWorldTestingggg::Models::Adoptions::condition_value
+      ) -> HelloWorldTestingggg::Models::Adoptions::condition_value
+
+      def initialize: (
+        event: HelloWorldTestingggg::Models::placement_event,
+        placement_id: String,
+        type: HelloWorldTestingggg::Models::PlacementEventRecordedWebhookEvent::type_,
+        ?trigger_value: HelloWorldTestingggg::Models::Adoptions::condition_value
+      ) -> void
+
+      def to_hash: -> {
+        event: HelloWorldTestingggg::Models::placement_event,
+        placement_id: String,
+        type: HelloWorldTestingggg::Models::PlacementEventRecordedWebhookEvent::type_,
+        trigger_value: HelloWorldTestingggg::Models::Adoptions::condition_value
+      }
+
+      type type_ = :"placement.event-recorded"
+
+      module Type
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        PLACEMENT_EVENT_RECORDED: :"placement.event-recorded"
+
+        def self?.values: -> ::Array[HelloWorldTestingggg::Models::PlacementEventRecordedWebhookEvent::type_]
+      end
+    end
+  end
+end

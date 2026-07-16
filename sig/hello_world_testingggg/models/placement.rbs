@@ -1,0 +1,237 @@
+module HelloWorldTestingggg
+  module Models
+    type placement =
+      {
+        id: String,
+        application: HelloWorldTestingggg::Application,
+        created_at: Time,
+        status: HelloWorldTestingggg::Models::Placement::status,
+        events: ::Array[HelloWorldTestingggg::Models::placement_event],
+        follow_up_after: Time?,
+        logistics: HelloWorldTestingggg::Placement::Logistics,
+        medical_clearance: HelloWorldTestingggg::MedicalSummary
+      }
+
+    class Placement < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor application: HelloWorldTestingggg::Application
+
+      attr_accessor status: HelloWorldTestingggg::Models::Placement::status
+
+      attr_reader events: ::Array[HelloWorldTestingggg::Models::placement_event]?
+
+      def events=: (
+        ::Array[HelloWorldTestingggg::Models::placement_event]
+      ) -> ::Array[HelloWorldTestingggg::Models::placement_event]
+
+      attr_accessor follow_up_after: Time?
+
+      attr_reader logistics: HelloWorldTestingggg::Placement::Logistics?
+
+      def logistics=: (
+        HelloWorldTestingggg::Placement::Logistics
+      ) -> HelloWorldTestingggg::Placement::Logistics
+
+      attr_reader medical_clearance: HelloWorldTestingggg::MedicalSummary?
+
+      def medical_clearance=: (
+        HelloWorldTestingggg::MedicalSummary
+      ) -> HelloWorldTestingggg::MedicalSummary
+
+      attr_accessor created_at: Time
+
+      def initialize: (
+        id: String,
+        application: HelloWorldTestingggg::Application,
+        created_at: Time,
+        status: HelloWorldTestingggg::Models::Placement::status,
+        ?events: ::Array[HelloWorldTestingggg::Models::placement_event],
+        ?follow_up_after: Time?,
+        ?logistics: HelloWorldTestingggg::Placement::Logistics,
+        ?medical_clearance: HelloWorldTestingggg::MedicalSummary
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        application: HelloWorldTestingggg::Application,
+        created_at: Time,
+        status: HelloWorldTestingggg::Models::Placement::status,
+        events: ::Array[HelloWorldTestingggg::Models::placement_event],
+        follow_up_after: Time?,
+        logistics: HelloWorldTestingggg::Placement::Logistics,
+        medical_clearance: HelloWorldTestingggg::MedicalSummary
+      }
+
+      type status = :pending | :active | :completed | :disrupted
+
+      module Status
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        PENDING: :pending
+        ACTIVE: :active
+        COMPLETED: :completed
+        DISRUPTED: :disrupted
+
+        def self?.values: -> ::Array[HelloWorldTestingggg::Models::Placement::status]
+      end
+
+      type logistics =
+        {
+          delivery: HelloWorldTestingggg::TransferLeg,
+          handler: HelloWorldTestingggg::Placement::Logistics::Handler,
+          pickup: HelloWorldTestingggg::TransferLeg
+        }
+
+      class Logistics < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader delivery: HelloWorldTestingggg::TransferLeg?
+
+        def delivery=: (
+          HelloWorldTestingggg::TransferLeg
+        ) -> HelloWorldTestingggg::TransferLeg
+
+        attr_reader handler: HelloWorldTestingggg::Placement::Logistics::Handler?
+
+        def handler=: (
+          HelloWorldTestingggg::Placement::Logistics::Handler
+        ) -> HelloWorldTestingggg::Placement::Logistics::Handler
+
+        attr_reader pickup: HelloWorldTestingggg::TransferLeg?
+
+        def pickup=: (
+          HelloWorldTestingggg::TransferLeg
+        ) -> HelloWorldTestingggg::TransferLeg
+
+        def initialize: (
+          ?delivery: HelloWorldTestingggg::TransferLeg,
+          ?handler: HelloWorldTestingggg::Placement::Logistics::Handler,
+          ?pickup: HelloWorldTestingggg::TransferLeg
+        ) -> void
+
+        def to_hash: -> {
+          delivery: HelloWorldTestingggg::TransferLeg,
+          handler: HelloWorldTestingggg::Placement::Logistics::Handler,
+          pickup: HelloWorldTestingggg::TransferLeg
+        }
+
+        type handler =
+          {
+            certification: HelloWorldTestingggg::Placement::Logistics::Handler::Certification,
+            name: String
+          }
+
+        class Handler < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader certification: HelloWorldTestingggg::Placement::Logistics::Handler::Certification?
+
+          def certification=: (
+            HelloWorldTestingggg::Placement::Logistics::Handler::Certification
+          ) -> HelloWorldTestingggg::Placement::Logistics::Handler::Certification
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          def initialize: (
+            ?certification: HelloWorldTestingggg::Placement::Logistics::Handler::Certification,
+            ?name: String
+          ) -> void
+
+          def to_hash: -> {
+            certification: HelloWorldTestingggg::Placement::Logistics::Handler::Certification,
+            name: String
+          }
+
+          type certification =
+            {
+              level: HelloWorldTestingggg::Models::Placement::Logistics::Handler::Certification::level,
+              audit: HelloWorldTestingggg::Placement::Logistics::Handler::Certification::Audit,
+              issued_by: String
+            }
+
+          class Certification < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_accessor level: HelloWorldTestingggg::Models::Placement::Logistics::Handler::Certification::level
+
+            attr_reader audit: HelloWorldTestingggg::Placement::Logistics::Handler::Certification::Audit?
+
+            def audit=: (
+              HelloWorldTestingggg::Placement::Logistics::Handler::Certification::Audit
+            ) -> HelloWorldTestingggg::Placement::Logistics::Handler::Certification::Audit
+
+            attr_reader issued_by: String?
+
+            def issued_by=: (String) -> String
+
+            def initialize: (
+              level: HelloWorldTestingggg::Models::Placement::Logistics::Handler::Certification::level,
+              ?audit: HelloWorldTestingggg::Placement::Logistics::Handler::Certification::Audit,
+              ?issued_by: String
+            ) -> void
+
+            def to_hash: -> {
+              level: HelloWorldTestingggg::Models::Placement::Logistics::Handler::Certification::level,
+              audit: HelloWorldTestingggg::Placement::Logistics::Handler::Certification::Audit,
+              issued_by: String
+            }
+
+            type level = :standard | :advanced | :specialist
+
+            module Level
+              extend HelloWorldTestingggg::Internal::Type::Enum
+
+              STANDARD: :standard
+              ADVANCED: :advanced
+              SPECIALIST: :specialist
+
+              def self?.values: -> ::Array[HelloWorldTestingggg::Models::Placement::Logistics::Handler::Certification::level]
+            end
+
+            type audit =
+              {
+                recorded_at: Time,
+                recorded_by: String,
+                source: HelloWorldTestingggg::Models::Placement::Logistics::Handler::Certification::Audit::source
+              }
+
+            class Audit < HelloWorldTestingggg::Internal::Type::BaseModel
+              attr_accessor recorded_at: Time
+
+              attr_reader recorded_by: String?
+
+              def recorded_by=: (String) -> String
+
+              attr_reader source: HelloWorldTestingggg::Models::Placement::Logistics::Handler::Certification::Audit::source?
+
+              def source=: (
+                HelloWorldTestingggg::Models::Placement::Logistics::Handler::Certification::Audit::source
+              ) -> HelloWorldTestingggg::Models::Placement::Logistics::Handler::Certification::Audit::source
+
+              def initialize: (
+                recorded_at: Time,
+                ?recorded_by: String,
+                ?source: HelloWorldTestingggg::Models::Placement::Logistics::Handler::Certification::Audit::source
+              ) -> void
+
+              def to_hash: -> {
+                recorded_at: Time,
+                recorded_by: String,
+                source: HelloWorldTestingggg::Models::Placement::Logistics::Handler::Certification::Audit::source
+              }
+
+              type source = :manual | :import | :system
+
+              module Source
+                extend HelloWorldTestingggg::Internal::Type::Enum
+
+                MANUAL: :manual
+                IMPORT: :import
+                SYSTEM: :system
+
+                def self?.values: -> ::Array[HelloWorldTestingggg::Models::Placement::Logistics::Handler::Certification::Audit::source]
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end

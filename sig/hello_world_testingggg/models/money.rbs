@@ -1,0 +1,15 @@
+module HelloWorldTestingggg
+  module Models
+    type money = { amount: Integer, currency: String }
+
+    class Money < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor amount: Integer
+
+      attr_accessor currency: String
+
+      def initialize: (amount: Integer, currency: String) -> void
+
+      def to_hash: -> { amount: Integer, currency: String }
+    end
+  end
+end

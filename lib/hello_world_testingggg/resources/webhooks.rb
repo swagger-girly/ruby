@@ -9,7 +9,7 @@ module HelloWorldTestingggg
       #
       # @param key [String, nil] The webhook signing key
       #
-      # @return [HelloWorldTestingggg::Models::PetCreatedWebhookEvent, HelloWorldTestingggg::Models::PetUpdatedWebhookEvent, HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent, HelloWorldTestingggg::Models::ParsedWebhookEvent::PetModerationApprovedEvent, HelloWorldTestingggg::Models::ParsedWebhookEvent::PetModerationRejectedEvent, HelloWorldTestingggg::Models::StoreReportGeneratedWebhookEvent]
+      # @return [HelloWorldTestingggg::Models::PetCreatedWebhookEvent, HelloWorldTestingggg::Models::PetUpdatedWebhookEvent, HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent, HelloWorldTestingggg::Models::ParsedWebhookEvent::PetModerationApprovedEvent, HelloWorldTestingggg::Models::ParsedWebhookEvent::PetModerationRejectedEvent, HelloWorldTestingggg::Models::StoreReportGeneratedWebhookEvent, HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent, HelloWorldTestingggg::Models::PlacementEventRecordedWebhookEvent]
       def parsed(payload, headers:, key: @client.webhook_secret)
         if key.nil?
           raise ArgumentError.new("Cannot verify a webhook without a key on either the client's webhook_secret or passed in as an argument")

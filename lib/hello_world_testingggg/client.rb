@@ -34,6 +34,17 @@ module HelloWorldTestingggg
     # @return [HelloWorldTestingggg::Resources::Profiles]
     attr_reader :profiles
 
+    # Adoption policies and applications
+    # @return [HelloWorldTestingggg::Resources::Adoptions]
+    attr_reader :adoptions
+
+    # Post-adoption placement tracking
+    # @return [HelloWorldTestingggg::Resources::Placements]
+    attr_reader :placements
+
+    # @return [HelloWorldTestingggg::Resources::Veterinary]
+    attr_reader :veterinary
+
     # @return [HelloWorldTestingggg::Resources::Webhooks]
     attr_reader :webhooks
 
@@ -44,6 +55,42 @@ module HelloWorldTestingggg
     # Operations about user
     # @return [HelloWorldTestingggg::Resources::User]
     attr_reader :user
+
+    # Returns the current API health, including per-service statuses.
+    #
+    # @overload health(request_options: {})
+    #
+    # @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}, nil]
+    #
+    # @return [HelloWorldTestingggg::Models::SystemHealth]
+    #
+    # @see HelloWorldTestingggg::Models::ClientHealthParams
+    def health(params = {})
+      request(
+        method: :get,
+        path: "health",
+        model: HelloWorldTestingggg::SystemHealth,
+        options: params[:request_options]
+      )
+    end
+
+    # Returns the caller's current rate-limit budget.
+    #
+    # @overload retrieve_rate_limits(request_options: {})
+    #
+    # @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}, nil]
+    #
+    # @return [HelloWorldTestingggg::Models::RetrieveRateLimitsResponse]
+    #
+    # @see HelloWorldTestingggg::Models::ClientRetrieveRateLimitsParams
+    def retrieve_rate_limits(params = {})
+      request(
+        method: :get,
+        path: "rate_limits",
+        model: HelloWorldTestingggg::Models::RetrieveRateLimitsResponse,
+        options: params[:request_options]
+      )
+    end
 
     # @api private
     #
@@ -112,6 +159,9 @@ module HelloWorldTestingggg
       @pet = HelloWorldTestingggg::Resources::Pet.new(client: self)
       @files = HelloWorldTestingggg::Resources::Files.new(client: self)
       @profiles = HelloWorldTestingggg::Resources::Profiles.new(client: self)
+      @adoptions = HelloWorldTestingggg::Resources::Adoptions.new(client: self)
+      @placements = HelloWorldTestingggg::Resources::Placements.new(client: self)
+      @veterinary = HelloWorldTestingggg::Resources::Veterinary.new(client: self)
       @webhooks = HelloWorldTestingggg::Resources::Webhooks.new(client: self)
       @store = HelloWorldTestingggg::Resources::Store.new(client: self)
       @user = HelloWorldTestingggg::Resources::User.new(client: self)

@@ -1,0 +1,32 @@
+module HelloWorldTestingggg
+  module Models
+    type placement_list_params =
+      { cursor: String, limit: Integer }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class PlacementListParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      def initialize: (
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        limit: Integer,
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+    end
+  end
+end

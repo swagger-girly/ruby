@@ -9,6 +9,7 @@ module HelloWorldTestingggg
           ?quantity: Integer,
           ?ship_date: Time,
           ?status: HelloWorldTestingggg::Models::Store::OrderCreateParams::status,
+          ?total: HelloWorldTestingggg::Money,
           ?request_options: HelloWorldTestingggg::request_opts
         ) -> HelloWorldTestingggg::Models::Store::OrderCreateResponse
 

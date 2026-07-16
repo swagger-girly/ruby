@@ -30,9 +30,8 @@ module HelloWorldTestingggg
 
       # @!attribute locations
       #
-      #   @return [Array<HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::Location>, nil]
-      optional :locations,
-               -> { HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetInventoryLowWebhookEvent::Location] }
+      #   @return [Array<HelloWorldTestingggg::Models::Address>, nil]
+      optional :locations, -> { HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::Address] }
 
       # @!method initialize(pet:, quantity:, threshold:, type:, last_order: nil, locations: nil)
       #   @param pet [HelloWorldTestingggg::Models::PetAPI]
@@ -40,7 +39,7 @@ module HelloWorldTestingggg
       #   @param threshold [Integer]
       #   @param type [Symbol, HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::Type]
       #   @param last_order [HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::LastOrder]
-      #   @param locations [Array<HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::Location>]
+      #   @param locations [Array<HelloWorldTestingggg::Models::Address>]
 
       # @see HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent#type
       module Type
@@ -85,7 +84,12 @@ module HelloWorldTestingggg
         #   @return [Symbol, HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::LastOrder::Status, nil]
         optional :status, enum: -> { HelloWorldTestingggg::PetInventoryLowWebhookEvent::LastOrder::Status }
 
-        # @!method initialize(id: nil, complete: nil, pet_id: nil, quantity: nil, ship_date: nil, status: nil)
+        # @!attribute total
+        #
+        #   @return [HelloWorldTestingggg::Models::Money, nil]
+        optional :total, -> { HelloWorldTestingggg::Money }
+
+        # @!method initialize(id: nil, complete: nil, pet_id: nil, quantity: nil, ship_date: nil, status: nil, total: nil)
         #   @param id [Integer]
         #
         #   @param complete [Boolean]
@@ -97,6 +101,8 @@ module HelloWorldTestingggg
         #   @param ship_date [Time]
         #
         #   @param status [Symbol, HelloWorldTestingggg::Models::PetInventoryLowWebhookEvent::LastOrder::Status] Order Status
+        #
+        #   @param total [HelloWorldTestingggg::Models::Money]
 
         # Order Status
         #
@@ -111,34 +117,6 @@ module HelloWorldTestingggg
           # @!method self.values
           #   @return [Array<Symbol>]
         end
-      end
-
-      class Location < HelloWorldTestingggg::Internal::Type::BaseModel
-        # @!attribute city
-        #
-        #   @return [String, nil]
-        optional :city, String
-
-        # @!attribute state
-        #
-        #   @return [String, nil]
-        optional :state, String
-
-        # @!attribute street
-        #
-        #   @return [String, nil]
-        optional :street, String
-
-        # @!attribute zip
-        #
-        #   @return [String, nil]
-        optional :zip, String
-
-        # @!method initialize(city: nil, state: nil, street: nil, zip: nil)
-        #   @param city [String]
-        #   @param state [String]
-        #   @param street [String]
-        #   @param zip [String]
       end
     end
   end
