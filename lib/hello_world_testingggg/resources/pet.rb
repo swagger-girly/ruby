@@ -4,15 +4,20 @@ module HelloWorldTestingggg
   module Resources
     # Everything about your Pets
     class Pet
+      # Some parameter documentations has been truncated, see
+      # {HelloWorldTestingggg::Models::PetCreateParams} for more details.
+      #
       # Add a new pet to the store
       #
-      # @overload create(name:, photo_urls:, id: nil, category: nil, microchip_id: nil, status: nil, tags: nil, request_options: {})
+      # @overload create(name:, photo_urls:, id: nil, acquisition_channel: nil, category: nil, microchip_id: nil, status: nil, tags: nil, request_options: {})
       #
       # @param name [String]
       #
       # @param photo_urls [Array<String>]
       #
       # @param id [Integer]
+      #
+      # @param acquisition_channel [Symbol, String, HelloWorldTestingggg::Models::PetAPI::AcquisitionChannel] How the pet entered the store. Open enum: known channels plus forward-compatible
       #
       # @param category [HelloWorldTestingggg::Models::PetAPI::Category]
       #
@@ -58,15 +63,20 @@ module HelloWorldTestingggg
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {HelloWorldTestingggg::Models::PetUpdateParams} for more details.
+      #
       # Update an existing pet by Id
       #
-      # @overload update(name:, photo_urls:, id: nil, category: nil, microchip_id: nil, status: nil, tags: nil, request_options: {})
+      # @overload update(name:, photo_urls:, id: nil, acquisition_channel: nil, category: nil, microchip_id: nil, status: nil, tags: nil, request_options: {})
       #
       # @param name [String]
       #
       # @param photo_urls [Array<String>]
       #
       # @param id [Integer]
+      #
+      # @param acquisition_channel [Symbol, String, HelloWorldTestingggg::Models::PetAPI::AcquisitionChannel] How the pet entered the store. Open enum: known channels plus forward-compatible
       #
       # @param category [HelloWorldTestingggg::Models::PetAPI::Category]
       #

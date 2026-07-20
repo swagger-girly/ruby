@@ -23,6 +23,26 @@ module HelloWorldTestingggg
       sig { params(id: Integer).void }
       attr_writer :id
 
+      # How the pet entered the store. Open enum: known channels plus forward-compatible
+      # free-form strings.
+      sig do
+        returns(
+          T.nilable(HelloWorldTestingggg::PetAPI::AcquisitionChannel::Variants)
+        )
+      end
+      attr_reader :acquisition_channel
+
+      sig do
+        params(
+          acquisition_channel:
+            T.any(
+              HelloWorldTestingggg::PetAPI::AcquisitionChannel::OrSymbol,
+              String
+            )
+        ).void
+      end
+      attr_writer :acquisition_channel
+
       sig { returns(T.nilable(HelloWorldTestingggg::PetAPI::Category)) }
       attr_reader :category
 
@@ -64,6 +84,11 @@ module HelloWorldTestingggg
           name: String,
           photo_urls: T::Array[String],
           id: Integer,
+          acquisition_channel:
+            T.any(
+              HelloWorldTestingggg::PetAPI::AcquisitionChannel::OrSymbol,
+              String
+            ),
           category: HelloWorldTestingggg::PetAPI::Category::OrHash,
           microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
           status: HelloWorldTestingggg::PetStatus::OrSymbol,
@@ -74,6 +99,9 @@ module HelloWorldTestingggg
         name:,
         photo_urls:,
         id: nil,
+        # How the pet entered the store. Open enum: known channels plus forward-compatible
+        # free-form strings.
+        acquisition_channel: nil,
         category: nil,
         # Microchip identifier; legacy chips used numeric identifiers.
         microchip_id: nil,
@@ -89,6 +117,8 @@ module HelloWorldTestingggg
             name: String,
             photo_urls: T::Array[String],
             id: Integer,
+            acquisition_channel:
+              HelloWorldTestingggg::PetAPI::AcquisitionChannel::Variants,
             category: HelloWorldTestingggg::PetAPI::Category,
             microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
             status: HelloWorldTestingggg::PetStatus::TaggedSymbol,
@@ -97,6 +127,55 @@ module HelloWorldTestingggg
         )
       end
       def to_hash
+      end
+
+      # How the pet entered the store. Open enum: known channels plus forward-compatible
+      # free-form strings.
+      module AcquisitionChannel
+        extend HelloWorldTestingggg::Internal::Type::Union
+
+        Variants =
+          T.type_alias do
+            T.any(
+              HelloWorldTestingggg::PetAPI::AcquisitionChannel::TaggedSymbol,
+              String
+            )
+          end
+
+        sig do
+          override.returns(
+            T::Array[HelloWorldTestingggg::PetAPI::AcquisitionChannel::Variants]
+          )
+        end
+        def self.variants
+        end
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, HelloWorldTestingggg::PetAPI::AcquisitionChannel)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        BREEDER =
+          T.let(
+            :breeder,
+            HelloWorldTestingggg::PetAPI::AcquisitionChannel::TaggedSymbol
+          )
+        SHELTER =
+          T.let(
+            :shelter,
+            HelloWorldTestingggg::PetAPI::AcquisitionChannel::TaggedSymbol
+          )
+        SURRENDER =
+          T.let(
+            :surrender,
+            HelloWorldTestingggg::PetAPI::AcquisitionChannel::TaggedSymbol
+          )
+        TRANSFER =
+          T.let(
+            :transfer,
+            HelloWorldTestingggg::PetAPI::AcquisitionChannel::TaggedSymbol
+          )
       end
 
       class Category < HelloWorldTestingggg::Internal::Type::BaseModel

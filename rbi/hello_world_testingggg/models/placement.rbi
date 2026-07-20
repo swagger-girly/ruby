@@ -25,6 +25,33 @@ module HelloWorldTestingggg
       sig { returns(HelloWorldTestingggg::Placement::Status::TaggedSymbol) }
       attr_accessor :status
 
+      # Unified activity feed mixing event, milestone, and note entries.
+      sig do
+        returns(
+          T.nilable(
+            T::Array[HelloWorldTestingggg::Placement::Activity::Variants]
+          )
+        )
+      end
+      attr_reader :activity
+
+      sig do
+        params(
+          activity:
+            T::Array[
+              T.any(
+                HelloWorldTestingggg::Placement::Activity::PlacementTransferEvent::OrHash,
+                HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::OrHash,
+                HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::OrHash,
+                HelloWorldTestingggg::Placement::Activity::PlacementNote::OrHash,
+                HelloWorldTestingggg::Placement::Activity::PlacementAdoptedMilestone::OrHash,
+                HelloWorldTestingggg::Placement::Activity::PlacementReturnedMilestone::OrHash
+              )
+            ]
+        ).void
+      end
+      attr_writer :activity
+
       sig do
         returns(
           T.nilable(T::Array[HelloWorldTestingggg::PlacementEvent::Variants])
@@ -81,6 +108,17 @@ module HelloWorldTestingggg
           application: HelloWorldTestingggg::Application::OrHash,
           created_at: Time,
           status: HelloWorldTestingggg::Placement::Status::OrSymbol,
+          activity:
+            T::Array[
+              T.any(
+                HelloWorldTestingggg::Placement::Activity::PlacementTransferEvent::OrHash,
+                HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::OrHash,
+                HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::OrHash,
+                HelloWorldTestingggg::Placement::Activity::PlacementNote::OrHash,
+                HelloWorldTestingggg::Placement::Activity::PlacementAdoptedMilestone::OrHash,
+                HelloWorldTestingggg::Placement::Activity::PlacementReturnedMilestone::OrHash
+              )
+            ],
           events:
             T::Array[
               T.any(
@@ -99,6 +137,8 @@ module HelloWorldTestingggg
         application:,
         created_at:,
         status:,
+        # Unified activity feed mixing event, milestone, and note entries.
+        activity: nil,
         events: nil,
         follow_up_after: nil,
         # Transport plan for a placement; pickup and delivery share the transfer-leg
@@ -115,6 +155,8 @@ module HelloWorldTestingggg
             application: HelloWorldTestingggg::Application,
             created_at: Time,
             status: HelloWorldTestingggg::Placement::Status::TaggedSymbol,
+            activity:
+              T::Array[HelloWorldTestingggg::Placement::Activity::Variants],
             events: T::Array[HelloWorldTestingggg::PlacementEvent::Variants],
             follow_up_after: T.nilable(Time),
             logistics: HelloWorldTestingggg::Placement::Logistics,
@@ -155,6 +197,555 @@ module HelloWorldTestingggg
           )
         end
         def self.values
+        end
+      end
+
+      # A unified placement activity-feed entry. An undiscriminated union-of-unions: two
+      # branches are themselves unions (event kinds and milestones) and one is a plain
+      # note.
+      module Activity
+        extend HelloWorldTestingggg::Internal::Type::Union
+
+        Variants =
+          T.type_alias do
+            T.any(
+              HelloWorldTestingggg::Placement::Activity::PlacementTransferEvent,
+              HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent,
+              HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent,
+              HelloWorldTestingggg::Placement::Activity::PlacementNote,
+              HelloWorldTestingggg::Placement::Activity::PlacementAdoptedMilestone,
+              HelloWorldTestingggg::Placement::Activity::PlacementReturnedMilestone
+            )
+          end
+
+        class PlacementTransferEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                HelloWorldTestingggg::Placement::Activity::PlacementTransferEvent,
+                HelloWorldTestingggg::Internal::AnyHash
+              )
+            end
+
+          sig { returns(String) }
+          attr_accessor :id
+
+          sig { returns(HelloWorldTestingggg::TransferLeg) }
+          attr_reader :leg
+
+          sig { params(leg: HelloWorldTestingggg::TransferLeg::OrHash).void }
+          attr_writer :leg
+
+          sig { returns(Time) }
+          attr_accessor :occurred_at
+
+          sig do
+            returns(
+              HelloWorldTestingggg::Placement::Activity::PlacementTransferEvent::Type::TaggedSymbol
+            )
+          end
+          attr_accessor :type
+
+          sig { returns(T.nilable(String)) }
+          attr_accessor :note
+
+          sig do
+            params(
+              id: String,
+              leg: HelloWorldTestingggg::TransferLeg::OrHash,
+              occurred_at: Time,
+              type:
+                HelloWorldTestingggg::Placement::Activity::PlacementTransferEvent::Type::OrSymbol,
+              note: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(id:, leg:, occurred_at:, type:, note: nil)
+          end
+
+          sig do
+            override.returns(
+              {
+                id: String,
+                leg: HelloWorldTestingggg::TransferLeg,
+                occurred_at: Time,
+                type:
+                  HelloWorldTestingggg::Placement::Activity::PlacementTransferEvent::Type::TaggedSymbol,
+                note: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
+
+          module Type
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  HelloWorldTestingggg::Placement::Activity::PlacementTransferEvent::Type
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            TRANSFER =
+              T.let(
+                :transfer,
+                HelloWorldTestingggg::Placement::Activity::PlacementTransferEvent::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  HelloWorldTestingggg::Placement::Activity::PlacementTransferEvent::Type::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+        end
+
+        class PlacementCheckupEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent,
+                HelloWorldTestingggg::Internal::AnyHash
+              )
+            end
+
+          sig { returns(String) }
+          attr_accessor :id
+
+          sig { returns(Time) }
+          attr_accessor :occurred_at
+
+          sig do
+            returns(
+              HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::Type::TaggedSymbol
+            )
+          end
+          attr_accessor :type
+
+          sig do
+            returns(
+              T.nilable(
+                HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::FollowUp
+              )
+            )
+          end
+          attr_reader :follow_up
+
+          sig do
+            params(
+              follow_up:
+                HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::FollowUp::OrHash
+            ).void
+          end
+          attr_writer :follow_up
+
+          sig { returns(T.nilable(String)) }
+          attr_accessor :note
+
+          sig { returns(T.nilable(HelloWorldTestingggg::VaccinationRecord)) }
+          attr_reader :record
+
+          sig do
+            params(record: HelloWorldTestingggg::VaccinationRecord::OrHash).void
+          end
+          attr_writer :record
+
+          sig do
+            params(
+              id: String,
+              occurred_at: Time,
+              type:
+                HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::Type::OrSymbol,
+              follow_up:
+                HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::FollowUp::OrHash,
+              note: T.nilable(String),
+              record: HelloWorldTestingggg::VaccinationRecord::OrHash
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            id:,
+            occurred_at:,
+            type:,
+            follow_up: nil,
+            note: nil,
+            record: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                id: String,
+                occurred_at: Time,
+                type:
+                  HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::Type::TaggedSymbol,
+                follow_up:
+                  HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::FollowUp,
+                note: T.nilable(String),
+                record: HelloWorldTestingggg::VaccinationRecord
+              }
+            )
+          end
+          def to_hash
+          end
+
+          module Type
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::Type
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            CHECKUP =
+              T.let(
+                :checkup,
+                HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::Type::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+
+          class FollowUp < HelloWorldTestingggg::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::FollowUp,
+                  HelloWorldTestingggg::Internal::AnyHash
+                )
+              end
+
+            sig { returns(T.nilable(Time)) }
+            attr_reader :due
+
+            sig { params(due: Time).void }
+            attr_writer :due
+
+            sig { returns(T.nilable(String)) }
+            attr_reader :reason
+
+            sig { params(reason: String).void }
+            attr_writer :reason
+
+            sig { params(due: Time, reason: String).returns(T.attached_class) }
+            def self.new(due: nil, reason: nil)
+            end
+
+            sig { override.returns({ due: Time, reason: String }) }
+            def to_hash
+            end
+          end
+        end
+
+        class PlacementDisruptionEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent,
+                HelloWorldTestingggg::Internal::AnyHash
+              )
+            end
+
+          sig { returns(String) }
+          attr_accessor :id
+
+          sig { returns(Time) }
+          attr_accessor :occurred_at
+
+          # A numeric severity score or a structured assessment.
+          sig do
+            returns(
+              HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Variants
+            )
+          end
+          attr_accessor :severity
+
+          sig do
+            returns(
+              HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Type::TaggedSymbol
+            )
+          end
+          attr_accessor :type
+
+          sig { returns(T.nilable(String)) }
+          attr_accessor :note
+
+          sig do
+            params(
+              id: String,
+              occurred_at: Time,
+              severity:
+                T.any(
+                  Integer,
+                  HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::OrHash
+                ),
+              type:
+                HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Type::OrSymbol,
+              note: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            id:,
+            occurred_at:,
+            # A numeric severity score or a structured assessment.
+            severity:,
+            type:,
+            note: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                id: String,
+                occurred_at: Time,
+                severity:
+                  HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Variants,
+                type:
+                  HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Type::TaggedSymbol,
+                note: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # A numeric severity score or a structured assessment.
+          module Severity
+            extend HelloWorldTestingggg::Internal::Type::Union
+
+            Variants =
+              T.type_alias do
+                T.any(
+                  Integer,
+                  HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment
+                )
+              end
+
+            class Assessment < HelloWorldTestingggg::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment,
+                    HelloWorldTestingggg::Internal::AnyHash
+                  )
+                end
+
+              sig do
+                returns(
+                  HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::Level::TaggedSymbol
+                )
+              end
+              attr_accessor :level
+
+              sig { returns(T.nilable(String)) }
+              attr_reader :reviewer
+
+              sig { params(reviewer: String).void }
+              attr_writer :reviewer
+
+              sig do
+                params(
+                  level:
+                    HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::Level::OrSymbol,
+                  reviewer: String
+                ).returns(T.attached_class)
+              end
+              def self.new(level:, reviewer: nil)
+              end
+
+              sig do
+                override.returns(
+                  {
+                    level:
+                      HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::Level::TaggedSymbol,
+                    reviewer: String
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              module Level
+                extend HelloWorldTestingggg::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::Level
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                LOW =
+                  T.let(
+                    :low,
+                    HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::Level::TaggedSymbol
+                  )
+                HIGH =
+                  T.let(
+                    :high,
+                    HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::Level::TaggedSymbol
+                  )
+                CRITICAL =
+                  T.let(
+                    :critical,
+                    HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::Level::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::Level::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
+
+            sig do
+              override.returns(
+                T::Array[
+                  HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Variants
+                ]
+              )
+            end
+            def self.variants
+            end
+          end
+
+          module Type
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Type
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            DISRUPTION =
+              T.let(
+                :disruption,
+                HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Type::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+        end
+
+        class PlacementNote < HelloWorldTestingggg::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                HelloWorldTestingggg::Placement::Activity::PlacementNote,
+                HelloWorldTestingggg::Internal::AnyHash
+              )
+            end
+
+          sig { returns(String) }
+          attr_accessor :body
+
+          sig { returns(Symbol) }
+          attr_accessor :kind
+
+          sig { params(body: String, kind: Symbol).returns(T.attached_class) }
+          def self.new(body:, kind: :note)
+          end
+
+          sig { override.returns({ body: String, kind: Symbol }) }
+          def to_hash
+          end
+        end
+
+        class PlacementAdoptedMilestone < HelloWorldTestingggg::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                HelloWorldTestingggg::Placement::Activity::PlacementAdoptedMilestone,
+                HelloWorldTestingggg::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Time) }
+          attr_accessor :adopted_at
+
+          sig { returns(Symbol) }
+          attr_accessor :kind
+
+          sig do
+            params(adopted_at: Time, kind: Symbol).returns(T.attached_class)
+          end
+          def self.new(adopted_at:, kind: :adopted)
+          end
+
+          sig { override.returns({ adopted_at: Time, kind: Symbol }) }
+          def to_hash
+          end
+        end
+
+        class PlacementReturnedMilestone < HelloWorldTestingggg::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                HelloWorldTestingggg::Placement::Activity::PlacementReturnedMilestone,
+                HelloWorldTestingggg::Internal::AnyHash
+              )
+            end
+
+          sig { returns(Symbol) }
+          attr_accessor :kind
+
+          sig { returns(String) }
+          attr_accessor :reason
+
+          sig { params(reason: String, kind: Symbol).returns(T.attached_class) }
+          def self.new(reason:, kind: :returned)
+          end
+
+          sig { override.returns({ kind: Symbol, reason: String }) }
+          def to_hash
+          end
+        end
+
+        sig do
+          override.returns(
+            T::Array[HelloWorldTestingggg::Placement::Activity::Variants]
+          )
+        end
+        def self.variants
         end
       end
 
