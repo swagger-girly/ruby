@@ -22,7 +22,7 @@ module HelloWorldTestingggg
       # @!attribute decision
       #   The decision for an application; the shape depends on the outcome.
       #
-      #   @return [HelloWorldTestingggg::Models::Application::Decision::DecisionApproved, HelloWorldTestingggg::Models::Application::Decision::DecisionRejected, HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated, nil]
+      #   @return [HelloWorldTestingggg::Models::Application::Decision::DecisionApproved, HelloWorldTestingggg::Models::Application::Decision::DecisionRejected, HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated, HelloWorldTestingggg::Models::Application::Decision::DecisionWithdrawn, nil]
       optional :decision, union: -> { HelloWorldTestingggg::Application::Decision }
 
       # @!attribute fee
@@ -64,7 +64,7 @@ module HelloWorldTestingggg
       #
       #   @param submitted_at [Time]
       #
-      #   @param decision [HelloWorldTestingggg::Models::Application::Decision::DecisionApproved, HelloWorldTestingggg::Models::Application::Decision::DecisionRejected, HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated] The decision for an application; the shape depends on the outcome.
+      #   @param decision [HelloWorldTestingggg::Models::Application::Decision::DecisionApproved, HelloWorldTestingggg::Models::Application::Decision::DecisionRejected, HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated, HelloWorldTestingggg::Models::Application::Decision::DecisionWithdrawn] The decision for an application; the shape depends on the outcome.
       #
       #   @param fee [HelloWorldTestingggg::Models::Money]
       #
@@ -313,6 +313,9 @@ module HelloWorldTestingggg
 
         variant -> { HelloWorldTestingggg::Application::Decision::DecisionEscalated }
 
+        # The applicant or shelter withdrew before a decision was finalized.
+        variant -> { HelloWorldTestingggg::Application::Decision::DecisionWithdrawn }
+
         class DecisionApproved < HelloWorldTestingggg::Internal::Type::BaseModel
           # @!attribute approved_at
           #
@@ -321,35 +324,25 @@ module HelloWorldTestingggg
 
           # @!attribute outcome
           #
-          #   @return [Symbol, HelloWorldTestingggg::Models::Application::Decision::DecisionApproved::Outcome]
-          required :outcome, enum: -> { HelloWorldTestingggg::Application::Decision::DecisionApproved::Outcome }
+          #   @return [Symbol, :approved]
+          required :outcome, const: :approved
 
           # @!attribute conditions
           #
           #   @return [Array<String>, nil]
           optional :conditions, HelloWorldTestingggg::Internal::Type::ArrayOf[String]
 
-          # @!method initialize(approved_at:, outcome:, conditions: nil)
+          # @!method initialize(approved_at:, conditions: nil, outcome: :approved)
           #   @param approved_at [Time]
-          #   @param outcome [Symbol, HelloWorldTestingggg::Models::Application::Decision::DecisionApproved::Outcome]
           #   @param conditions [Array<String>]
-
-          # @see HelloWorldTestingggg::Models::Application::Decision::DecisionApproved#outcome
-          module Outcome
-            extend HelloWorldTestingggg::Internal::Type::Enum
-
-            APPROVED = :approved
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          #   @param outcome [Symbol, :approved]
         end
 
         class DecisionRejected < HelloWorldTestingggg::Internal::Type::BaseModel
           # @!attribute outcome
           #
-          #   @return [Symbol, HelloWorldTestingggg::Models::Application::Decision::DecisionRejected::Outcome]
-          required :outcome, enum: -> { HelloWorldTestingggg::Application::Decision::DecisionRejected::Outcome }
+          #   @return [Symbol, :rejected]
+          required :outcome, const: :rejected
 
           # @!attribute reason
           #
@@ -361,20 +354,10 @@ module HelloWorldTestingggg
           #   @return [Time, nil]
           optional :appeal_deadline, Time, api_name: :appealDeadline, nil?: true
 
-          # @!method initialize(outcome:, reason:, appeal_deadline: nil)
-          #   @param outcome [Symbol, HelloWorldTestingggg::Models::Application::Decision::DecisionRejected::Outcome]
+          # @!method initialize(reason:, appeal_deadline: nil, outcome: :rejected)
           #   @param reason [Symbol, HelloWorldTestingggg::Models::Application::Decision::DecisionRejected::Reason]
           #   @param appeal_deadline [Time, nil]
-
-          # @see HelloWorldTestingggg::Models::Application::Decision::DecisionRejected#outcome
-          module Outcome
-            extend HelloWorldTestingggg::Internal::Type::Enum
-
-            REJECTED = :rejected
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
+          #   @param outcome [Symbol, :rejected]
 
           # @see HelloWorldTestingggg::Models::Application::Decision::DecisionRejected#reason
           module Reason
@@ -399,18 +382,18 @@ module HelloWorldTestingggg
 
           # @!attribute outcome
           #
-          #   @return [Symbol, HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated::Outcome]
-          required :outcome, enum: -> { HelloWorldTestingggg::Application::Decision::DecisionEscalated::Outcome }
+          #   @return [Symbol, :escalated]
+          required :outcome, const: :escalated
 
           # @!attribute review_after
           #
           #   @return [Time, nil]
           optional :review_after, Time, api_name: :reviewAfter
 
-          # @!method initialize(escalated_to:, outcome:, review_after: nil)
+          # @!method initialize(escalated_to:, review_after: nil, outcome: :escalated)
           #   @param escalated_to [HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated::EscalatedTo]
-          #   @param outcome [Symbol, HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated::Outcome]
           #   @param review_after [Time]
+          #   @param outcome [Symbol, :escalated]
 
           # @see HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated#escalated_to
           class EscalatedTo < HelloWorldTestingggg::Internal::Type::BaseModel
@@ -446,12 +429,51 @@ module HelloWorldTestingggg
               #   @param hours [String]
             end
           end
+        end
 
-          # @see HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated#outcome
+        class DecisionWithdrawn < HelloWorldTestingggg::Internal::Type::BaseModel
+          # @!attribute outcome
+          #
+          #   @return [Symbol, HelloWorldTestingggg::Models::Application::Decision::DecisionWithdrawn::Outcome]
+          required :outcome, enum: -> { HelloWorldTestingggg::Application::Decision::DecisionWithdrawn::Outcome }
+
+          # @!attribute withdrawn_by
+          #
+          #   @return [Symbol, HelloWorldTestingggg::Models::Application::Decision::DecisionWithdrawn::WithdrawnBy]
+          required :withdrawn_by,
+                   enum: -> { HelloWorldTestingggg::Application::Decision::DecisionWithdrawn::WithdrawnBy },
+                   api_name: :withdrawnBy
+
+          # @!attribute withdrawn_at
+          #
+          #   @return [Time, nil]
+          optional :withdrawn_at, Time, api_name: :withdrawnAt
+
+          # @!method initialize(outcome:, withdrawn_by:, withdrawn_at: nil)
+          #   The applicant or shelter withdrew before a decision was finalized.
+          #
+          #   @param outcome [Symbol, HelloWorldTestingggg::Models::Application::Decision::DecisionWithdrawn::Outcome]
+          #   @param withdrawn_by [Symbol, HelloWorldTestingggg::Models::Application::Decision::DecisionWithdrawn::WithdrawnBy]
+          #   @param withdrawn_at [Time]
+
+          # @see HelloWorldTestingggg::Models::Application::Decision::DecisionWithdrawn#outcome
           module Outcome
             extend HelloWorldTestingggg::Internal::Type::Enum
 
-            ESCALATED = :escalated
+            WITHDRAWN = :withdrawn
+            EXPIRED = :expired
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # @see HelloWorldTestingggg::Models::Application::Decision::DecisionWithdrawn#withdrawn_by
+          module WithdrawnBy
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            APPLICANT = :applicant
+            SHELTER = :shelter
+            SYSTEM = :system
 
             # @!method self.values
             #   @return [Array<Symbol>]
@@ -459,7 +481,7 @@ module HelloWorldTestingggg
         end
 
         # @!method self.variants
-        #   @return [Array(HelloWorldTestingggg::Models::Application::Decision::DecisionApproved, HelloWorldTestingggg::Models::Application::Decision::DecisionRejected, HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated)]
+        #   @return [Array(HelloWorldTestingggg::Models::Application::Decision::DecisionApproved, HelloWorldTestingggg::Models::Application::Decision::DecisionRejected, HelloWorldTestingggg::Models::Application::Decision::DecisionEscalated, HelloWorldTestingggg::Models::Application::Decision::DecisionWithdrawn)]
       end
 
       class History < HelloWorldTestingggg::Internal::Type::BaseModel
@@ -501,8 +523,8 @@ module HelloWorldTestingggg
       class LatestRejection < HelloWorldTestingggg::Internal::Type::BaseModel
         # @!attribute outcome
         #
-        #   @return [Symbol, HelloWorldTestingggg::Models::Application::LatestRejection::Outcome]
-        required :outcome, enum: -> { HelloWorldTestingggg::Application::LatestRejection::Outcome }
+        #   @return [Symbol, :rejected]
+        required :outcome, const: :rejected
 
         # @!attribute reason
         #
@@ -514,20 +536,10 @@ module HelloWorldTestingggg
         #   @return [Time, nil]
         optional :appeal_deadline, Time, api_name: :appealDeadline, nil?: true
 
-        # @!method initialize(outcome:, reason:, appeal_deadline: nil)
-        #   @param outcome [Symbol, HelloWorldTestingggg::Models::Application::LatestRejection::Outcome]
+        # @!method initialize(reason:, appeal_deadline: nil, outcome: :rejected)
         #   @param reason [Symbol, HelloWorldTestingggg::Models::Application::LatestRejection::Reason]
         #   @param appeal_deadline [Time, nil]
-
-        # @see HelloWorldTestingggg::Models::Application::LatestRejection#outcome
-        module Outcome
-          extend HelloWorldTestingggg::Internal::Type::Enum
-
-          REJECTED = :rejected
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
+        #   @param outcome [Symbol, :rejected]
 
         # @see HelloWorldTestingggg::Models::Application::LatestRejection#reason
         module Reason

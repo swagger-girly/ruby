@@ -9,7 +9,7 @@ class HelloWorldTestingggg::Test::Resources::WebhooksTest < HelloWorldTestingggg
     webhook = StandardWebhooks::Webhook.new(key)
 
     data =
-      "{\"pet\":{\"name\":\"doggie\",\"photoUrls\":[\"string\"],\"id\":10,\"category\":{\"id\":1,\"name\":\"Dogs\",\"subcategories\":[]},\"microchipId\":\"string\",\"status\":\"available\",\"tags\":[{\"id\":0,\"name\":\"name\"}]},\"type\":\"pet.created\"}"
+      "{\"pet\":{\"name\":\"doggie\",\"photoUrls\":[\"string\"],\"id\":10,\"acquisitionChannel\":\"breeder\",\"category\":{\"id\":1,\"name\":\"Dogs\",\"subcategories\":[]},\"microchipId\":\"string\",\"status\":\"available\",\"tags\":[{\"id\":0,\"name\":\"name\"}]},\"type\":\"pet.created\"}"
     message_id = "1"
     timestamp = Time.now.to_i.to_s
     signature = webhook.sign(message_id, timestamp, data)

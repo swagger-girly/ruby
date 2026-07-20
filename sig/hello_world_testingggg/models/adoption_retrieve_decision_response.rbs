@@ -4,21 +4,18 @@ module HelloWorldTestingggg
       HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved
       | HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected
       | HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated
+      | HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn
 
     module AdoptionRetrieveDecisionResponse
       extend HelloWorldTestingggg::Internal::Type::Union
 
       type decision_approved =
-        {
-          approved_at: Time,
-          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::outcome,
-          conditions: ::Array[String]
-        }
+        { approved_at: Time, outcome: :approved, conditions: ::Array[String] }
 
       class DecisionApproved < HelloWorldTestingggg::Internal::Type::BaseModel
         attr_accessor approved_at: Time
 
-        attr_accessor outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::outcome
+        attr_accessor outcome: :approved
 
         attr_reader conditions: ::Array[String]?
 
@@ -26,62 +23,42 @@ module HelloWorldTestingggg
 
         def initialize: (
           approved_at: Time,
-          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::outcome,
-          ?conditions: ::Array[String]
+          ?conditions: ::Array[String],
+          ?outcome: :approved
         ) -> void
 
         def to_hash: -> {
           approved_at: Time,
-          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::outcome,
+          outcome: :approved,
           conditions: ::Array[String]
         }
-
-        type outcome = :approved
-
-        module Outcome
-          extend HelloWorldTestingggg::Internal::Type::Enum
-
-          APPROVED: :approved
-
-          def self?.values: -> ::Array[HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::outcome]
-        end
       end
 
       type decision_rejected =
         {
-          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::outcome,
+          outcome: :rejected,
           reason: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::reason,
           appeal_deadline: Time?
         }
 
       class DecisionRejected < HelloWorldTestingggg::Internal::Type::BaseModel
-        attr_accessor outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::outcome
+        attr_accessor outcome: :rejected
 
         attr_accessor reason: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::reason
 
         attr_accessor appeal_deadline: Time?
 
         def initialize: (
-          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::outcome,
           reason: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::reason,
-          ?appeal_deadline: Time?
+          ?appeal_deadline: Time?,
+          ?outcome: :rejected
         ) -> void
 
         def to_hash: -> {
-          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::outcome,
+          outcome: :rejected,
           reason: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::reason,
           appeal_deadline: Time?
         }
-
-        type outcome = :rejected
-
-        module Outcome
-          extend HelloWorldTestingggg::Internal::Type::Enum
-
-          REJECTED: :rejected
-
-          def self?.values: -> ::Array[HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::outcome]
-        end
 
         type reason = :policy | :capacity | :incomplete
 
@@ -99,14 +76,14 @@ module HelloWorldTestingggg
       type decision_escalated =
         {
           escalated_to: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo,
-          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::outcome,
+          outcome: :escalated,
           review_after: Time
         }
 
       class DecisionEscalated < HelloWorldTestingggg::Internal::Type::BaseModel
         attr_accessor escalated_to: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo
 
-        attr_accessor outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::outcome
+        attr_accessor outcome: :escalated
 
         attr_reader review_after: Time?
 
@@ -114,13 +91,13 @@ module HelloWorldTestingggg
 
         def initialize: (
           escalated_to: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo,
-          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::outcome,
-          ?review_after: Time
+          ?review_after: Time,
+          ?outcome: :escalated
         ) -> void
 
         def to_hash: -> {
           escalated_to: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo,
-          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::outcome,
+          outcome: :escalated,
           review_after: Time
         }
 
@@ -165,15 +142,57 @@ module HelloWorldTestingggg
             def to_hash: -> { email: String, hours: String }
           end
         end
+      end
 
-        type outcome = :escalated
+      type decision_withdrawn =
+        {
+          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::outcome,
+          withdrawn_by: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::withdrawn_by,
+          withdrawn_at: Time
+        }
+
+      class DecisionWithdrawn < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::outcome
+
+        attr_accessor withdrawn_by: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::withdrawn_by
+
+        attr_reader withdrawn_at: Time?
+
+        def withdrawn_at=: (Time) -> Time
+
+        def initialize: (
+          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::outcome,
+          withdrawn_by: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::withdrawn_by,
+          ?withdrawn_at: Time
+        ) -> void
+
+        def to_hash: -> {
+          outcome: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::outcome,
+          withdrawn_by: HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::withdrawn_by,
+          withdrawn_at: Time
+        }
+
+        type outcome = :withdrawn | :expired
 
         module Outcome
           extend HelloWorldTestingggg::Internal::Type::Enum
 
-          ESCALATED: :escalated
+          WITHDRAWN: :withdrawn
+          EXPIRED: :expired
 
-          def self?.values: -> ::Array[HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::outcome]
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::outcome]
+        end
+
+        type withdrawn_by = :applicant | :shelter | :system
+
+        module WithdrawnBy
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          APPLICANT: :applicant
+          SHELTER: :shelter
+          SYSTEM: :system
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::withdrawn_by]
         end
       end
 

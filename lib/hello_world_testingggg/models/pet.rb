@@ -19,6 +19,15 @@ module HelloWorldTestingggg
       #   @return [Integer, nil]
       optional :id, Integer
 
+      # @!attribute acquisition_channel
+      #   How the pet entered the store. Open enum: known channels plus forward-compatible
+      #   free-form strings.
+      #
+      #   @return [Symbol, String, HelloWorldTestingggg::Models::PetAPI::AcquisitionChannel, nil]
+      optional :acquisition_channel,
+               union: -> { HelloWorldTestingggg::PetAPI::AcquisitionChannel },
+               api_name: :acquisitionChannel
+
       # @!attribute category
       #
       #   @return [HelloWorldTestingggg::Models::PetAPI::Category, nil]
@@ -41,12 +50,17 @@ module HelloWorldTestingggg
       #   @return [Array<HelloWorldTestingggg::Models::PetAPI::Tag>, nil]
       optional :tags, -> { HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI::Tag] }
 
-      # @!method initialize(name:, photo_urls:, id: nil, category: nil, microchip_id: nil, status: nil, tags: nil)
+      # @!method initialize(name:, photo_urls:, id: nil, acquisition_channel: nil, category: nil, microchip_id: nil, status: nil, tags: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {HelloWorldTestingggg::Models::PetAPI} for more details.
+      #
       #   @param name [String]
       #
       #   @param photo_urls [Array<String>]
       #
       #   @param id [Integer]
+      #
+      #   @param acquisition_channel [Symbol, String, HelloWorldTestingggg::Models::PetAPI::AcquisitionChannel] How the pet entered the store. Open enum: known channels plus forward-compatible
       #
       #   @param category [HelloWorldTestingggg::Models::PetAPI::Category]
       #
@@ -55,6 +69,40 @@ module HelloWorldTestingggg
       #   @param status [Symbol, HelloWorldTestingggg::Models::PetStatus] pet status in the store
       #
       #   @param tags [Array<HelloWorldTestingggg::Models::PetAPI::Tag>]
+
+      # How the pet entered the store. Open enum: known channels plus forward-compatible
+      # free-form strings.
+      #
+      # @see HelloWorldTestingggg::Models::PetAPI#acquisition_channel
+      module AcquisitionChannel
+        extend HelloWorldTestingggg::Internal::Type::Union
+
+        variant const: -> { HelloWorldTestingggg::Models::PetAPI::AcquisitionChannel::BREEDER }
+
+        variant const: -> { HelloWorldTestingggg::Models::PetAPI::AcquisitionChannel::SHELTER }
+
+        variant const: -> { HelloWorldTestingggg::Models::PetAPI::AcquisitionChannel::SURRENDER }
+
+        variant const: -> { HelloWorldTestingggg::Models::PetAPI::AcquisitionChannel::TRANSFER }
+
+        variant String
+
+        # @!method self.variants
+        #   @return [Array(Symbol, String)]
+
+        define_sorbet_constant!(:Variants) do
+          T.type_alias { T.any(HelloWorldTestingggg::PetAPI::AcquisitionChannel::TaggedSymbol, String) }
+        end
+
+        # @!group
+
+        BREEDER = :breeder
+        SHELTER = :shelter
+        SURRENDER = :surrender
+        TRANSFER = :transfer
+
+        # @!endgroup
+      end
 
       # @see HelloWorldTestingggg::Models::PetAPI#category
       class Category < HelloWorldTestingggg::Internal::Type::BaseModel

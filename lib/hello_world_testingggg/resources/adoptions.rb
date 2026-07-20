@@ -58,7 +58,7 @@ module HelloWorldTestingggg
       #
       # @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved, HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected, HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated]
+      # @return [HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved, HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected, HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated, HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn]
       #
       # @see HelloWorldTestingggg::Models::AdoptionRetrieveDecisionParams
       def retrieve_decision(application_id, params = {})

@@ -5,6 +5,7 @@ module HelloWorldTestingggg
         name: String,
         photo_urls: ::Array[String],
         id: Integer,
+        acquisition_channel: HelloWorldTestingggg::Models::PetAPI::acquisition_channel,
         category: HelloWorldTestingggg::PetAPI::Category,
         microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id,
         status: HelloWorldTestingggg::Models::pet_status,
@@ -19,6 +20,12 @@ module HelloWorldTestingggg
       attr_reader id: Integer?
 
       def id=: (Integer) -> Integer
+
+      attr_reader acquisition_channel: HelloWorldTestingggg::Models::PetAPI::acquisition_channel?
+
+      def acquisition_channel=: (
+        HelloWorldTestingggg::Models::PetAPI::acquisition_channel
+      ) -> HelloWorldTestingggg::Models::PetAPI::acquisition_channel
 
       attr_reader category: HelloWorldTestingggg::PetAPI::Category?
 
@@ -48,6 +55,7 @@ module HelloWorldTestingggg
         name: String,
         photo_urls: ::Array[String],
         ?id: Integer,
+        ?acquisition_channel: HelloWorldTestingggg::Models::PetAPI::acquisition_channel,
         ?category: HelloWorldTestingggg::PetAPI::Category,
         ?microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id,
         ?status: HelloWorldTestingggg::Models::pet_status,
@@ -58,11 +66,26 @@ module HelloWorldTestingggg
         name: String,
         photo_urls: ::Array[String],
         id: Integer,
+        acquisition_channel: HelloWorldTestingggg::Models::PetAPI::acquisition_channel,
         category: HelloWorldTestingggg::PetAPI::Category,
         microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id,
         status: HelloWorldTestingggg::Models::pet_status,
         tags: ::Array[HelloWorldTestingggg::PetAPI::Tag]
       }
+
+      type acquisition_channel =
+        :breeder | :shelter | :surrender | :transfer | String
+
+      module AcquisitionChannel
+        extend HelloWorldTestingggg::Internal::Type::Union
+
+        def self?.variants: -> ::Array[HelloWorldTestingggg::Models::PetAPI::acquisition_channel]
+
+        BREEDER: :breeder
+        SHELTER: :shelter
+        SURRENDER: :surrender
+        TRANSFER: :transfer
+      end
 
       type category = { id: Integer, name: String, subcategories: ::Array[top] }
 

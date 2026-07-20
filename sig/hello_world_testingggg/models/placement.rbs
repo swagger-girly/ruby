@@ -6,6 +6,7 @@ module HelloWorldTestingggg
         application: HelloWorldTestingggg::Application,
         created_at: Time,
         status: HelloWorldTestingggg::Models::Placement::status,
+        activity: ::Array[HelloWorldTestingggg::Models::Placement::activity],
         events: ::Array[HelloWorldTestingggg::Models::placement_event],
         follow_up_after: Time?,
         logistics: HelloWorldTestingggg::Placement::Logistics,
@@ -18,6 +19,12 @@ module HelloWorldTestingggg
       attr_accessor application: HelloWorldTestingggg::Application
 
       attr_accessor status: HelloWorldTestingggg::Models::Placement::status
+
+      attr_reader activity: ::Array[HelloWorldTestingggg::Models::Placement::activity]?
+
+      def activity=: (
+        ::Array[HelloWorldTestingggg::Models::Placement::activity]
+      ) -> ::Array[HelloWorldTestingggg::Models::Placement::activity]
 
       attr_reader events: ::Array[HelloWorldTestingggg::Models::placement_event]?
 
@@ -46,6 +53,7 @@ module HelloWorldTestingggg
         application: HelloWorldTestingggg::Application,
         created_at: Time,
         status: HelloWorldTestingggg::Models::Placement::status,
+        ?activity: ::Array[HelloWorldTestingggg::Models::Placement::activity],
         ?events: ::Array[HelloWorldTestingggg::Models::placement_event],
         ?follow_up_after: Time?,
         ?logistics: HelloWorldTestingggg::Placement::Logistics,
@@ -57,6 +65,7 @@ module HelloWorldTestingggg
         application: HelloWorldTestingggg::Application,
         created_at: Time,
         status: HelloWorldTestingggg::Models::Placement::status,
+        activity: ::Array[HelloWorldTestingggg::Models::Placement::activity],
         events: ::Array[HelloWorldTestingggg::Models::placement_event],
         follow_up_after: Time?,
         logistics: HelloWorldTestingggg::Placement::Logistics,
@@ -74,6 +83,272 @@ module HelloWorldTestingggg
         DISRUPTED: :disrupted
 
         def self?.values: -> ::Array[HelloWorldTestingggg::Models::Placement::status]
+      end
+
+      type activity =
+        HelloWorldTestingggg::Placement::Activity::PlacementTransferEvent
+        | HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent
+        | HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent
+        | HelloWorldTestingggg::Placement::Activity::PlacementNote
+        | HelloWorldTestingggg::Placement::Activity::PlacementAdoptedMilestone
+        | HelloWorldTestingggg::Placement::Activity::PlacementReturnedMilestone
+
+      module Activity
+        extend HelloWorldTestingggg::Internal::Type::Union
+
+        type placement_transfer_event =
+          {
+            id: String,
+            leg: HelloWorldTestingggg::TransferLeg,
+            occurred_at: Time,
+            type: HelloWorldTestingggg::Models::Placement::Activity::PlacementTransferEvent::type_,
+            note: String?
+          }
+
+        class PlacementTransferEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor leg: HelloWorldTestingggg::TransferLeg
+
+          attr_accessor occurred_at: Time
+
+          attr_accessor type: HelloWorldTestingggg::Models::Placement::Activity::PlacementTransferEvent::type_
+
+          attr_accessor note: String?
+
+          def initialize: (
+            id: String,
+            leg: HelloWorldTestingggg::TransferLeg,
+            occurred_at: Time,
+            type: HelloWorldTestingggg::Models::Placement::Activity::PlacementTransferEvent::type_,
+            ?note: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            leg: HelloWorldTestingggg::TransferLeg,
+            occurred_at: Time,
+            type: HelloWorldTestingggg::Models::Placement::Activity::PlacementTransferEvent::type_,
+            note: String?
+          }
+
+          type type_ = :transfer
+
+          module Type
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            TRANSFER: :transfer
+
+            def self?.values: -> ::Array[HelloWorldTestingggg::Models::Placement::Activity::PlacementTransferEvent::type_]
+          end
+        end
+
+        type placement_checkup_event =
+          {
+            id: String,
+            occurred_at: Time,
+            type: HelloWorldTestingggg::Models::Placement::Activity::PlacementCheckupEvent::type_,
+            follow_up: HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::FollowUp,
+            note: String?,
+            record: HelloWorldTestingggg::VaccinationRecord
+          }
+
+        class PlacementCheckupEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor occurred_at: Time
+
+          attr_accessor type: HelloWorldTestingggg::Models::Placement::Activity::PlacementCheckupEvent::type_
+
+          attr_reader follow_up: HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::FollowUp?
+
+          def follow_up=: (
+            HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::FollowUp
+          ) -> HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::FollowUp
+
+          attr_accessor note: String?
+
+          attr_reader record: HelloWorldTestingggg::VaccinationRecord?
+
+          def record=: (
+            HelloWorldTestingggg::VaccinationRecord
+          ) -> HelloWorldTestingggg::VaccinationRecord
+
+          def initialize: (
+            id: String,
+            occurred_at: Time,
+            type: HelloWorldTestingggg::Models::Placement::Activity::PlacementCheckupEvent::type_,
+            ?follow_up: HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::FollowUp,
+            ?note: String?,
+            ?record: HelloWorldTestingggg::VaccinationRecord
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            occurred_at: Time,
+            type: HelloWorldTestingggg::Models::Placement::Activity::PlacementCheckupEvent::type_,
+            follow_up: HelloWorldTestingggg::Placement::Activity::PlacementCheckupEvent::FollowUp,
+            note: String?,
+            record: HelloWorldTestingggg::VaccinationRecord
+          }
+
+          type type_ = :checkup
+
+          module Type
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            CHECKUP: :checkup
+
+            def self?.values: -> ::Array[HelloWorldTestingggg::Models::Placement::Activity::PlacementCheckupEvent::type_]
+          end
+
+          type follow_up = { due: Time, reason: String }
+
+          class FollowUp < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_reader due: Time?
+
+            def due=: (Time) -> Time
+
+            attr_reader reason: String?
+
+            def reason=: (String) -> String
+
+            def initialize: (?due: Time, ?reason: String) -> void
+
+            def to_hash: -> { due: Time, reason: String }
+          end
+        end
+
+        type placement_disruption_event =
+          {
+            id: String,
+            occurred_at: Time,
+            severity: HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::severity,
+            type: HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::type_,
+            note: String?
+          }
+
+        class PlacementDisruptionEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor occurred_at: Time
+
+          attr_accessor severity: HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::severity
+
+          attr_accessor type: HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::type_
+
+          attr_accessor note: String?
+
+          def initialize: (
+            id: String,
+            occurred_at: Time,
+            severity: HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::severity,
+            type: HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::type_,
+            ?note: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            occurred_at: Time,
+            severity: HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::severity,
+            type: HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::type_,
+            note: String?
+          }
+
+          type severity =
+            Integer
+            | HelloWorldTestingggg::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment
+
+          module Severity
+            extend HelloWorldTestingggg::Internal::Type::Union
+
+            type assessment =
+              {
+                level: HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::level,
+                reviewer: String
+              }
+
+            class Assessment < HelloWorldTestingggg::Internal::Type::BaseModel
+              attr_accessor level: HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::level
+
+              attr_reader reviewer: String?
+
+              def reviewer=: (String) -> String
+
+              def initialize: (
+                level: HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::level,
+                ?reviewer: String
+              ) -> void
+
+              def to_hash: -> {
+                level: HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::level,
+                reviewer: String
+              }
+
+              type level = :low | :high | :critical
+
+              module Level
+                extend HelloWorldTestingggg::Internal::Type::Enum
+
+                LOW: :low
+                HIGH: :high
+                CRITICAL: :critical
+
+                def self?.values: -> ::Array[HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::Severity::Assessment::level]
+              end
+            end
+
+            def self?.variants: -> ::Array[HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::severity]
+          end
+
+          type type_ = :disruption
+
+          module Type
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            DISRUPTION: :disruption
+
+            def self?.values: -> ::Array[HelloWorldTestingggg::Models::Placement::Activity::PlacementDisruptionEvent::type_]
+          end
+        end
+
+        type placement_note = { body: String, kind: :note }
+
+        class PlacementNote < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor body: String
+
+          attr_accessor kind: :note
+
+          def initialize: (body: String, ?kind: :note) -> void
+
+          def to_hash: -> { body: String, kind: :note }
+        end
+
+        type placement_adopted_milestone = { adopted_at: Time, kind: :adopted }
+
+        class PlacementAdoptedMilestone < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor adopted_at: Time
+
+          attr_accessor kind: :adopted
+
+          def initialize: (adopted_at: Time, ?kind: :adopted) -> void
+
+          def to_hash: -> { adopted_at: Time, kind: :adopted }
+        end
+
+        type placement_returned_milestone = { kind: :returned, reason: String }
+
+        class PlacementReturnedMilestone < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor kind: :returned
+
+          attr_accessor reason: String
+
+          def initialize: (reason: String, ?kind: :returned) -> void
+
+          def to_hash: -> { kind: :returned, reason: String }
+        end
+
+        def self?.variants: -> ::Array[HelloWorldTestingggg::Models::Placement::activity]
       end
 
       type logistics =

@@ -10,6 +10,11 @@ module HelloWorldTestingggg
           name: String,
           photo_urls: T::Array[String],
           id: Integer,
+          acquisition_channel:
+            T.any(
+              HelloWorldTestingggg::PetAPI::AcquisitionChannel::OrSymbol,
+              String
+            ),
           category: HelloWorldTestingggg::PetAPI::Category::OrHash,
           microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
           status: HelloWorldTestingggg::PetStatus::OrSymbol,
@@ -21,6 +26,9 @@ module HelloWorldTestingggg
         name:,
         photo_urls:,
         id: nil,
+        # How the pet entered the store. Open enum: known channels plus forward-compatible
+        # free-form strings.
+        acquisition_channel: nil,
         category: nil,
         # Microchip identifier; legacy chips used numeric identifiers.
         microchip_id: nil,
@@ -51,6 +59,11 @@ module HelloWorldTestingggg
           name: String,
           photo_urls: T::Array[String],
           id: Integer,
+          acquisition_channel:
+            T.any(
+              HelloWorldTestingggg::PetAPI::AcquisitionChannel::OrSymbol,
+              String
+            ),
           category: HelloWorldTestingggg::PetAPI::Category::OrHash,
           microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
           status: HelloWorldTestingggg::PetStatus::OrSymbol,
@@ -62,6 +75,9 @@ module HelloWorldTestingggg
         name:,
         photo_urls:,
         id: nil,
+        # How the pet entered the store. Open enum: known channels plus forward-compatible
+        # free-form strings.
+        acquisition_channel: nil,
         category: nil,
         # Microchip identifier; legacy chips used numeric identifiers.
         microchip_id: nil,
