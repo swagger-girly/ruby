@@ -51,6 +51,9 @@ module HelloWorldTestingggg
     sig { returns(HelloWorldTestingggg::Resources::User) }
     attr_reader :user
 
+    sig { returns(HelloWorldTestingggg::Resources::Media) }
+    attr_reader :media
+
     # Returns the current API health, including per-service statuses.
     sig do
       params(

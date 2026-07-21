@@ -37,6 +37,22 @@ module HelloWorldTestingggg
 
   class FileUploadParams = HelloWorldTestingggg::Models::FileUploadParams
 
+  class MediaBinaryAndJsonParams = HelloWorldTestingggg::Models::MediaBinaryAndJsonParams
+
+  class MediaJsonAndXmlParams = HelloWorldTestingggg::Models::MediaJsonAndXmlParams
+
+  class MediaJsonFirstParams = HelloWorldTestingggg::Models::MediaJsonFirstParams
+
+  class MediaSchemaOnJsonParams = HelloWorldTestingggg::Models::MediaSchemaOnJsonParams
+
+  class MediaSchemaOnTextParams = HelloWorldTestingggg::Models::MediaSchemaOnTextParams
+
+  class MediaTextFirstParams = HelloWorldTestingggg::Models::MediaTextFirstParams
+
+  class MediaTextOnlyParams = HelloWorldTestingggg::Models::MediaTextOnlyParams
+
+  class MediaVendorJsonParams = HelloWorldTestingggg::Models::MediaVendorJsonParams
+
   class MedicalSummary = HelloWorldTestingggg::Models::MedicalSummary
 
   class Money = HelloWorldTestingggg::Models::Money
