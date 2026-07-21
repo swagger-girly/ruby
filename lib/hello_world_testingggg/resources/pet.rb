@@ -104,7 +104,9 @@ module HelloWorldTestingggg
 
       # Returns a cursor-paginated list of pets.
       #
-      # @overload list(cursor: nil, limit: nil, request_options: {})
+      # @overload list(created_at: nil, cursor: nil, limit: nil, request_options: {})
+      #
+      # @param created_at [HelloWorldTestingggg::Models::PetListParams::CreatedAt] Filter by created_at timestamp range in UTC. Accepts gt/gte/lt/lte.
       #
       # @param cursor [String] Cursor from a previous response used to fetch the next page.
       #

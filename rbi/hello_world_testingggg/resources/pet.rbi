@@ -91,6 +91,7 @@ module HelloWorldTestingggg
       # Returns a cursor-paginated list of pets.
       sig do
         params(
+          created_at: HelloWorldTestingggg::PetListParams::CreatedAt::OrHash,
           cursor: String,
           limit: Integer,
           request_options: HelloWorldTestingggg::RequestOptions::OrHash
@@ -101,6 +102,8 @@ module HelloWorldTestingggg
         )
       end
       def list(
+        # Filter by created_at timestamp range in UTC. Accepts gt/gte/lt/lte.
+        created_at: nil,
         # Cursor from a previous response used to fetch the next page.
         cursor: nil,
         # Maximum number of pets to return.

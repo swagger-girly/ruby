@@ -31,6 +31,7 @@ module HelloWorldTestingggg
       ) -> HelloWorldTestingggg::PetAPI
 
       def list: (
+        ?created_at: HelloWorldTestingggg::PetListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
         ?request_options: HelloWorldTestingggg::request_opts

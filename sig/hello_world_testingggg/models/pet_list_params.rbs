@@ -1,12 +1,22 @@
 module HelloWorldTestingggg
   module Models
     type pet_list_params =
-      { cursor: String, limit: Integer }
+      {
+        created_at: HelloWorldTestingggg::PetListParams::CreatedAt,
+        cursor: String,
+        limit: Integer
+      }
       & HelloWorldTestingggg::Internal::Type::request_parameters
 
     class PetListParams < HelloWorldTestingggg::Internal::Type::BaseModel
       extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
       include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_reader created_at: HelloWorldTestingggg::PetListParams::CreatedAt?
+
+      def created_at=: (
+        HelloWorldTestingggg::PetListParams::CreatedAt
+      ) -> HelloWorldTestingggg::PetListParams::CreatedAt
 
       attr_reader cursor: String?
 
@@ -17,16 +27,42 @@ module HelloWorldTestingggg
       def limit=: (Integer) -> Integer
 
       def initialize: (
+        ?created_at: HelloWorldTestingggg::PetListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
         ?request_options: HelloWorldTestingggg::request_opts
       ) -> void
 
       def to_hash: -> {
+        created_at: HelloWorldTestingggg::PetListParams::CreatedAt,
         cursor: String,
         limit: Integer,
         request_options: HelloWorldTestingggg::RequestOptions
       }
+
+      type created_at = { gt: Time, gte: Time, lt: Time, lte: Time }
+
+      class CreatedAt < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader gt: Time?
+
+        def gt=: (Time) -> Time
+
+        attr_reader gte: Time?
+
+        def gte=: (Time) -> Time
+
+        attr_reader lt: Time?
+
+        def lt=: (Time) -> Time
+
+        attr_reader lte: Time?
+
+        def lte=: (Time) -> Time
+
+        def initialize: (?gt: Time, ?gte: Time, ?lt: Time, ?lte: Time) -> void
+
+        def to_hash: -> { gt: Time, gte: Time, lt: Time, lte: Time }
+      end
     end
   end
 end
