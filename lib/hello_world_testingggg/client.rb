@@ -56,6 +56,9 @@ module HelloWorldTestingggg
     # @return [HelloWorldTestingggg::Resources::User]
     attr_reader :user
 
+    # @return [HelloWorldTestingggg::Resources::Media]
+    attr_reader :media
+
     # Returns the current API health, including per-service statuses.
     #
     # @overload health(request_options: {})
@@ -165,6 +168,7 @@ module HelloWorldTestingggg
       @webhooks = HelloWorldTestingggg::Resources::Webhooks.new(client: self)
       @store = HelloWorldTestingggg::Resources::Store.new(client: self)
       @user = HelloWorldTestingggg::Resources::User.new(client: self)
+      @media = HelloWorldTestingggg::Resources::Media.new(client: self)
     end
   end
 end

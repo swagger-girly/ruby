@@ -1,0 +1,39 @@
+module HelloWorldTestingggg
+  module Resources
+    class Media
+      def binary_and_json: (
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::MediaBinaryAndJsonResponse
+
+      def json_and_xml: (
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::MediaJsonAndXmlResponse
+
+      def json_first: (
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::MediaJsonFirstResponse
+
+      def schema_on_json: (
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::MediaSchemaOnJsonResponse
+
+      def schema_on_text: (
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> nil
+
+      def text_first: (
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::MediaTextFirstResponse
+
+      def text_only: (
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> String
+
+      def vendor_json: (
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::MediaVendorJsonResponse
+
+      def initialize: (client: HelloWorldTestingggg::Client) -> void
+    end
+  end
+end
