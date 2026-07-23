@@ -1,0 +1,142 @@
+module HelloWorldTestingggg
+  module Models
+    module Notifications
+      type pet_inventory_low_webhook_event =
+        {
+          pet: HelloWorldTestingggg::PetAPI,
+          quantity: Integer,
+          threshold: Integer,
+          type: HelloWorldTestingggg::Models::Notifications::PetInventoryLowWebhookEvent::type_,
+          last_order: HelloWorldTestingggg::Notifications::PetInventoryLowWebhookEvent::LastOrder,
+          locations: ::Array[HelloWorldTestingggg::Address]
+        }
+
+      class PetInventoryLowWebhookEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor pet: HelloWorldTestingggg::PetAPI
+
+        attr_accessor quantity: Integer
+
+        attr_accessor threshold: Integer
+
+        attr_accessor type: HelloWorldTestingggg::Models::Notifications::PetInventoryLowWebhookEvent::type_
+
+        attr_reader last_order: HelloWorldTestingggg::Notifications::PetInventoryLowWebhookEvent::LastOrder?
+
+        def last_order=: (
+          HelloWorldTestingggg::Notifications::PetInventoryLowWebhookEvent::LastOrder
+        ) -> HelloWorldTestingggg::Notifications::PetInventoryLowWebhookEvent::LastOrder
+
+        attr_reader locations: ::Array[HelloWorldTestingggg::Address]?
+
+        def locations=: (
+          ::Array[HelloWorldTestingggg::Address]
+        ) -> ::Array[HelloWorldTestingggg::Address]
+
+        def initialize: (
+          pet: HelloWorldTestingggg::PetAPI,
+          quantity: Integer,
+          threshold: Integer,
+          type: HelloWorldTestingggg::Models::Notifications::PetInventoryLowWebhookEvent::type_,
+          ?last_order: HelloWorldTestingggg::Notifications::PetInventoryLowWebhookEvent::LastOrder,
+          ?locations: ::Array[HelloWorldTestingggg::Address]
+        ) -> void
+
+        def to_hash: -> {
+          pet: HelloWorldTestingggg::PetAPI,
+          quantity: Integer,
+          threshold: Integer,
+          type: HelloWorldTestingggg::Models::Notifications::PetInventoryLowWebhookEvent::type_,
+          last_order: HelloWorldTestingggg::Notifications::PetInventoryLowWebhookEvent::LastOrder,
+          locations: ::Array[HelloWorldTestingggg::Address]
+        }
+
+        type type_ = :"pet.inventory-low"
+
+        module Type
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          PET_INVENTORY_LOW: :"pet.inventory-low"
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::Notifications::PetInventoryLowWebhookEvent::type_]
+        end
+
+        type last_order =
+          {
+            id: Integer,
+            complete: bool,
+            pet_id: Integer,
+            quantity: Integer,
+            ship_date: Time,
+            status: HelloWorldTestingggg::Models::Notifications::PetInventoryLowWebhookEvent::LastOrder::status,
+            total: HelloWorldTestingggg::Money
+          }
+
+        class LastOrder < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader id: Integer?
+
+          def id=: (Integer) -> Integer
+
+          attr_reader complete: bool?
+
+          def complete=: (bool) -> bool
+
+          attr_reader pet_id: Integer?
+
+          def pet_id=: (Integer) -> Integer
+
+          attr_reader quantity: Integer?
+
+          def quantity=: (Integer) -> Integer
+
+          attr_reader ship_date: Time?
+
+          def ship_date=: (Time) -> Time
+
+          attr_reader status: HelloWorldTestingggg::Models::Notifications::PetInventoryLowWebhookEvent::LastOrder::status?
+
+          def status=: (
+            HelloWorldTestingggg::Models::Notifications::PetInventoryLowWebhookEvent::LastOrder::status
+          ) -> HelloWorldTestingggg::Models::Notifications::PetInventoryLowWebhookEvent::LastOrder::status
+
+          attr_reader total: HelloWorldTestingggg::Money?
+
+          def total=: (
+            HelloWorldTestingggg::Money
+          ) -> HelloWorldTestingggg::Money
+
+          def initialize: (
+            ?id: Integer,
+            ?complete: bool,
+            ?pet_id: Integer,
+            ?quantity: Integer,
+            ?ship_date: Time,
+            ?status: HelloWorldTestingggg::Models::Notifications::PetInventoryLowWebhookEvent::LastOrder::status,
+            ?total: HelloWorldTestingggg::Money
+          ) -> void
+
+          def to_hash: -> {
+            id: Integer,
+            complete: bool,
+            pet_id: Integer,
+            quantity: Integer,
+            ship_date: Time,
+            status: HelloWorldTestingggg::Models::Notifications::PetInventoryLowWebhookEvent::LastOrder::status,
+            total: HelloWorldTestingggg::Money
+          }
+
+          type status = :placed | :approved | :delivered
+
+          module Status
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            PLACED: :placed
+            APPROVED: :approved
+            DELIVERED: :delivered
+
+            def self?.values: -> ::Array[HelloWorldTestingggg::Models::Notifications::PetInventoryLowWebhookEvent::LastOrder::status]
+          end
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+module HelloWorldTestingggg
+  module Resources
+    class Notifications
+      class Webhooks
+        def parse_pet: (
+          String payload,
+          headers: ::Hash[String, String],
+          ?key: String?
+        ) -> (HelloWorldTestingggg::Notifications::PetCreatedWebhookEvent
+        | HelloWorldTestingggg::Notifications::PetUpdatedWebhookEvent
+        | HelloWorldTestingggg::Notifications::PetInventoryLowWebhookEvent
+        | HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationApprovedEvent
+        | HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent)
+
+        def initialize: (client: HelloWorldTestingggg::Client) -> void
+      end
+    end
+  end
+end

@@ -9,6 +9,9 @@ module HelloWorldTestingggg
       module Inventory
       end
 
+      module Notifications
+      end
+
       module Reports
         module Inventory
         end

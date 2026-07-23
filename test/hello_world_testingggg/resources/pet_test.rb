@@ -206,6 +206,16 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
     end
   end
 
+  def test_search
+    skip("Mock server tests are disabled")
+
+    response = @hello_world_testingggg.pet.search
+
+    assert_pattern do
+      response => ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI])
+    end
+  end
+
   def test_update_with_form
     skip("Mock server tests are disabled")
 

@@ -1,0 +1,207 @@
+module HelloWorldTestingggg
+  module Models
+    module Notifications
+      type parse_pet_webhook_event =
+        HelloWorldTestingggg::Notifications::PetCreatedWebhookEvent
+        | HelloWorldTestingggg::Notifications::PetUpdatedWebhookEvent
+        | HelloWorldTestingggg::Notifications::PetInventoryLowWebhookEvent
+        | HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationApprovedEvent
+        | HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent
+
+      module ParsePetWebhookEvent
+        extend HelloWorldTestingggg::Internal::Type::Union
+
+        type pet_moderation_approved_event =
+          {
+            approved_at: Time,
+            pet: HelloWorldTestingggg::PetAPI,
+            type: HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationApprovedEvent::type_
+          }
+
+        class PetModerationApprovedEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor approved_at: Time
+
+          attr_accessor pet: HelloWorldTestingggg::PetAPI
+
+          attr_accessor type: HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationApprovedEvent::type_
+
+          def initialize: (
+            approved_at: Time,
+            pet: HelloWorldTestingggg::PetAPI,
+            type: HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationApprovedEvent::type_
+          ) -> void
+
+          def to_hash: -> {
+            approved_at: Time,
+            pet: HelloWorldTestingggg::PetAPI,
+            type: HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationApprovedEvent::type_
+          }
+
+          type type_ = :"pet.moderation.approved"
+
+          module Type
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            PET_MODERATION_APPROVED: :"pet.moderation.approved"
+
+            def self?.values: -> ::Array[HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationApprovedEvent::type_]
+          end
+        end
+
+        type pet_moderation_rejected_event =
+          {
+            pet: HelloWorldTestingggg::PetAPI,
+            reason: HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::reason,
+            type: HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::type_,
+            review_notes: ::Array[HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::ReviewNote]
+          }
+
+        class PetModerationRejectedEvent < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor pet: HelloWorldTestingggg::PetAPI
+
+          attr_accessor reason: HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::reason
+
+          attr_accessor type: HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::type_
+
+          attr_reader review_notes: ::Array[HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::ReviewNote]?
+
+          def review_notes=: (
+            ::Array[HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::ReviewNote]
+          ) -> ::Array[HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::ReviewNote]
+
+          def initialize: (
+            pet: HelloWorldTestingggg::PetAPI,
+            reason: HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::reason,
+            type: HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::type_,
+            ?review_notes: ::Array[HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::ReviewNote]
+          ) -> void
+
+          def to_hash: -> {
+            pet: HelloWorldTestingggg::PetAPI,
+            reason: HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::reason,
+            type: HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::type_,
+            review_notes: ::Array[HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::ReviewNote]
+          }
+
+          type reason = :policy_violation | :duplicate | :"unsafe-content"
+
+          module Reason
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            POLICY_VIOLATION: :policy_violation
+            DUPLICATE: :duplicate
+            UNSAFE_CONTENT: :"unsafe-content"
+
+            def self?.values: -> ::Array[HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::reason]
+          end
+
+          type type_ = :"pet.moderation.rejected"
+
+          module Type
+            extend HelloWorldTestingggg::Internal::Type::Enum
+
+            PET_MODERATION_REJECTED: :"pet.moderation.rejected"
+
+            def self?.values: -> ::Array[HelloWorldTestingggg::Models::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::type_]
+          end
+
+          type review_note =
+            {
+              message: String,
+              reviewer: HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::ReviewNote::Reviewer
+            }
+
+          class ReviewNote < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_accessor message: String
+
+            attr_reader reviewer: HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::ReviewNote::Reviewer?
+
+            def reviewer=: (
+              HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::ReviewNote::Reviewer
+            ) -> HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::ReviewNote::Reviewer
+
+            def initialize: (
+              message: String,
+              ?reviewer: HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::ReviewNote::Reviewer
+            ) -> void
+
+            def to_hash: -> {
+              message: String,
+              reviewer: HelloWorldTestingggg::Notifications::ParsePetWebhookEvent::PetModerationRejectedEvent::ReviewNote::Reviewer
+            }
+
+            type reviewer =
+              {
+                id: Integer,
+                email: String,
+                first_name: String,
+                last_name: String,
+                password: String,
+                phone: String,
+                username: String,
+                user_status: Integer
+              }
+
+            class Reviewer < HelloWorldTestingggg::Internal::Type::BaseModel
+              attr_reader id: Integer?
+
+              def id=: (Integer) -> Integer
+
+              attr_reader email: String?
+
+              def email=: (String) -> String
+
+              attr_reader first_name: String?
+
+              def first_name=: (String) -> String
+
+              attr_reader last_name: String?
+
+              def last_name=: (String) -> String
+
+              attr_reader password: String?
+
+              def password=: (String) -> String
+
+              attr_reader phone: String?
+
+              def phone=: (String) -> String
+
+              attr_reader username: String?
+
+              def username=: (String) -> String
+
+              attr_reader user_status: Integer?
+
+              def user_status=: (Integer) -> Integer
+
+              def initialize: (
+                ?id: Integer,
+                ?email: String,
+                ?first_name: String,
+                ?last_name: String,
+                ?password: String,
+                ?phone: String,
+                ?username: String,
+                ?user_status: Integer
+              ) -> void
+
+              def to_hash: -> {
+                id: Integer,
+                email: String,
+                first_name: String,
+                last_name: String,
+                password: String,
+                phone: String,
+                username: String,
+                user_status: Integer
+              }
+            end
+          end
+        end
+
+        def self?.variants: -> ::Array[HelloWorldTestingggg::Models::Notifications::parse_pet_webhook_event]
+      end
+    end
+  end
+end

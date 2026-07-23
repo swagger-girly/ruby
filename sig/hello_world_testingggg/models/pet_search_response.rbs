@@ -1,0 +1,7 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_search_response = ::Array[HelloWorldTestingggg::PetAPI]
+
+    PetSearchResponse: HelloWorldTestingggg::Internal::Type::Converter
+  end
+end

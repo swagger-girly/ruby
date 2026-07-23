@@ -211,6 +211,37 @@ module HelloWorldTestingggg
       )
       end
 
+      # Typed query-parameter probe matrix: an object-schema query param mints a typed
+      # params model, an array-of-object query param mints a singularized element type,
+      # an empty object (additionalProperties:false) stays a bare object, and a scalar
+      # stays scalar. Isolates the emitter query-parameter type-resolution branches so
+      # object/array-of-object/empty-object params are each exercised.
+      sig do
+        params(
+          filters: HelloWorldTestingggg::PetSearchParams::Filters::OrHash,
+          max_results: Integer,
+          raw_filter: T.anything,
+          tag_filters:
+            T::Array[HelloWorldTestingggg::PetSearchParams::TagFilter::OrHash],
+          request_options: HelloWorldTestingggg::RequestOptions::OrHash
+        ).returns(T::Array[HelloWorldTestingggg::PetAPI])
+      end
+      def search(
+        # Object-schema query parameter: mints a typed params model instead of collapsing
+        # to a bare object.
+        filters: nil,
+        # Scalar query parameter: stays a plain scalar (control probe).
+        max_results: nil,
+        # Empty-object query parameter (additionalProperties:false): stays a bare object,
+        # exercising the empty-object branch.
+        raw_filter: nil,
+        # Array-of-object query parameter: emitters mint a singularized element type for
+        # each item.
+        tag_filters: nil,
+        request_options: {}
+      )
+      end
+
       # Updates a pet in the store with form data
       sig do
         params(
