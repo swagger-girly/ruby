@@ -282,6 +282,42 @@ module HelloWorldTestingggg
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {HelloWorldTestingggg::Models::PetSearchParams} for more details.
+      #
+      # Typed query-parameter probe matrix: an object-schema query param mints a typed
+      # params model, an array-of-object query param mints a singularized element type,
+      # an empty object (additionalProperties:false) stays a bare object, and a scalar
+      # stays scalar. Isolates the emitter query-parameter type-resolution branches so
+      # object/array-of-object/empty-object params are each exercised.
+      #
+      # @overload search(filters: nil, max_results: nil, raw_filter: nil, tag_filters: nil, request_options: {})
+      #
+      # @param filters [HelloWorldTestingggg::Models::PetSearchParams::Filters] Object-schema query parameter: mints a typed params model instead of collapsing
+      #
+      # @param max_results [Integer] Scalar query parameter: stays a plain scalar (control probe).
+      #
+      # @param raw_filter [Object] Empty-object query parameter (additionalProperties:false): stays a bare object,
+      #
+      # @param tag_filters [Array<HelloWorldTestingggg::Models::PetSearchParams::TagFilter>] Array-of-object query parameter: emitters mint a singularized element type for e
+      #
+      # @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Array<HelloWorldTestingggg::Models::PetAPI>]
+      #
+      # @see HelloWorldTestingggg::Models::PetSearchParams
+      def search(params = {})
+        parsed, options = HelloWorldTestingggg::PetSearchParams.dump_request(params)
+        query = HelloWorldTestingggg::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: "pet/search",
+          query: query,
+          model: HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI],
+          options: options
+        )
+      end
+
       # Updates a pet in the store with form data
       #
       # @overload update_with_form(pet_id, name: nil, status: nil, request_options: {})

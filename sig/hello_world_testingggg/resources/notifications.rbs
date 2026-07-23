@@ -1,0 +1,9 @@
+module HelloWorldTestingggg
+  module Resources
+    class Notifications
+      attr_reader webhooks: HelloWorldTestingggg::Resources::Notifications::Webhooks
+
+      def initialize: (client: HelloWorldTestingggg::Client) -> void
+    end
+  end
+end

@@ -59,6 +59,8 @@ module HelloWorldTestingggg
 
   class Money = HelloWorldTestingggg::Models::Money
 
+  module Notifications = HelloWorldTestingggg::Models::Notifications
+
   module ParsedWebhookEvent = HelloWorldTestingggg::Models::ParsedWebhookEvent
 
   class PetAPI = HelloWorldTestingggg::Models::PetAPI
@@ -90,6 +92,8 @@ module HelloWorldTestingggg
   class PetRetrieveParams = HelloWorldTestingggg::Models::PetRetrieveParams
 
   class PetRetrievePremiumParams = HelloWorldTestingggg::Models::PetRetrievePremiumParams
+
+  class PetSearchParams = HelloWorldTestingggg::Models::PetSearchParams
 
   module PetStatus = HelloWorldTestingggg::Models::PetStatus
 

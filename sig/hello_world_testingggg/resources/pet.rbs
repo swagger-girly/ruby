@@ -71,6 +71,14 @@ module HelloWorldTestingggg
         ?request_options: HelloWorldTestingggg::request_opts
       ) -> HelloWorldTestingggg::Models::PetRetrievePremiumResponse
 
+      def search: (
+        ?filters: HelloWorldTestingggg::PetSearchParams::Filters,
+        ?max_results: Integer,
+        ?raw_filter: top,
+        ?tag_filters: ::Array[HelloWorldTestingggg::PetSearchParams::TagFilter],
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::pet_search_response
+
       def update_with_form: (
         Integer pet_id,
         ?name: String,

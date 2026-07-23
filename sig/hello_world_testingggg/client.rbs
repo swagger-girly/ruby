@@ -10,6 +10,10 @@ module HelloWorldTestingggg
 
     attr_reader api_key: String
 
+    attr_reader basic_auth_username: String
+
+    attr_reader basic_auth_password: String
+
     attr_reader webhook_secret: String?
 
     attr_reader pet: HelloWorldTestingggg::Resources::Pet
@@ -25,6 +29,8 @@ module HelloWorldTestingggg
     attr_reader veterinary: HelloWorldTestingggg::Resources::Veterinary
 
     attr_reader webhooks: HelloWorldTestingggg::Resources::Webhooks
+
+    attr_reader notifications: HelloWorldTestingggg::Resources::Notifications
 
     attr_reader store: HelloWorldTestingggg::Resources::Store
 
@@ -44,8 +50,14 @@ module HelloWorldTestingggg
 
     private def auth_headers: -> ::Hash[String, String]
 
+    private def auth_api_key: -> ::Hash[String, String]
+
+    private def basic_auth: -> ::Hash[String, String]
+
     def initialize: (
       ?api_key: String?,
+      ?basic_auth_username: String?,
+      ?basic_auth_password: String?,
       ?webhook_secret: String?,
       ?base_url: String?,
       ?max_retries: Integer,
