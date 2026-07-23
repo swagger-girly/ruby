@@ -178,6 +178,27 @@ module HelloWorldTestingggg
         @client.request(method: :get, path: "user/logout", model: NilClass, options: params[:request_options])
       end
 
+      # Casing probe replicating lithic: inline oneOf response whose variant is a
+      # kebab-named component (kyb-kyc-verification) so adjacent default initialisms
+      # glue into KYBKYC in the operation-scoped variant name
+      #
+      # @overload verify_identity(username, request_options: {})
+      #
+      # @param username [String]
+      # @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification, HelloWorldTestingggg::Models::UserVerifyIdentityResponse::BasicVerification]
+      #
+      # @see HelloWorldTestingggg::Models::UserVerifyIdentityParams
+      def verify_identity(username, params = {})
+        @client.request(
+          method: :post,
+          path: ["user/%1$s/verifyIdentity", username],
+          model: HelloWorldTestingggg::Models::UserVerifyIdentityResponse,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [HelloWorldTestingggg::Client]

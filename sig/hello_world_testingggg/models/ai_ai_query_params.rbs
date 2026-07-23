@@ -1,0 +1,200 @@
+module HelloWorldTestingggg
+  module Models
+    type aiai_query_params =
+      {
+        data_to_extract: ::Array[HelloWorldTestingggg::AIAIQueryParams::DataToExtract],
+        domain: String,
+        :authentication_3ds => HelloWorldTestingggg::AIAIQueryParams::Authentication3DS,
+        datapoint_object_schema: ::Hash[Symbol, HelloWorldTestingggg::Models::AIAIQueryParams::datapoint_object_schema],
+        extraction_rules: ::Array[HelloWorldTestingggg::AIAIQueryParams::ExtractionRule]
+      }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class AIAIQueryParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_accessor data_to_extract: ::Array[HelloWorldTestingggg::AIAIQueryParams::DataToExtract]
+
+      attr_accessor domain: String
+
+      attr_reader authentication_3ds: HelloWorldTestingggg::AIAIQueryParams::Authentication3DS?
+
+      def authentication_3ds=: (
+        HelloWorldTestingggg::AIAIQueryParams::Authentication3DS
+      ) -> HelloWorldTestingggg::AIAIQueryParams::Authentication3DS
+
+      attr_reader datapoint_object_schema: ::Hash[Symbol, HelloWorldTestingggg::Models::AIAIQueryParams::datapoint_object_schema]?
+
+      def datapoint_object_schema=: (
+        ::Hash[Symbol, HelloWorldTestingggg::Models::AIAIQueryParams::datapoint_object_schema]
+      ) -> ::Hash[Symbol, HelloWorldTestingggg::Models::AIAIQueryParams::datapoint_object_schema]
+
+      attr_reader extraction_rules: ::Array[HelloWorldTestingggg::AIAIQueryParams::ExtractionRule]?
+
+      def extraction_rules=: (
+        ::Array[HelloWorldTestingggg::AIAIQueryParams::ExtractionRule]
+      ) -> ::Array[HelloWorldTestingggg::AIAIQueryParams::ExtractionRule]
+
+      def initialize: (
+        data_to_extract: ::Array[HelloWorldTestingggg::AIAIQueryParams::DataToExtract],
+        domain: String,
+        ?authentication_3ds: HelloWorldTestingggg::AIAIQueryParams::Authentication3DS,
+        ?datapoint_object_schema: ::Hash[Symbol, HelloWorldTestingggg::Models::AIAIQueryParams::datapoint_object_schema],
+        ?extraction_rules: ::Array[HelloWorldTestingggg::AIAIQueryParams::ExtractionRule],
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        data_to_extract: ::Array[HelloWorldTestingggg::AIAIQueryParams::DataToExtract],
+        domain: String,
+        :authentication_3ds => HelloWorldTestingggg::AIAIQueryParams::Authentication3DS,
+        datapoint_object_schema: ::Hash[Symbol, HelloWorldTestingggg::Models::AIAIQueryParams::datapoint_object_schema],
+        extraction_rules: ::Array[HelloWorldTestingggg::AIAIQueryParams::ExtractionRule],
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+
+      type data_to_extract =
+        {
+          datapoint_name: String,
+          datapoint_type: HelloWorldTestingggg::Models::AIAIQueryParams::DataToExtract::datapoint_type
+        }
+
+      class DataToExtract < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_accessor datapoint_name: String
+
+        attr_reader datapoint_type: HelloWorldTestingggg::Models::AIAIQueryParams::DataToExtract::datapoint_type?
+
+        def datapoint_type=: (
+          HelloWorldTestingggg::Models::AIAIQueryParams::DataToExtract::datapoint_type
+        ) -> HelloWorldTestingggg::Models::AIAIQueryParams::DataToExtract::datapoint_type
+
+        def initialize: (
+          datapoint_name: String,
+          ?datapoint_type: HelloWorldTestingggg::Models::AIAIQueryParams::DataToExtract::datapoint_type
+        ) -> void
+
+        def to_hash: -> {
+          datapoint_name: String,
+          datapoint_type: HelloWorldTestingggg::Models::AIAIQueryParams::DataToExtract::datapoint_type
+        }
+
+        type datapoint_type = :text | :number
+
+        module DatapointType
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          TEXT: :text
+          NUMBER: :number
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::AIAIQueryParams::DataToExtract::datapoint_type]
+        end
+      end
+
+      type authentication3_ds =
+        {
+          challenge_rules: ::Array[HelloWorldTestingggg::AIAIQueryParams::Authentication3DS::ChallengeRule],
+          fallback_check: ::Array[HelloWorldTestingggg::AIAIQueryParams::Authentication3DS::FallbackCheck]
+        }
+
+      class Authentication3DS < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader challenge_rules: ::Array[HelloWorldTestingggg::AIAIQueryParams::Authentication3DS::ChallengeRule]?
+
+        def challenge_rules=: (
+          ::Array[HelloWorldTestingggg::AIAIQueryParams::Authentication3DS::ChallengeRule]
+        ) -> ::Array[HelloWorldTestingggg::AIAIQueryParams::Authentication3DS::ChallengeRule]
+
+        attr_reader fallback_check: ::Array[HelloWorldTestingggg::AIAIQueryParams::Authentication3DS::FallbackCheck]?
+
+        def fallback_check=: (
+          ::Array[HelloWorldTestingggg::AIAIQueryParams::Authentication3DS::FallbackCheck]
+        ) -> ::Array[HelloWorldTestingggg::AIAIQueryParams::Authentication3DS::FallbackCheck]
+
+        def initialize: (
+          ?challenge_rules: ::Array[HelloWorldTestingggg::AIAIQueryParams::Authentication3DS::ChallengeRule],
+          ?fallback_check: ::Array[HelloWorldTestingggg::AIAIQueryParams::Authentication3DS::FallbackCheck]
+        ) -> void
+
+        def to_hash: -> {
+          challenge_rules: ::Array[HelloWorldTestingggg::AIAIQueryParams::Authentication3DS::ChallengeRule],
+          fallback_check: ::Array[HelloWorldTestingggg::AIAIQueryParams::Authentication3DS::FallbackCheck]
+        }
+
+        type challenge_rule = { challenge_kind: String }
+
+        class ChallengeRule < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader challenge_kind: String?
+
+          def challenge_kind=: (String) -> String
+
+          def initialize: (?challenge_kind: String) -> void
+
+          def to_hash: -> { challenge_kind: String }
+        end
+
+        type fallback_check = { check_name: String }
+
+        class FallbackCheck < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader check_name: String?
+
+          def check_name=: (String) -> String
+
+          def initialize: (?check_name: String) -> void
+
+          def to_hash: -> { check_name: String }
+        end
+      end
+
+      type datapoint_object_schema = :string | :number | :boolean
+
+      module DatapointObjectSchema
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        STRING: :string
+        NUMBER: :number
+        BOOLEAN: :boolean
+
+        def self?.values: -> ::Array[HelloWorldTestingggg::Models::AIAIQueryParams::datapoint_object_schema]
+      end
+
+      type extraction_rule =
+        {
+          rule_name: String,
+          rule_severity: HelloWorldTestingggg::Models::AIAIQueryParams::ExtractionRule::rule_severity
+        }
+
+      class ExtractionRule < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader rule_name: String?
+
+        def rule_name=: (String) -> String
+
+        attr_reader rule_severity: HelloWorldTestingggg::Models::AIAIQueryParams::ExtractionRule::rule_severity?
+
+        def rule_severity=: (
+          HelloWorldTestingggg::Models::AIAIQueryParams::ExtractionRule::rule_severity
+        ) -> HelloWorldTestingggg::Models::AIAIQueryParams::ExtractionRule::rule_severity
+
+        def initialize: (
+          ?rule_name: String,
+          ?rule_severity: HelloWorldTestingggg::Models::AIAIQueryParams::ExtractionRule::rule_severity
+        ) -> void
+
+        def to_hash: -> {
+          rule_name: String,
+          rule_severity: HelloWorldTestingggg::Models::AIAIQueryParams::ExtractionRule::rule_severity
+        }
+
+        type rule_severity = :low | :high
+
+        module RuleSeverity
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          LOW: :low
+          HIGH: :high
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::AIAIQueryParams::ExtractionRule::rule_severity]
+        end
+      end
+    end
+  end
+end

@@ -111,4 +111,21 @@ class HelloWorldTestingggg::Test::Resources::UserTest < HelloWorldTestingggg::Te
       response => nil
     end
   end
+
+  def test_verify_identity
+    skip("Mock server tests are disabled")
+
+    response = @hello_world_testingggg.user.verify_identity("username")
+
+    assert_pattern do
+      response => HelloWorldTestingggg::Models::UserVerifyIdentityResponse
+    end
+
+    assert_pattern do
+      case response
+      in HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification
+      in HelloWorldTestingggg::Models::UserVerifyIdentityResponse::BasicVerification
+      end
+    end
+  end
 end

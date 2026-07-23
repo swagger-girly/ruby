@@ -49,6 +49,11 @@ module HelloWorldTestingggg
 
       def logout: (?request_options: HelloWorldTestingggg::request_opts) -> nil
 
+      def verify_identity: (
+        String username,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::user_verify_identity_response
+
       def initialize: (client: HelloWorldTestingggg::Client) -> void
     end
   end

@@ -54,6 +54,8 @@ module HelloWorldTestingggg
 
   AdoptionsPolicyChangedWebhookEvent = HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent
 
+  AIAIQueryParams = HelloWorldTestingggg::Models::AIAIQueryParams
+
   Application = HelloWorldTestingggg::Models::Application
 
   Archive = HelloWorldTestingggg::Models::Archive
@@ -193,6 +195,8 @@ module HelloWorldTestingggg
   UserRetrieveParams = HelloWorldTestingggg::Models::UserRetrieveParams
 
   UserUpdateParams = HelloWorldTestingggg::Models::UserUpdateParams
+
+  UserVerifyIdentityParams = HelloWorldTestingggg::Models::UserVerifyIdentityParams
 
   VaccinationRecord = HelloWorldTestingggg::Models::VaccinationRecord
 
