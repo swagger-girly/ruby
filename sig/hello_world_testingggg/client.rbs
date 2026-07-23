@@ -30,6 +30,8 @@ module HelloWorldTestingggg
 
     attr_reader user: HelloWorldTestingggg::Resources::User
 
+    attr_reader ai: HelloWorldTestingggg::Resources::AI
+
     attr_reader media: HelloWorldTestingggg::Resources::Media
 
     def health: (

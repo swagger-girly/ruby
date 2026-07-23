@@ -56,6 +56,9 @@ module HelloWorldTestingggg
     # @return [HelloWorldTestingggg::Resources::User]
     attr_reader :user
 
+    # @return [HelloWorldTestingggg::Resources::AI]
+    attr_reader :ai
+
     # @return [HelloWorldTestingggg::Resources::Media]
     attr_reader :media
 
@@ -168,6 +171,7 @@ module HelloWorldTestingggg
       @webhooks = HelloWorldTestingggg::Resources::Webhooks.new(client: self)
       @store = HelloWorldTestingggg::Resources::Store.new(client: self)
       @user = HelloWorldTestingggg::Resources::User.new(client: self)
+      @ai = HelloWorldTestingggg::Resources::AI.new(client: self)
       @media = HelloWorldTestingggg::Resources::Media.new(client: self)
     end
   end

@@ -130,6 +130,20 @@ module HelloWorldTestingggg
       def logout(request_options: {})
       end
 
+      # Casing probe replicating lithic: inline oneOf response whose variant is a
+      # kebab-named component (kyb-kyc-verification) so adjacent default initialisms
+      # glue into KYBKYC in the operation-scoped variant name
+      sig do
+        params(
+          username: String,
+          request_options: HelloWorldTestingggg::RequestOptions::OrHash
+        ).returns(
+          HelloWorldTestingggg::Models::UserVerifyIdentityResponse::Variants
+        )
+      end
+      def verify_identity(username, request_options: {})
+      end
+
       # @api private
       sig do
         params(client: HelloWorldTestingggg::Client).returns(T.attached_class)

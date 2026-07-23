@@ -1,0 +1,153 @@
+module HelloWorldTestingggg
+  module Models
+    type user_verify_identity_response =
+      HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification
+      | HelloWorldTestingggg::Models::UserVerifyIdentityResponse::BasicVerification
+
+    module UserVerifyIdentityResponse
+      extend HelloWorldTestingggg::Internal::Type::Union
+
+      type kybkyc_verification =
+        {
+          token: String,
+          beneficial_owner_individuals: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::BeneficialOwnerIndividual],
+          status_reasons: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::StatusReason],
+          verification_application: HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationApplication,
+          verification_document: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationDocument]
+        }
+
+      class KYBKYCVerification < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader token: String?
+
+        def token=: (String) -> String
+
+        attr_reader beneficial_owner_individuals: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::BeneficialOwnerIndividual]?
+
+        def beneficial_owner_individuals=: (
+          ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::BeneficialOwnerIndividual]
+        ) -> ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::BeneficialOwnerIndividual]
+
+        attr_reader status_reasons: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::StatusReason]?
+
+        def status_reasons=: (
+          ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::StatusReason]
+        ) -> ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::StatusReason]
+
+        attr_reader verification_application: HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationApplication?
+
+        def verification_application=: (
+          HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationApplication
+        ) -> HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationApplication
+
+        attr_reader verification_document: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationDocument]?
+
+        def verification_document=: (
+          ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationDocument]
+        ) -> ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationDocument]
+
+        def initialize: (
+          ?token: String,
+          ?beneficial_owner_individuals: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::BeneficialOwnerIndividual],
+          ?status_reasons: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::StatusReason],
+          ?verification_application: HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationApplication,
+          ?verification_document: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationDocument]
+        ) -> void
+
+        def to_hash: -> {
+          token: String,
+          beneficial_owner_individuals: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::BeneficialOwnerIndividual],
+          status_reasons: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::StatusReason],
+          verification_application: HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationApplication,
+          verification_document: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationDocument]
+        }
+
+        type beneficial_owner_individual = { owner_name: String }
+
+        class BeneficialOwnerIndividual < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader owner_name: String?
+
+          def owner_name=: (String) -> String
+
+          def initialize: (?owner_name: String) -> void
+
+          def to_hash: -> { owner_name: String }
+        end
+
+        type status_reason = { reason_code: String }
+
+        class StatusReason < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader reason_code: String?
+
+          def reason_code=: (String) -> String
+
+          def initialize: (?reason_code: String) -> void
+
+          def to_hash: -> { reason_code: String }
+        end
+
+        type verification_application =
+          {
+            status_reasons: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationApplication::StatusReason]
+          }
+
+        class VerificationApplication < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader status_reasons: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationApplication::StatusReason]?
+
+          def status_reasons=: (
+            ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationApplication::StatusReason]
+          ) -> ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationApplication::StatusReason]
+
+          def initialize: (
+            ?status_reasons: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationApplication::StatusReason]
+          ) -> void
+
+          def to_hash: -> {
+            status_reasons: ::Array[HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification::VerificationApplication::StatusReason]
+          }
+
+          type status_reason = { application_note: String }
+
+          class StatusReason < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_reader application_note: String?
+
+            def application_note=: (String) -> String
+
+            def initialize: (?application_note: String) -> void
+
+            def to_hash: -> { application_note: String }
+          end
+        end
+
+        type verification_document = { document_id: String }
+
+        class VerificationDocument < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_reader document_id: String?
+
+          def document_id=: (String) -> String
+
+          def initialize: (?document_id: String) -> void
+
+          def to_hash: -> { document_id: String }
+        end
+      end
+
+      type basic_verification = { token: String, verified: bool }
+
+      class BasicVerification < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader token: String?
+
+        def token=: (String) -> String
+
+        attr_reader verified: bool?
+
+        def verified=: (bool) -> bool
+
+        def initialize: (?token: String, ?verified: bool) -> void
+
+        def to_hash: -> { token: String, verified: bool }
+      end
+
+      def self?.variants: -> ::Array[HelloWorldTestingggg::Models::user_verify_identity_response]
+    end
+  end
+end
