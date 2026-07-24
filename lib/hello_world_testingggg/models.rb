@@ -126,6 +126,8 @@ module HelloWorldTestingggg
 
   PetListFakePageParams = HelloWorldTestingggg::Models::PetListFakePageParams
 
+  PetListLeaderboardParams = HelloWorldTestingggg::Models::PetListLeaderboardParams
+
   PetListParams = HelloWorldTestingggg::Models::PetListParams
 
   PetListUnpaginatedParams = HelloWorldTestingggg::Models::PetListUnpaginatedParams

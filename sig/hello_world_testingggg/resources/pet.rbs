@@ -60,6 +60,10 @@ module HelloWorldTestingggg
         ?request_options: HelloWorldTestingggg::request_opts
       ) -> HelloWorldTestingggg::Internal::XFakeSinglePage[HelloWorldTestingggg::PetAPI]
 
+      def list_leaderboard: (
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::pet_list_leaderboard_response
+
       def list_unpaginated: (
         ?cursor: String,
         ?limit: Integer,

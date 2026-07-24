@@ -179,6 +179,16 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
     end
   end
 
+  def test_list_leaderboard
+    skip("Mock server tests are disabled")
+
+    response = @hello_world_testingggg.pet.list_leaderboard
+
+    assert_pattern do
+      response => ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::Models::PetListLeaderboardResponseItem])
+    end
+  end
+
   def test_list_unpaginated
     skip("Mock server tests are disabled")
 
