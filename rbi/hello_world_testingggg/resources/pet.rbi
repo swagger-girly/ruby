@@ -178,6 +178,18 @@ module HelloWorldTestingggg
       def list_fake_page_inferred(request_options: {})
       end
 
+      # Returns a bare top-level array of inline objects so generators must mint a
+      # distinct element type instead of reusing the response alias name.
+      sig do
+        params(
+          request_options: HelloWorldTestingggg::RequestOptions::OrHash
+        ).returns(
+          T::Array[HelloWorldTestingggg::Models::PetListLeaderboardResponseItem]
+        )
+      end
+      def list_leaderboard(request_options: {})
+      end
+
       # Returns the same cursor-shaped pet list response without enabling SDK pagination
       # helpers.
       sig do

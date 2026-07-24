@@ -235,6 +235,25 @@ module HelloWorldTestingggg
         )
       end
 
+      # Returns a bare top-level array of inline objects so generators must mint a
+      # distinct element type instead of reusing the response alias name.
+      #
+      # @overload list_leaderboard(request_options: {})
+      #
+      # @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Array<HelloWorldTestingggg::Models::PetListLeaderboardResponseItem>]
+      #
+      # @see HelloWorldTestingggg::Models::PetListLeaderboardParams
+      def list_leaderboard(params = {})
+        @client.request(
+          method: :get,
+          path: "pet/leaderboard",
+          model: HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::Models::PetListLeaderboardResponseItem],
+          options: params[:request_options]
+        )
+      end
+
       # Returns the same cursor-shaped pet list response without enabling SDK pagination
       # helpers.
       #
