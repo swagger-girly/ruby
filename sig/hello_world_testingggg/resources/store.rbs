@@ -9,6 +9,11 @@ module HelloWorldTestingggg
         ?request_options: HelloWorldTestingggg::request_opts
       ) -> HelloWorldTestingggg::Models::store_list_inventory_response
 
+      def retrieve_activity: (
+        String activity_id,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::store_retrieve_activity_response
+
       def initialize: (client: HelloWorldTestingggg::Client) -> void
     end
   end

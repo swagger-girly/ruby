@@ -178,6 +178,8 @@ require_relative "hello_world_testingggg/models/store/reports/inventory_list_par
 require_relative "hello_world_testingggg/models/store_list_inventory_params"
 require_relative "hello_world_testingggg/models/store_list_inventory_response"
 require_relative "hello_world_testingggg/models/store_report_generated_webhook_event"
+require_relative "hello_world_testingggg/models/store_retrieve_activity_params"
+require_relative "hello_world_testingggg/models/store_retrieve_activity_response"
 require_relative "hello_world_testingggg/models/system_health"
 require_relative "hello_world_testingggg/models/transfer_leg"
 require_relative "hello_world_testingggg/models/user_create_params"

@@ -141,6 +141,8 @@ module HelloWorldTestingggg
 
   class StoreReportGeneratedWebhookEvent = HelloWorldTestingggg::Models::StoreReportGeneratedWebhookEvent
 
+  class StoreRetrieveActivityParams = HelloWorldTestingggg::Models::StoreRetrieveActivityParams
+
   class SystemHealth = HelloWorldTestingggg::Models::SystemHealth
 
   class TransferLeg = HelloWorldTestingggg::Models::TransferLeg
