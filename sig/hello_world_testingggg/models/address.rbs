@@ -4,6 +4,14 @@ module HelloWorldTestingggg
       {
         city: String,
         geo: HelloWorldTestingggg::Address::Geo,
+        related_category: top,
+        related_customer: top,
+        related_money: HelloWorldTestingggg::Money,
+        related_order: top,
+        related_pet: HelloWorldTestingggg::PetAPI,
+        related_shelter: top,
+        related_tag: top,
+        related_user: top,
         state: String,
         street: String,
         zip: String
@@ -20,6 +28,42 @@ module HelloWorldTestingggg
         HelloWorldTestingggg::Address::Geo
       ) -> HelloWorldTestingggg::Address::Geo
 
+      attr_reader related_category: top?
+
+      def related_category=: (top) -> top
+
+      attr_reader related_customer: top?
+
+      def related_customer=: (top) -> top
+
+      attr_reader related_money: HelloWorldTestingggg::Money?
+
+      def related_money=: (
+        HelloWorldTestingggg::Money
+      ) -> HelloWorldTestingggg::Money
+
+      attr_reader related_order: top?
+
+      def related_order=: (top) -> top
+
+      attr_reader related_pet: HelloWorldTestingggg::PetAPI?
+
+      def related_pet=: (
+        HelloWorldTestingggg::PetAPI
+      ) -> HelloWorldTestingggg::PetAPI
+
+      attr_reader related_shelter: top?
+
+      def related_shelter=: (top) -> top
+
+      attr_reader related_tag: top?
+
+      def related_tag=: (top) -> top
+
+      attr_reader related_user: top?
+
+      def related_user=: (top) -> top
+
       attr_reader state: String?
 
       def state=: (String) -> String
@@ -35,6 +79,14 @@ module HelloWorldTestingggg
       def initialize: (
         ?city: String,
         ?geo: HelloWorldTestingggg::Address::Geo,
+        ?related_category: top,
+        ?related_customer: top,
+        ?related_money: HelloWorldTestingggg::Money,
+        ?related_order: top,
+        ?related_pet: HelloWorldTestingggg::PetAPI,
+        ?related_shelter: top,
+        ?related_tag: top,
+        ?related_user: top,
         ?state: String,
         ?street: String,
         ?zip: String
@@ -43,6 +95,14 @@ module HelloWorldTestingggg
       def to_hash: -> {
         city: String,
         geo: HelloWorldTestingggg::Address::Geo,
+        related_category: top,
+        related_customer: top,
+        related_money: HelloWorldTestingggg::Money,
+        related_order: top,
+        related_pet: HelloWorldTestingggg::PetAPI,
+        related_shelter: top,
+        related_tag: top,
+        related_user: top,
         state: String,
         street: String,
         zip: String

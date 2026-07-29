@@ -7,7 +7,7 @@ module HelloWorldTestingggg
       class Order
         # Place a new order in the store
         #
-        # @overload create(id: nil, complete: nil, pet_id: nil, quantity: nil, ship_date: nil, status: nil, total: nil, request_options: {})
+        # @overload create(id: nil, complete: nil, pet_id: nil, quantity: nil, related_address: nil, related_category: nil, related_customer: nil, related_money: nil, related_pet: nil, related_shelter: nil, related_tag: nil, related_user: nil, ship_date: nil, status: nil, total: nil, request_options: {})
         #
         # @param id [Integer]
         #
@@ -16,6 +16,22 @@ module HelloWorldTestingggg
         # @param pet_id [Integer]
         #
         # @param quantity [Integer]
+        #
+        # @param related_address [HelloWorldTestingggg::Models::Address]
+        #
+        # @param related_category [Object]
+        #
+        # @param related_customer [Object]
+        #
+        # @param related_money [HelloWorldTestingggg::Models::Money]
+        #
+        # @param related_pet [HelloWorldTestingggg::Models::PetAPI]
+        #
+        # @param related_shelter [Object]
+        #
+        # @param related_tag [Object]
+        #
+        # @param related_user [Object]
         #
         # @param ship_date [Time]
         #

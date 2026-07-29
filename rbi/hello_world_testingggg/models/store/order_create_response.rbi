@@ -36,6 +36,56 @@ module HelloWorldTestingggg
         sig { params(quantity: Integer).void }
         attr_writer :quantity
 
+        sig { returns(T.nilable(HelloWorldTestingggg::Address)) }
+        attr_reader :related_address
+
+        sig do
+          params(related_address: HelloWorldTestingggg::Address::OrHash).void
+        end
+        attr_writer :related_address
+
+        sig { returns(T.nilable(T.anything)) }
+        attr_reader :related_category
+
+        sig { params(related_category: T.anything).void }
+        attr_writer :related_category
+
+        sig { returns(T.nilable(T.anything)) }
+        attr_reader :related_customer
+
+        sig { params(related_customer: T.anything).void }
+        attr_writer :related_customer
+
+        sig { returns(T.nilable(HelloWorldTestingggg::Money)) }
+        attr_reader :related_money
+
+        sig { params(related_money: HelloWorldTestingggg::Money::OrHash).void }
+        attr_writer :related_money
+
+        sig { returns(T.nilable(HelloWorldTestingggg::PetAPI)) }
+        attr_reader :related_pet
+
+        sig { params(related_pet: HelloWorldTestingggg::PetAPI::OrHash).void }
+        attr_writer :related_pet
+
+        sig { returns(T.nilable(T.anything)) }
+        attr_reader :related_shelter
+
+        sig { params(related_shelter: T.anything).void }
+        attr_writer :related_shelter
+
+        sig { returns(T.nilable(T.anything)) }
+        attr_reader :related_tag
+
+        sig { params(related_tag: T.anything).void }
+        attr_writer :related_tag
+
+        sig { returns(T.nilable(T.anything)) }
+        attr_reader :related_user
+
+        sig { params(related_user: T.anything).void }
+        attr_writer :related_user
+
         sig { returns(T.nilable(Time)) }
         attr_reader :ship_date
 
@@ -72,6 +122,14 @@ module HelloWorldTestingggg
             complete: T::Boolean,
             pet_id: Integer,
             quantity: Integer,
+            related_address: HelloWorldTestingggg::Address::OrHash,
+            related_category: T.anything,
+            related_customer: T.anything,
+            related_money: HelloWorldTestingggg::Money::OrHash,
+            related_pet: HelloWorldTestingggg::PetAPI::OrHash,
+            related_shelter: T.anything,
+            related_tag: T.anything,
+            related_user: T.anything,
             ship_date: Time,
             status:
               HelloWorldTestingggg::Models::Store::OrderCreateResponse::Status::OrSymbol,
@@ -83,6 +141,14 @@ module HelloWorldTestingggg
           complete: nil,
           pet_id: nil,
           quantity: nil,
+          related_address: nil,
+          related_category: nil,
+          related_customer: nil,
+          related_money: nil,
+          related_pet: nil,
+          related_shelter: nil,
+          related_tag: nil,
+          related_user: nil,
           ship_date: nil,
           # Order Status
           status: nil,
@@ -97,6 +163,14 @@ module HelloWorldTestingggg
               complete: T::Boolean,
               pet_id: Integer,
               quantity: Integer,
+              related_address: HelloWorldTestingggg::Address,
+              related_category: T.anything,
+              related_customer: T.anything,
+              related_money: HelloWorldTestingggg::Money,
+              related_pet: HelloWorldTestingggg::PetAPI,
+              related_shelter: T.anything,
+              related_tag: T.anything,
+              related_user: T.anything,
               ship_date: Time,
               status:
                 HelloWorldTestingggg::Models::Store::OrderCreateResponse::Status::TaggedSymbol,

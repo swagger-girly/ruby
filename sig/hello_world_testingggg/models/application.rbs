@@ -166,7 +166,15 @@ module HelloWorldTestingggg
               name: String,
               address: HelloWorldTestingggg::Address,
               contact: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact,
-              location: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location
+              location: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location,
+              related_address: HelloWorldTestingggg::Address,
+              related_category: top,
+              related_customer: top,
+              related_money: HelloWorldTestingggg::Money,
+              related_order: top,
+              related_pet: HelloWorldTestingggg::PetAPI,
+              related_tag: top,
+              related_user: top
             }
 
           class Shelter < HelloWorldTestingggg::Internal::Type::BaseModel
@@ -190,18 +198,72 @@ module HelloWorldTestingggg
               HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location
             ) -> HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location
 
+            attr_reader related_address: HelloWorldTestingggg::Address?
+
+            def related_address=: (
+              HelloWorldTestingggg::Address
+            ) -> HelloWorldTestingggg::Address
+
+            attr_reader related_category: top?
+
+            def related_category=: (top) -> top
+
+            attr_reader related_customer: top?
+
+            def related_customer=: (top) -> top
+
+            attr_reader related_money: HelloWorldTestingggg::Money?
+
+            def related_money=: (
+              HelloWorldTestingggg::Money
+            ) -> HelloWorldTestingggg::Money
+
+            attr_reader related_order: top?
+
+            def related_order=: (top) -> top
+
+            attr_reader related_pet: HelloWorldTestingggg::PetAPI?
+
+            def related_pet=: (
+              HelloWorldTestingggg::PetAPI
+            ) -> HelloWorldTestingggg::PetAPI
+
+            attr_reader related_tag: top?
+
+            def related_tag=: (top) -> top
+
+            attr_reader related_user: top?
+
+            def related_user=: (top) -> top
+
             def initialize: (
               name: String,
               ?address: HelloWorldTestingggg::Address,
               ?contact: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact,
-              ?location: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location
+              ?location: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location,
+              ?related_address: HelloWorldTestingggg::Address,
+              ?related_category: top,
+              ?related_customer: top,
+              ?related_money: HelloWorldTestingggg::Money,
+              ?related_order: top,
+              ?related_pet: HelloWorldTestingggg::PetAPI,
+              ?related_tag: top,
+              ?related_user: top
             ) -> void
 
             def to_hash: -> {
               name: String,
               address: HelloWorldTestingggg::Address,
               contact: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact,
-              location: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location
+              location: HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location,
+              related_address: HelloWorldTestingggg::Address,
+              related_category: top,
+              related_customer: top,
+              related_money: HelloWorldTestingggg::Money,
+              related_order: top,
+              related_pet: HelloWorldTestingggg::PetAPI,
+              related_tag: top,
+              related_user: top
             }
 
             type contact =
