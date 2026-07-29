@@ -299,7 +299,7 @@ module HelloWorldTestingggg
             sig { returns(T.nilable(HelloWorldTestingggg::Address)) }
             attr_reader :address
 
-            sig { params(address: HelloWorldTestingggg::Address::OrHash).void }
+            sig { params(address: HelloWorldTestingggg::Address).void }
             attr_writer :address
 
             sig do
@@ -336,17 +336,86 @@ module HelloWorldTestingggg
             end
             attr_writer :location
 
+            sig { returns(T.nilable(HelloWorldTestingggg::Address)) }
+            attr_reader :related_address
+
+            sig { params(related_address: HelloWorldTestingggg::Address).void }
+            attr_writer :related_address
+
+            sig { returns(T.nilable(T.anything)) }
+            attr_reader :related_category
+
+            sig { params(related_category: T.anything).void }
+            attr_writer :related_category
+
+            sig { returns(T.nilable(T.anything)) }
+            attr_reader :related_customer
+
+            sig { params(related_customer: T.anything).void }
+            attr_writer :related_customer
+
+            sig { returns(T.nilable(HelloWorldTestingggg::Money)) }
+            attr_reader :related_money
+
+            sig { params(related_money: HelloWorldTestingggg::Money).void }
+            attr_writer :related_money
+
+            sig { returns(T.nilable(T.anything)) }
+            attr_reader :related_order
+
+            sig { params(related_order: T.anything).void }
+            attr_writer :related_order
+
+            sig { returns(T.nilable(HelloWorldTestingggg::PetAPI)) }
+            attr_reader :related_pet
+
+            sig { params(related_pet: HelloWorldTestingggg::PetAPI).void }
+            attr_writer :related_pet
+
+            sig { returns(T.nilable(T.anything)) }
+            attr_reader :related_tag
+
+            sig { params(related_tag: T.anything).void }
+            attr_writer :related_tag
+
+            sig { returns(T.nilable(T.anything)) }
+            attr_reader :related_user
+
+            sig { params(related_user: T.anything).void }
+            attr_writer :related_user
+
             sig do
               params(
                 name: String,
-                address: HelloWorldTestingggg::Address::OrHash,
+                address: HelloWorldTestingggg::Address,
                 contact:
                   HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact::OrHash,
                 location:
-                  HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location::OrHash
+                  HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location::OrHash,
+                related_address: HelloWorldTestingggg::Address,
+                related_category: T.anything,
+                related_customer: T.anything,
+                related_money: HelloWorldTestingggg::Money,
+                related_order: T.anything,
+                related_pet: HelloWorldTestingggg::PetAPI,
+                related_tag: T.anything,
+                related_user: T.anything
               ).returns(T.attached_class)
             end
-            def self.new(name:, address: nil, contact: nil, location: nil)
+            def self.new(
+              name:,
+              address: nil,
+              contact: nil,
+              location: nil,
+              related_address: nil,
+              related_category: nil,
+              related_customer: nil,
+              related_money: nil,
+              related_order: nil,
+              related_pet: nil,
+              related_tag: nil,
+              related_user: nil
+            )
             end
 
             sig do
@@ -357,7 +426,15 @@ module HelloWorldTestingggg
                   contact:
                     HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Contact,
                   location:
-                    HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location
+                    HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location,
+                  related_address: HelloWorldTestingggg::Address,
+                  related_category: T.anything,
+                  related_customer: T.anything,
+                  related_money: HelloWorldTestingggg::Money,
+                  related_order: T.anything,
+                  related_pet: HelloWorldTestingggg::PetAPI,
+                  related_tag: T.anything,
+                  related_user: T.anything
                 }
               )
             end

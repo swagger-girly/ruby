@@ -7,6 +7,14 @@ module HelloWorldTestingggg
           complete: bool,
           pet_id: Integer,
           quantity: Integer,
+          related_address: HelloWorldTestingggg::Address,
+          related_category: top,
+          related_customer: top,
+          related_money: HelloWorldTestingggg::Money,
+          related_pet: HelloWorldTestingggg::PetAPI,
+          related_shelter: top,
+          related_tag: top,
+          related_user: top,
           ship_date: Time,
           status: HelloWorldTestingggg::Models::Store::OrderRetrieveResponse::status,
           total: HelloWorldTestingggg::Money
@@ -29,6 +37,44 @@ module HelloWorldTestingggg
 
         def quantity=: (Integer) -> Integer
 
+        attr_reader related_address: HelloWorldTestingggg::Address?
+
+        def related_address=: (
+          HelloWorldTestingggg::Address
+        ) -> HelloWorldTestingggg::Address
+
+        attr_reader related_category: top?
+
+        def related_category=: (top) -> top
+
+        attr_reader related_customer: top?
+
+        def related_customer=: (top) -> top
+
+        attr_reader related_money: HelloWorldTestingggg::Money?
+
+        def related_money=: (
+          HelloWorldTestingggg::Money
+        ) -> HelloWorldTestingggg::Money
+
+        attr_reader related_pet: HelloWorldTestingggg::PetAPI?
+
+        def related_pet=: (
+          HelloWorldTestingggg::PetAPI
+        ) -> HelloWorldTestingggg::PetAPI
+
+        attr_reader related_shelter: top?
+
+        def related_shelter=: (top) -> top
+
+        attr_reader related_tag: top?
+
+        def related_tag=: (top) -> top
+
+        attr_reader related_user: top?
+
+        def related_user=: (top) -> top
+
         attr_reader ship_date: Time?
 
         def ship_date=: (Time) -> Time
@@ -48,6 +94,14 @@ module HelloWorldTestingggg
           ?complete: bool,
           ?pet_id: Integer,
           ?quantity: Integer,
+          ?related_address: HelloWorldTestingggg::Address,
+          ?related_category: top,
+          ?related_customer: top,
+          ?related_money: HelloWorldTestingggg::Money,
+          ?related_pet: HelloWorldTestingggg::PetAPI,
+          ?related_shelter: top,
+          ?related_tag: top,
+          ?related_user: top,
           ?ship_date: Time,
           ?status: HelloWorldTestingggg::Models::Store::OrderRetrieveResponse::status,
           ?total: HelloWorldTestingggg::Money
@@ -58,6 +112,14 @@ module HelloWorldTestingggg
           complete: bool,
           pet_id: Integer,
           quantity: Integer,
+          related_address: HelloWorldTestingggg::Address,
+          related_category: top,
+          related_customer: top,
+          related_money: HelloWorldTestingggg::Money,
+          related_pet: HelloWorldTestingggg::PetAPI,
+          related_shelter: top,
+          related_tag: top,
+          related_user: top,
           ship_date: Time,
           status: HelloWorldTestingggg::Models::Store::OrderRetrieveResponse::status,
           total: HelloWorldTestingggg::Money

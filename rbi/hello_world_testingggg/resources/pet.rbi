@@ -17,6 +17,16 @@ module HelloWorldTestingggg
             ),
           category: HelloWorldTestingggg::PetAPI::Category::OrHash,
           microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
+          related_address: HelloWorldTestingggg::Address::OrHash,
+          related_category:
+            HelloWorldTestingggg::PetAPI::RelatedCategory::OrHash,
+          related_customer:
+            HelloWorldTestingggg::PetAPI::RelatedCustomer::OrHash,
+          related_money: HelloWorldTestingggg::Money::OrHash,
+          related_order: HelloWorldTestingggg::PetAPI::RelatedOrder::OrHash,
+          related_pet: HelloWorldTestingggg::PetAPI::OrHash,
+          related_shelter: HelloWorldTestingggg::PetAPI::RelatedShelter::OrHash,
+          related_user: HelloWorldTestingggg::PetAPI::RelatedUser::OrHash,
           status: HelloWorldTestingggg::PetStatus::OrSymbol,
           tags: T::Array[HelloWorldTestingggg::PetAPI::Tag::OrHash],
           request_options: HelloWorldTestingggg::RequestOptions::OrHash
@@ -32,6 +42,14 @@ module HelloWorldTestingggg
         category: nil,
         # Microchip identifier; legacy chips used numeric identifiers.
         microchip_id: nil,
+        related_address: nil,
+        related_category: nil,
+        related_customer: nil,
+        related_money: nil,
+        related_order: nil,
+        related_pet: nil,
+        related_shelter: nil,
+        related_user: nil,
         # pet status in the store
         status: nil,
         tags: nil,
@@ -66,6 +84,16 @@ module HelloWorldTestingggg
             ),
           category: HelloWorldTestingggg::PetAPI::Category::OrHash,
           microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
+          related_address: HelloWorldTestingggg::Address::OrHash,
+          related_category:
+            HelloWorldTestingggg::PetAPI::RelatedCategory::OrHash,
+          related_customer:
+            HelloWorldTestingggg::PetAPI::RelatedCustomer::OrHash,
+          related_money: HelloWorldTestingggg::Money::OrHash,
+          related_order: HelloWorldTestingggg::PetAPI::RelatedOrder::OrHash,
+          related_pet: HelloWorldTestingggg::PetAPI::OrHash,
+          related_shelter: HelloWorldTestingggg::PetAPI::RelatedShelter::OrHash,
+          related_user: HelloWorldTestingggg::PetAPI::RelatedUser::OrHash,
           status: HelloWorldTestingggg::PetStatus::OrSymbol,
           tags: T::Array[HelloWorldTestingggg::PetAPI::Tag::OrHash],
           request_options: HelloWorldTestingggg::RequestOptions::OrHash
@@ -81,6 +109,14 @@ module HelloWorldTestingggg
         category: nil,
         # Microchip identifier; legacy chips used numeric identifiers.
         microchip_id: nil,
+        related_address: nil,
+        related_category: nil,
+        related_customer: nil,
+        related_money: nil,
+        related_order: nil,
+        related_pet: nil,
+        related_shelter: nil,
+        related_user: nil,
         # pet status in the store
         status: nil,
         tags: nil,

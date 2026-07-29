@@ -6,10 +6,18 @@ module HelloWorldTestingggg
         photo_urls: ::Array[String],
         id: Integer,
         acquisition_channel: HelloWorldTestingggg::Models::PetAPI::acquisition_channel,
-        category: HelloWorldTestingggg::PetAPI::Category,
+        category: top,
         microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id,
+        related_address: HelloWorldTestingggg::Address,
+        related_category: top,
+        related_customer: top,
+        related_money: HelloWorldTestingggg::Money,
+        related_order: top,
+        related_pet: HelloWorldTestingggg::PetAPI,
+        related_shelter: top,
+        related_user: top,
         status: HelloWorldTestingggg::Models::pet_status,
-        tags: ::Array[HelloWorldTestingggg::PetAPI::Tag]
+        tags: ::Array[top]
       }
 
     class PetAPI < HelloWorldTestingggg::Internal::Type::BaseModel
@@ -27,11 +35,9 @@ module HelloWorldTestingggg
         HelloWorldTestingggg::Models::PetAPI::acquisition_channel
       ) -> HelloWorldTestingggg::Models::PetAPI::acquisition_channel
 
-      attr_reader category: HelloWorldTestingggg::PetAPI::Category?
+      attr_reader category: top?
 
-      def category=: (
-        HelloWorldTestingggg::PetAPI::Category
-      ) -> HelloWorldTestingggg::PetAPI::Category
+      def category=: (top) -> top
 
       attr_reader microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id?
 
@@ -39,27 +45,71 @@ module HelloWorldTestingggg
         HelloWorldTestingggg::Models::PetAPI::microchip_id
       ) -> HelloWorldTestingggg::Models::PetAPI::microchip_id
 
+      attr_reader related_address: HelloWorldTestingggg::Address?
+
+      def related_address=: (
+        HelloWorldTestingggg::Address
+      ) -> HelloWorldTestingggg::Address
+
+      attr_reader related_category: top?
+
+      def related_category=: (top) -> top
+
+      attr_reader related_customer: top?
+
+      def related_customer=: (top) -> top
+
+      attr_reader related_money: HelloWorldTestingggg::Money?
+
+      def related_money=: (
+        HelloWorldTestingggg::Money
+      ) -> HelloWorldTestingggg::Money
+
+      attr_reader related_order: top?
+
+      def related_order=: (top) -> top
+
+      attr_reader related_pet: HelloWorldTestingggg::PetAPI?
+
+      def related_pet=: (
+        HelloWorldTestingggg::PetAPI
+      ) -> HelloWorldTestingggg::PetAPI
+
+      attr_reader related_shelter: top?
+
+      def related_shelter=: (top) -> top
+
+      attr_reader related_user: top?
+
+      def related_user=: (top) -> top
+
       attr_reader status: HelloWorldTestingggg::Models::pet_status?
 
       def status=: (
         HelloWorldTestingggg::Models::pet_status
       ) -> HelloWorldTestingggg::Models::pet_status
 
-      attr_reader tags: ::Array[HelloWorldTestingggg::PetAPI::Tag]?
+      attr_reader tags: ::Array[top]?
 
-      def tags=: (
-        ::Array[HelloWorldTestingggg::PetAPI::Tag]
-      ) -> ::Array[HelloWorldTestingggg::PetAPI::Tag]
+      def tags=: (::Array[top]) -> ::Array[top]
 
       def initialize: (
         name: String,
         photo_urls: ::Array[String],
         ?id: Integer,
         ?acquisition_channel: HelloWorldTestingggg::Models::PetAPI::acquisition_channel,
-        ?category: HelloWorldTestingggg::PetAPI::Category,
+        ?category: top,
         ?microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id,
+        ?related_address: HelloWorldTestingggg::Address,
+        ?related_category: top,
+        ?related_customer: top,
+        ?related_money: HelloWorldTestingggg::Money,
+        ?related_order: top,
+        ?related_pet: HelloWorldTestingggg::PetAPI,
+        ?related_shelter: top,
+        ?related_user: top,
         ?status: HelloWorldTestingggg::Models::pet_status,
-        ?tags: ::Array[HelloWorldTestingggg::PetAPI::Tag]
+        ?tags: ::Array[top]
       ) -> void
 
       def to_hash: -> {
@@ -67,10 +117,18 @@ module HelloWorldTestingggg
         photo_urls: ::Array[String],
         id: Integer,
         acquisition_channel: HelloWorldTestingggg::Models::PetAPI::acquisition_channel,
-        category: HelloWorldTestingggg::PetAPI::Category,
+        category: top,
         microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id,
+        related_address: HelloWorldTestingggg::Address,
+        related_category: top,
+        related_customer: top,
+        related_money: HelloWorldTestingggg::Money,
+        related_order: top,
+        related_pet: HelloWorldTestingggg::PetAPI,
+        related_shelter: top,
+        related_user: top,
         status: HelloWorldTestingggg::Models::pet_status,
-        tags: ::Array[HelloWorldTestingggg::PetAPI::Tag]
+        tags: ::Array[top]
       }
 
       type acquisition_channel =
@@ -87,56 +145,12 @@ module HelloWorldTestingggg
         TRANSFER: :transfer
       end
 
-      type category = { id: Integer, name: String, subcategories: ::Array[top] }
-
-      class Category < HelloWorldTestingggg::Internal::Type::BaseModel
-        attr_reader id: Integer?
-
-        def id=: (Integer) -> Integer
-
-        attr_reader name: String?
-
-        def name=: (String) -> String
-
-        attr_reader subcategories: ::Array[top]?
-
-        def subcategories=: (::Array[top]) -> ::Array[top]
-
-        def initialize: (
-          ?id: Integer,
-          ?name: String,
-          ?subcategories: ::Array[top]
-        ) -> void
-
-        def to_hash: -> {
-          id: Integer,
-          name: String,
-          subcategories: ::Array[top]
-        }
-      end
-
       type microchip_id = String | Integer
 
       module MicrochipID
         extend HelloWorldTestingggg::Internal::Type::Union
 
         def self?.variants: -> ::Array[HelloWorldTestingggg::Models::PetAPI::microchip_id]
-      end
-
-      type tag = { id: Integer, name: String }
-
-      class Tag < HelloWorldTestingggg::Internal::Type::BaseModel
-        attr_reader id: Integer?
-
-        def id=: (Integer) -> Integer
-
-        attr_reader name: String?
-
-        def name=: (String) -> String
-
-        def initialize: (?id: Integer, ?name: String) -> void
-
-        def to_hash: -> { id: Integer, name: String }
       end
     end
   end

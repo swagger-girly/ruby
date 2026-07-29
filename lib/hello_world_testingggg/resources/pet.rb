@@ -9,7 +9,7 @@ module HelloWorldTestingggg
       #
       # Add a new pet to the store
       #
-      # @overload create(name:, photo_urls:, id: nil, acquisition_channel: nil, category: nil, microchip_id: nil, status: nil, tags: nil, request_options: {})
+      # @overload create(name:, photo_urls:, id: nil, acquisition_channel: nil, category: nil, microchip_id: nil, related_address: nil, related_category: nil, related_customer: nil, related_money: nil, related_order: nil, related_pet: nil, related_shelter: nil, related_user: nil, status: nil, tags: nil, request_options: {})
       #
       # @param name [String]
       #
@@ -22,6 +22,22 @@ module HelloWorldTestingggg
       # @param category [HelloWorldTestingggg::Models::PetAPI::Category]
       #
       # @param microchip_id [String, Integer] Microchip identifier; legacy chips used numeric identifiers.
+      #
+      # @param related_address [HelloWorldTestingggg::Models::Address]
+      #
+      # @param related_category [HelloWorldTestingggg::Models::PetAPI::RelatedCategory]
+      #
+      # @param related_customer [HelloWorldTestingggg::Models::PetAPI::RelatedCustomer]
+      #
+      # @param related_money [HelloWorldTestingggg::Models::Money]
+      #
+      # @param related_order [HelloWorldTestingggg::Models::PetAPI::RelatedOrder]
+      #
+      # @param related_pet [HelloWorldTestingggg::Models::PetAPI]
+      #
+      # @param related_shelter [HelloWorldTestingggg::Models::PetAPI::RelatedShelter]
+      #
+      # @param related_user [HelloWorldTestingggg::Models::PetAPI::RelatedUser]
       #
       # @param status [Symbol, HelloWorldTestingggg::Models::PetStatus] pet status in the store
       #
@@ -68,7 +84,7 @@ module HelloWorldTestingggg
       #
       # Update an existing pet by Id
       #
-      # @overload update(name:, photo_urls:, id: nil, acquisition_channel: nil, category: nil, microchip_id: nil, status: nil, tags: nil, request_options: {})
+      # @overload update(name:, photo_urls:, id: nil, acquisition_channel: nil, category: nil, microchip_id: nil, related_address: nil, related_category: nil, related_customer: nil, related_money: nil, related_order: nil, related_pet: nil, related_shelter: nil, related_user: nil, status: nil, tags: nil, request_options: {})
       #
       # @param name [String]
       #
@@ -81,6 +97,22 @@ module HelloWorldTestingggg
       # @param category [HelloWorldTestingggg::Models::PetAPI::Category]
       #
       # @param microchip_id [String, Integer] Microchip identifier; legacy chips used numeric identifiers.
+      #
+      # @param related_address [HelloWorldTestingggg::Models::Address]
+      #
+      # @param related_category [HelloWorldTestingggg::Models::PetAPI::RelatedCategory]
+      #
+      # @param related_customer [HelloWorldTestingggg::Models::PetAPI::RelatedCustomer]
+      #
+      # @param related_money [HelloWorldTestingggg::Models::Money]
+      #
+      # @param related_order [HelloWorldTestingggg::Models::PetAPI::RelatedOrder]
+      #
+      # @param related_pet [HelloWorldTestingggg::Models::PetAPI]
+      #
+      # @param related_shelter [HelloWorldTestingggg::Models::PetAPI::RelatedShelter]
+      #
+      # @param related_user [HelloWorldTestingggg::Models::PetAPI::RelatedUser]
       #
       # @param status [Symbol, HelloWorldTestingggg::Models::PetStatus] pet status in the store
       #

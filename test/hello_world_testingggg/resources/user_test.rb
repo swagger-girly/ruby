@@ -20,6 +20,14 @@ class HelloWorldTestingggg::Test::Resources::UserTest < HelloWorldTestingggg::Te
         last_name: String | nil,
         password: String | nil,
         phone: String | nil,
+        related_address: HelloWorldTestingggg::Address | nil,
+        related_category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_customer: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_money: HelloWorldTestingggg::Money | nil,
+        related_order: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_pet: HelloWorldTestingggg::PetAPI | nil,
+        related_shelter: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_tag: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         username: String | nil,
         user_status: Integer | nil
       }
@@ -43,6 +51,14 @@ class HelloWorldTestingggg::Test::Resources::UserTest < HelloWorldTestingggg::Te
         last_name: String | nil,
         password: String | nil,
         phone: String | nil,
+        related_address: HelloWorldTestingggg::Address | nil,
+        related_category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_customer: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_money: HelloWorldTestingggg::Money | nil,
+        related_order: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_pet: HelloWorldTestingggg::PetAPI | nil,
+        related_shelter: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_tag: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         username: String | nil,
         user_status: Integer | nil
       }
@@ -86,6 +102,14 @@ class HelloWorldTestingggg::Test::Resources::UserTest < HelloWorldTestingggg::Te
         last_name: String | nil,
         password: String | nil,
         phone: String | nil,
+        related_address: HelloWorldTestingggg::Address | nil,
+        related_category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_customer: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_money: HelloWorldTestingggg::Money | nil,
+        related_order: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_pet: HelloWorldTestingggg::PetAPI | nil,
+        related_shelter: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_tag: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         username: String | nil,
         user_status: Integer | nil
       }

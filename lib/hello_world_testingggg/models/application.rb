@@ -167,11 +167,63 @@ module HelloWorldTestingggg
             #   @return [HelloWorldTestingggg::Models::Application::Applicant::Organization::Shelter::Location, nil]
             optional :location, -> { HelloWorldTestingggg::Application::Applicant::Organization::Shelter::Location }
 
-            # @!method initialize(name:, address: nil, contact: nil, location: nil)
+            # @!attribute related_address
+            #
+            #   @return [HelloWorldTestingggg::Models::Address, nil]
+            optional :related_address, -> { HelloWorldTestingggg::Address }, api_name: :relatedAddress
+
+            # @!attribute related_category
+            #
+            #   @return [Object, nil]
+            optional :related_category,
+                     HelloWorldTestingggg::Internal::Type::Unknown,
+                     api_name: :relatedCategory
+
+            # @!attribute related_customer
+            #
+            #   @return [Object, nil]
+            optional :related_customer,
+                     HelloWorldTestingggg::Internal::Type::Unknown,
+                     api_name: :relatedCustomer
+
+            # @!attribute related_money
+            #
+            #   @return [HelloWorldTestingggg::Models::Money, nil]
+            optional :related_money, -> { HelloWorldTestingggg::Money }, api_name: :relatedMoney
+
+            # @!attribute related_order
+            #
+            #   @return [Object, nil]
+            optional :related_order, HelloWorldTestingggg::Internal::Type::Unknown, api_name: :relatedOrder
+
+            # @!attribute related_pet
+            #
+            #   @return [HelloWorldTestingggg::Models::PetAPI, nil]
+            optional :related_pet, -> { HelloWorldTestingggg::PetAPI }, api_name: :relatedPet
+
+            # @!attribute related_tag
+            #
+            #   @return [Object, nil]
+            optional :related_tag, HelloWorldTestingggg::Internal::Type::Unknown, api_name: :relatedTag
+
+            # @!attribute related_user
+            #
+            #   @return [Object, nil]
+            optional :related_user, HelloWorldTestingggg::Internal::Type::Unknown, api_name: :relatedUser
+
+            # @!method initialize(name:, address: nil, contact: nil, location: nil, related_address: nil, related_category: nil, related_customer: nil, related_money: nil, related_order: nil, related_pet: nil, related_tag: nil, related_user: nil)
             #   @param name [String]
             #   @param address [HelloWorldTestingggg::Models::Address]
             #   @param contact [HelloWorldTestingggg::Models::Application::Applicant::Organization::Shelter::Contact]
             #   @param location [HelloWorldTestingggg::Models::Application::Applicant::Organization::Shelter::Location]
+            #   @param related_address [HelloWorldTestingggg::Models::Address]
+            #   @param related_category [Object]
+            #   @param related_customer [Object]
+            #   @param related_money [HelloWorldTestingggg::Models::Money]
+            #   @param related_order [Object]
+            #   @param related_pet [HelloWorldTestingggg::Models::PetAPI]
+            #   @param related_tag [Object]
+            #   @param related_user [Object]
 
             # @see HelloWorldTestingggg::Models::Application::Applicant::Organization::Shelter#contact
             class Contact < HelloWorldTestingggg::Internal::Type::BaseModel
