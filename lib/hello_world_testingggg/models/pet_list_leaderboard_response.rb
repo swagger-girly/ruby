@@ -14,6 +14,14 @@ module HelloWorldTestingggg
       #   @return [HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Badge, nil]
       optional :badge, -> { HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Badge }
 
+      # @!attribute docs_ref
+      #   Docs anchor for the badge a leaderboard entry was awarded.
+      #
+      #   @return [Symbol, HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::DocsRef, nil]
+      optional :docs_ref,
+               enum: -> { HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::DocsRef },
+               api_name: :docsRef
+
       # @!attribute rank
       #   Leaderboard position
       #
@@ -26,18 +34,41 @@ module HelloWorldTestingggg
       #   @return [HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Roi, nil]
       optional :roi, -> { HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Roi }
 
-      # @!method initialize(pet_id:, badge: nil, rank: nil, roi: nil)
+      # @!attribute seven_day_streak
+      #   Consecutive days on the leaderboard.
+      #
+      #   @return [Integer, nil]
+      optional :seven_day_streak, Integer, api_name: :streak7d
+
+      # @!method initialize(pet_id:, badge: nil, docs_ref: nil, rank: nil, roi: nil, seven_day_streak: nil)
       #   @param pet_id [Integer] Ranked pet ID
       #
       #   @param badge [HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Badge]
       #
+      #   @param docs_ref [Symbol, HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::DocsRef] Docs anchor for the badge a leaderboard entry was awarded.
+      #
       #   @param rank [Integer] Leaderboard position
       #
       #   @param roi [HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Roi] Adoption return on investment
+      #
+      #   @param seven_day_streak [Integer] Consecutive days on the leaderboard.
 
       # @see HelloWorldTestingggg::Models::PetListLeaderboardResponseItem#badge
       class Badge < HelloWorldTestingggg::Internal::Type::BaseModel
         # @!method initialize
+      end
+
+      # Docs anchor for the badge a leaderboard entry was awarded.
+      #
+      # @see HelloWorldTestingggg::Models::PetListLeaderboardResponseItem#docs_ref
+      module DocsRef
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        TOP_ADOPTER = :"https://docs.petstore.example/leaderboard#top-adopter"
+        RISING_STAR = :"https://docs.petstore.example/leaderboard#rising-star"
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # @see HelloWorldTestingggg::Models::PetListLeaderboardResponseItem#roi

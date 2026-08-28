@@ -32,6 +32,24 @@ module HelloWorldTestingggg
       end
       attr_writer :badge
 
+      # Docs anchor for the badge a leaderboard entry was awarded.
+      sig do
+        returns(
+          T.nilable(
+            HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::DocsRef::TaggedSymbol
+          )
+        )
+      end
+      attr_reader :docs_ref
+
+      sig do
+        params(
+          docs_ref:
+            HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::DocsRef::OrSymbol
+        ).void
+      end
+      attr_writer :docs_ref
+
       # Leaderboard position
       sig { returns(T.nilable(Integer)) }
       attr_reader :rank
@@ -57,24 +75,38 @@ module HelloWorldTestingggg
       end
       attr_writer :roi
 
+      # Consecutive days on the leaderboard.
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :seven_day_streak
+
+      sig { params(seven_day_streak: Integer).void }
+      attr_writer :seven_day_streak
+
       sig do
         params(
           pet_id: Integer,
           badge:
             HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Badge::OrHash,
+          docs_ref:
+            HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::DocsRef::OrSymbol,
           rank: Integer,
           roi:
-            HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Roi::OrHash
+            HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Roi::OrHash,
+          seven_day_streak: Integer
         ).returns(T.attached_class)
       end
       def self.new(
         # Ranked pet ID
         pet_id:,
         badge: nil,
+        # Docs anchor for the badge a leaderboard entry was awarded.
+        docs_ref: nil,
         # Leaderboard position
         rank: nil,
         # Adoption return on investment
-        roi: nil
+        roi: nil,
+        # Consecutive days on the leaderboard.
+        seven_day_streak: nil
       )
       end
 
@@ -84,9 +116,12 @@ module HelloWorldTestingggg
             pet_id: Integer,
             badge:
               HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Badge,
+            docs_ref:
+              HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::DocsRef::TaggedSymbol,
             rank: Integer,
             roi:
-              HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Roi
+              HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Roi,
+            seven_day_streak: Integer
           }
         )
       end
@@ -108,6 +143,41 @@ module HelloWorldTestingggg
 
         sig { override.returns({}) }
         def to_hash
+        end
+      end
+
+      # Docs anchor for the badge a leaderboard entry was awarded.
+      module DocsRef
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(
+              Symbol,
+              HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::DocsRef
+            )
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        TOP_ADOPTER =
+          T.let(
+            :"https://docs.petstore.example/leaderboard#top-adopter",
+            HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::DocsRef::TaggedSymbol
+          )
+        RISING_STAR =
+          T.let(
+            :"https://docs.petstore.example/leaderboard#rising-star",
+            HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::DocsRef::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::DocsRef::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
         end
       end
 
