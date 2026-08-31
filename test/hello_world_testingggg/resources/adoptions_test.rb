@@ -65,6 +65,7 @@ class HelloWorldTestingggg::Test::Resources::AdoptionsTest < HelloWorldTestinggg
       in HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved
       in HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected
       in HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated
+      in HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn
       end
     end
   end

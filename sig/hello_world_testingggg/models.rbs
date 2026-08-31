@@ -11,6 +11,8 @@ module HelloWorldTestingggg
 
   class AdoptionsPolicyChangedWebhookEvent = HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent
 
+  class AIAIQueryParams = HelloWorldTestingggg::Models::AIAIQueryParams
+
   class Application = HelloWorldTestingggg::Models::Application
 
   class Archive = HelloWorldTestingggg::Models::Archive
@@ -37,9 +39,27 @@ module HelloWorldTestingggg
 
   class FileUploadParams = HelloWorldTestingggg::Models::FileUploadParams
 
+  class MediaBinaryAndJsonParams = HelloWorldTestingggg::Models::MediaBinaryAndJsonParams
+
+  class MediaJsonAndXmlParams = HelloWorldTestingggg::Models::MediaJsonAndXmlParams
+
+  class MediaJsonFirstParams = HelloWorldTestingggg::Models::MediaJsonFirstParams
+
+  class MediaSchemaOnJsonParams = HelloWorldTestingggg::Models::MediaSchemaOnJsonParams
+
+  class MediaSchemaOnTextParams = HelloWorldTestingggg::Models::MediaSchemaOnTextParams
+
+  class MediaTextFirstParams = HelloWorldTestingggg::Models::MediaTextFirstParams
+
+  class MediaTextOnlyParams = HelloWorldTestingggg::Models::MediaTextOnlyParams
+
+  class MediaVendorJsonParams = HelloWorldTestingggg::Models::MediaVendorJsonParams
+
   class MedicalSummary = HelloWorldTestingggg::Models::MedicalSummary
 
   class Money = HelloWorldTestingggg::Models::Money
+
+  module Notifications = HelloWorldTestingggg::Models::Notifications
 
   module ParsedWebhookEvent = HelloWorldTestingggg::Models::ParsedWebhookEvent
 
@@ -63,6 +83,8 @@ module HelloWorldTestingggg
 
   class PetListFakePageParams = HelloWorldTestingggg::Models::PetListFakePageParams
 
+  class PetListLeaderboardParams = HelloWorldTestingggg::Models::PetListLeaderboardParams
+
   class PetListParams = HelloWorldTestingggg::Models::PetListParams
 
   class PetListUnpaginatedParams = HelloWorldTestingggg::Models::PetListUnpaginatedParams
@@ -72,6 +94,8 @@ module HelloWorldTestingggg
   class PetRetrieveParams = HelloWorldTestingggg::Models::PetRetrieveParams
 
   class PetRetrievePremiumParams = HelloWorldTestingggg::Models::PetRetrievePremiumParams
+
+  class PetSearchParams = HelloWorldTestingggg::Models::PetSearchParams
 
   module PetStatus = HelloWorldTestingggg::Models::PetStatus
 
@@ -117,6 +141,8 @@ module HelloWorldTestingggg
 
   class StoreReportGeneratedWebhookEvent = HelloWorldTestingggg::Models::StoreReportGeneratedWebhookEvent
 
+  class StoreRetrieveActivityParams = HelloWorldTestingggg::Models::StoreRetrieveActivityParams
+
   class SystemHealth = HelloWorldTestingggg::Models::SystemHealth
 
   class TransferLeg = HelloWorldTestingggg::Models::TransferLeg
@@ -134,6 +160,8 @@ module HelloWorldTestingggg
   class UserRetrieveParams = HelloWorldTestingggg::Models::UserRetrieveParams
 
   class UserUpdateParams = HelloWorldTestingggg::Models::UserUpdateParams
+
+  class UserVerifyIdentityParams = HelloWorldTestingggg::Models::UserVerifyIdentityParams
 
   class VaccinationRecord = HelloWorldTestingggg::Models::VaccinationRecord
 

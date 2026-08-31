@@ -1,0 +1,108 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_search_params =
+      {
+        filters: HelloWorldTestingggg::PetSearchParams::Filters,
+        max_results: Integer,
+        raw_filter: top,
+        tag_filters: ::Array[HelloWorldTestingggg::PetSearchParams::TagFilter]
+      }
+      & HelloWorldTestingggg::Internal::Type::request_parameters
+
+    class PetSearchParams < HelloWorldTestingggg::Internal::Type::BaseModel
+      extend HelloWorldTestingggg::Internal::Type::RequestParameters::Converter
+      include HelloWorldTestingggg::Internal::Type::RequestParameters
+
+      attr_reader filters: HelloWorldTestingggg::PetSearchParams::Filters?
+
+      def filters=: (
+        HelloWorldTestingggg::PetSearchParams::Filters
+      ) -> HelloWorldTestingggg::PetSearchParams::Filters
+
+      attr_reader max_results: Integer?
+
+      def max_results=: (Integer) -> Integer
+
+      attr_reader raw_filter: top?
+
+      def raw_filter=: (top) -> top
+
+      attr_reader tag_filters: ::Array[HelloWorldTestingggg::PetSearchParams::TagFilter]?
+
+      def tag_filters=: (
+        ::Array[HelloWorldTestingggg::PetSearchParams::TagFilter]
+      ) -> ::Array[HelloWorldTestingggg::PetSearchParams::TagFilter]
+
+      def initialize: (
+        ?filters: HelloWorldTestingggg::PetSearchParams::Filters,
+        ?max_results: Integer,
+        ?raw_filter: top,
+        ?tag_filters: ::Array[HelloWorldTestingggg::PetSearchParams::TagFilter],
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        filters: HelloWorldTestingggg::PetSearchParams::Filters,
+        max_results: Integer,
+        raw_filter: top,
+        tag_filters: ::Array[HelloWorldTestingggg::PetSearchParams::TagFilter],
+        request_options: HelloWorldTestingggg::RequestOptions
+      }
+
+      type filters = { color: String, size: Integer }
+
+      class Filters < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader color: String?
+
+        def color=: (String) -> String
+
+        attr_reader size: Integer?
+
+        def size=: (Integer) -> Integer
+
+        def initialize: (?color: String, ?size: Integer) -> void
+
+        def to_hash: -> { color: String, size: Integer }
+      end
+
+      type tag_filter =
+        {
+          key: String,
+          match: HelloWorldTestingggg::Models::PetSearchParams::TagFilter::match
+        }
+
+      class TagFilter < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader key: String?
+
+        def key=: (String) -> String
+
+        attr_reader match: HelloWorldTestingggg::Models::PetSearchParams::TagFilter::match?
+
+        def match=: (
+          HelloWorldTestingggg::Models::PetSearchParams::TagFilter::match
+        ) -> HelloWorldTestingggg::Models::PetSearchParams::TagFilter::match
+
+        def initialize: (
+          ?key: String,
+          ?match: HelloWorldTestingggg::Models::PetSearchParams::TagFilter::match
+        ) -> void
+
+        def to_hash: -> {
+          key: String,
+          match: HelloWorldTestingggg::Models::PetSearchParams::TagFilter::match
+        }
+
+        type match = :exact | :prefix
+
+        module Match
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          EXACT: :exact
+          PREFIX: :prefix
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::PetSearchParams::TagFilter::match]
+        end
+      end
+    end
+  end
+end

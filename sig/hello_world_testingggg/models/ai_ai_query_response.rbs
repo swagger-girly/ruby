@@ -1,0 +1,57 @@
+module HelloWorldTestingggg
+  module Models
+    type aiai_query_response =
+      {
+        data_extracted: ::Array[HelloWorldTestingggg::Models::AIAIQueryResponse::DataExtracted],
+        matched_rules: ::Array[HelloWorldTestingggg::Models::AIAIQueryResponse::MatchedRule]
+      }
+
+    class AIAIQueryResponse < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_reader data_extracted: ::Array[HelloWorldTestingggg::Models::AIAIQueryResponse::DataExtracted]?
+
+      def data_extracted=: (
+        ::Array[HelloWorldTestingggg::Models::AIAIQueryResponse::DataExtracted]
+      ) -> ::Array[HelloWorldTestingggg::Models::AIAIQueryResponse::DataExtracted]
+
+      attr_reader matched_rules: ::Array[HelloWorldTestingggg::Models::AIAIQueryResponse::MatchedRule]?
+
+      def matched_rules=: (
+        ::Array[HelloWorldTestingggg::Models::AIAIQueryResponse::MatchedRule]
+      ) -> ::Array[HelloWorldTestingggg::Models::AIAIQueryResponse::MatchedRule]
+
+      def initialize: (
+        ?data_extracted: ::Array[HelloWorldTestingggg::Models::AIAIQueryResponse::DataExtracted],
+        ?matched_rules: ::Array[HelloWorldTestingggg::Models::AIAIQueryResponse::MatchedRule]
+      ) -> void
+
+      def to_hash: -> {
+        data_extracted: ::Array[HelloWorldTestingggg::Models::AIAIQueryResponse::DataExtracted],
+        matched_rules: ::Array[HelloWorldTestingggg::Models::AIAIQueryResponse::MatchedRule]
+      }
+
+      type data_extracted = { datapoint_value: String }
+
+      class DataExtracted < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader datapoint_value: String?
+
+        def datapoint_value=: (String) -> String
+
+        def initialize: (?datapoint_value: String) -> void
+
+        def to_hash: -> { datapoint_value: String }
+      end
+
+      type matched_rule = { match_score: Float }
+
+      class MatchedRule < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader match_score: Float?
+
+        def match_score=: (Float) -> Float
+
+        def initialize: (?match_score: Float) -> void
+
+        def to_hash: -> { match_score: Float }
+      end
+    end
+  end
+end

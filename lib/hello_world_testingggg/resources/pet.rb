@@ -4,9 +4,12 @@ module HelloWorldTestingggg
   module Resources
     # Everything about your Pets
     class Pet
+      # Some parameter documentations has been truncated, see
+      # {HelloWorldTestingggg::Models::PetCreateParams} for more details.
+      #
       # Add a new pet to the store
       #
-      # @overload create(name:, photo_urls:, id: nil, category: nil, microchip_id: nil, status: nil, tags: nil, request_options: {})
+      # @overload create(name:, photo_urls:, id: nil, acquisition_channel: nil, category: nil, microchip_id: nil, related_address: nil, related_category: nil, related_customer: nil, related_money: nil, related_order: nil, related_pet: nil, related_shelter: nil, related_user: nil, status: nil, tags: nil, request_options: {})
       #
       # @param name [String]
       #
@@ -14,9 +17,27 @@ module HelloWorldTestingggg
       #
       # @param id [Integer]
       #
+      # @param acquisition_channel [Symbol, String, HelloWorldTestingggg::Models::PetAPI::AcquisitionChannel] How the pet entered the store. Open enum: known channels plus forward-compatible
+      #
       # @param category [HelloWorldTestingggg::Models::PetAPI::Category]
       #
       # @param microchip_id [String, Integer] Microchip identifier; legacy chips used numeric identifiers.
+      #
+      # @param related_address [HelloWorldTestingggg::Models::Address]
+      #
+      # @param related_category [HelloWorldTestingggg::Models::PetAPI::RelatedCategory]
+      #
+      # @param related_customer [HelloWorldTestingggg::Models::PetAPI::RelatedCustomer]
+      #
+      # @param related_money [HelloWorldTestingggg::Models::Money]
+      #
+      # @param related_order [HelloWorldTestingggg::Models::PetAPI::RelatedOrder]
+      #
+      # @param related_pet [HelloWorldTestingggg::Models::PetAPI]
+      #
+      # @param related_shelter [HelloWorldTestingggg::Models::PetAPI::RelatedShelter]
+      #
+      # @param related_user [HelloWorldTestingggg::Models::PetAPI::RelatedUser]
       #
       # @param status [Symbol, HelloWorldTestingggg::Models::PetStatus] pet status in the store
       #
@@ -58,9 +79,12 @@ module HelloWorldTestingggg
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {HelloWorldTestingggg::Models::PetUpdateParams} for more details.
+      #
       # Update an existing pet by Id
       #
-      # @overload update(name:, photo_urls:, id: nil, category: nil, microchip_id: nil, status: nil, tags: nil, request_options: {})
+      # @overload update(name:, photo_urls:, id: nil, acquisition_channel: nil, category: nil, microchip_id: nil, related_address: nil, related_category: nil, related_customer: nil, related_money: nil, related_order: nil, related_pet: nil, related_shelter: nil, related_user: nil, status: nil, tags: nil, request_options: {})
       #
       # @param name [String]
       #
@@ -68,9 +92,27 @@ module HelloWorldTestingggg
       #
       # @param id [Integer]
       #
+      # @param acquisition_channel [Symbol, String, HelloWorldTestingggg::Models::PetAPI::AcquisitionChannel] How the pet entered the store. Open enum: known channels plus forward-compatible
+      #
       # @param category [HelloWorldTestingggg::Models::PetAPI::Category]
       #
       # @param microchip_id [String, Integer] Microchip identifier; legacy chips used numeric identifiers.
+      #
+      # @param related_address [HelloWorldTestingggg::Models::Address]
+      #
+      # @param related_category [HelloWorldTestingggg::Models::PetAPI::RelatedCategory]
+      #
+      # @param related_customer [HelloWorldTestingggg::Models::PetAPI::RelatedCustomer]
+      #
+      # @param related_money [HelloWorldTestingggg::Models::Money]
+      #
+      # @param related_order [HelloWorldTestingggg::Models::PetAPI::RelatedOrder]
+      #
+      # @param related_pet [HelloWorldTestingggg::Models::PetAPI]
+      #
+      # @param related_shelter [HelloWorldTestingggg::Models::PetAPI::RelatedShelter]
+      #
+      # @param related_user [HelloWorldTestingggg::Models::PetAPI::RelatedUser]
       #
       # @param status [Symbol, HelloWorldTestingggg::Models::PetStatus] pet status in the store
       #
@@ -94,7 +136,9 @@ module HelloWorldTestingggg
 
       # Returns a cursor-paginated list of pets.
       #
-      # @overload list(cursor: nil, limit: nil, request_options: {})
+      # @overload list(created_at: nil, cursor: nil, limit: nil, request_options: {})
+      #
+      # @param created_at [HelloWorldTestingggg::Models::PetListParams::CreatedAt] Filter by created_at timestamp range in UTC. Accepts gt/gte/lt/lte.
       #
       # @param cursor [String] Cursor from a previous response used to fetch the next page.
       #
@@ -223,6 +267,25 @@ module HelloWorldTestingggg
         )
       end
 
+      # Returns a bare top-level array of inline objects so generators must mint a
+      # distinct element type instead of reusing the response alias name.
+      #
+      # @overload list_leaderboard(request_options: {})
+      #
+      # @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Array<HelloWorldTestingggg::Models::PetListLeaderboardResponseItem>]
+      #
+      # @see HelloWorldTestingggg::Models::PetListLeaderboardParams
+      def list_leaderboard(params = {})
+        @client.request(
+          method: :get,
+          path: "pet/leaderboard",
+          model: HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::Models::PetListLeaderboardResponseItem],
+          options: params[:request_options]
+        )
+      end
+
       # Returns the same cursor-shaped pet list response without enabling SDK pagination
       # helpers.
       #
@@ -267,6 +330,42 @@ module HelloWorldTestingggg
           path: ["pet/%1$s/premium", pet_id],
           model: HelloWorldTestingggg::Models::PetRetrievePremiumResponse,
           options: params[:request_options]
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
+      # {HelloWorldTestingggg::Models::PetSearchParams} for more details.
+      #
+      # Typed query-parameter probe matrix: an object-schema query param mints a typed
+      # params model, an array-of-object query param mints a singularized element type,
+      # an empty object (additionalProperties:false) stays a bare object, and a scalar
+      # stays scalar. Isolates the emitter query-parameter type-resolution branches so
+      # object/array-of-object/empty-object params are each exercised.
+      #
+      # @overload search(filters: nil, max_results: nil, raw_filter: nil, tag_filters: nil, request_options: {})
+      #
+      # @param filters [HelloWorldTestingggg::Models::PetSearchParams::Filters] Object-schema query parameter: mints a typed params model instead of collapsing
+      #
+      # @param max_results [Integer] Scalar query parameter: stays a plain scalar (control probe).
+      #
+      # @param raw_filter [Object] Empty-object query parameter (additionalProperties:false): stays a bare object,
+      #
+      # @param tag_filters [Array<HelloWorldTestingggg::Models::PetSearchParams::TagFilter>] Array-of-object query parameter: emitters mint a singularized element type for e
+      #
+      # @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Array<HelloWorldTestingggg::Models::PetAPI>]
+      #
+      # @see HelloWorldTestingggg::Models::PetSearchParams
+      def search(params = {})
+        parsed, options = HelloWorldTestingggg::PetSearchParams.dump_request(params)
+        query = HelloWorldTestingggg::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: "pet/search",
+          query: query,
+          model: HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI],
+          options: options
         )
       end
 

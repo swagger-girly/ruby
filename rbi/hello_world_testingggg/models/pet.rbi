@@ -23,12 +23,35 @@ module HelloWorldTestingggg
       sig { params(id: Integer).void }
       attr_writer :id
 
-      sig { returns(T.nilable(HelloWorldTestingggg::PetAPI::Category)) }
-      attr_reader :category
+      # How the pet entered the store. Open enum: known channels plus forward-compatible
+      # free-form strings.
+      sig do
+        returns(
+          T.nilable(
+            T.any(
+              HelloWorldTestingggg::PetAPI::AcquisitionChannel::OrSymbol,
+              String
+            )
+          )
+        )
+      end
+      attr_reader :acquisition_channel
 
       sig do
-        params(category: HelloWorldTestingggg::PetAPI::Category::OrHash).void
+        params(
+          acquisition_channel:
+            T.any(
+              HelloWorldTestingggg::PetAPI::AcquisitionChannel::OrSymbol,
+              String
+            )
+        ).void
       end
+      attr_writer :acquisition_channel
+
+      sig { returns(T.nilable(T.anything)) }
+      attr_reader :category
+
+      sig { params(category: T.anything).void }
       attr_writer :category
 
       # Microchip identifier; legacy chips used numeric identifiers.
@@ -44,19 +67,65 @@ module HelloWorldTestingggg
       end
       attr_writer :microchip_id
 
+      sig { returns(T.nilable(HelloWorldTestingggg::Address)) }
+      attr_reader :related_address
+
+      sig { params(related_address: HelloWorldTestingggg::Address).void }
+      attr_writer :related_address
+
+      sig { returns(T.nilable(T.anything)) }
+      attr_reader :related_category
+
+      sig { params(related_category: T.anything).void }
+      attr_writer :related_category
+
+      sig { returns(T.nilable(T.anything)) }
+      attr_reader :related_customer
+
+      sig { params(related_customer: T.anything).void }
+      attr_writer :related_customer
+
+      sig { returns(T.nilable(HelloWorldTestingggg::Money)) }
+      attr_reader :related_money
+
+      sig { params(related_money: HelloWorldTestingggg::Money).void }
+      attr_writer :related_money
+
+      sig { returns(T.nilable(T.anything)) }
+      attr_reader :related_order
+
+      sig { params(related_order: T.anything).void }
+      attr_writer :related_order
+
+      sig { returns(T.nilable(HelloWorldTestingggg::PetAPI)) }
+      attr_reader :related_pet
+
+      sig { params(related_pet: HelloWorldTestingggg::PetAPI).void }
+      attr_writer :related_pet
+
+      sig { returns(T.nilable(T.anything)) }
+      attr_reader :related_shelter
+
+      sig { params(related_shelter: T.anything).void }
+      attr_writer :related_shelter
+
+      sig { returns(T.nilable(T.anything)) }
+      attr_reader :related_user
+
+      sig { params(related_user: T.anything).void }
+      attr_writer :related_user
+
       # pet status in the store
-      sig { returns(T.nilable(HelloWorldTestingggg::PetStatus::TaggedSymbol)) }
+      sig { returns(T.nilable(HelloWorldTestingggg::PetStatus::OrSymbol)) }
       attr_reader :status
 
       sig { params(status: HelloWorldTestingggg::PetStatus::OrSymbol).void }
       attr_writer :status
 
-      sig { returns(T.nilable(T::Array[HelloWorldTestingggg::PetAPI::Tag])) }
+      sig { returns(T.nilable(T::Array[T.anything])) }
       attr_reader :tags
 
-      sig do
-        params(tags: T::Array[HelloWorldTestingggg::PetAPI::Tag::OrHash]).void
-      end
+      sig { params(tags: T::Array[T.anything]).void }
       attr_writer :tags
 
       sig do
@@ -64,19 +133,43 @@ module HelloWorldTestingggg
           name: String,
           photo_urls: T::Array[String],
           id: Integer,
-          category: HelloWorldTestingggg::PetAPI::Category::OrHash,
+          acquisition_channel:
+            T.any(
+              HelloWorldTestingggg::PetAPI::AcquisitionChannel::OrSymbol,
+              String
+            ),
+          category: T.anything,
           microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
+          related_address: HelloWorldTestingggg::Address,
+          related_category: T.anything,
+          related_customer: T.anything,
+          related_money: HelloWorldTestingggg::Money,
+          related_order: T.anything,
+          related_pet: HelloWorldTestingggg::PetAPI,
+          related_shelter: T.anything,
+          related_user: T.anything,
           status: HelloWorldTestingggg::PetStatus::OrSymbol,
-          tags: T::Array[HelloWorldTestingggg::PetAPI::Tag::OrHash]
+          tags: T::Array[T.anything]
         ).returns(T.attached_class)
       end
       def self.new(
         name:,
         photo_urls:,
         id: nil,
+        # How the pet entered the store. Open enum: known channels plus forward-compatible
+        # free-form strings.
+        acquisition_channel: nil,
         category: nil,
         # Microchip identifier; legacy chips used numeric identifiers.
         microchip_id: nil,
+        related_address: nil,
+        related_category: nil,
+        related_customer: nil,
+        related_money: nil,
+        related_order: nil,
+        related_pet: nil,
+        related_shelter: nil,
+        related_user: nil,
         # pet status in the store
         status: nil,
         tags: nil
@@ -89,66 +182,76 @@ module HelloWorldTestingggg
             name: String,
             photo_urls: T::Array[String],
             id: Integer,
-            category: HelloWorldTestingggg::PetAPI::Category,
+            acquisition_channel:
+              T.any(
+                HelloWorldTestingggg::PetAPI::AcquisitionChannel::OrSymbol,
+                String
+              ),
+            category: T.anything,
             microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
-            status: HelloWorldTestingggg::PetStatus::TaggedSymbol,
-            tags: T::Array[HelloWorldTestingggg::PetAPI::Tag]
+            related_address: HelloWorldTestingggg::Address,
+            related_category: T.anything,
+            related_customer: T.anything,
+            related_money: HelloWorldTestingggg::Money,
+            related_order: T.anything,
+            related_pet: HelloWorldTestingggg::PetAPI,
+            related_shelter: T.anything,
+            related_user: T.anything,
+            status: HelloWorldTestingggg::PetStatus::OrSymbol,
+            tags: T::Array[T.anything]
           }
         )
       end
       def to_hash
       end
 
-      class Category < HelloWorldTestingggg::Internal::Type::BaseModel
-        OrHash =
+      # How the pet entered the store. Open enum: known channels plus forward-compatible
+      # free-form strings.
+      module AcquisitionChannel
+        extend HelloWorldTestingggg::Internal::Type::Union
+
+        Variants =
           T.type_alias do
             T.any(
-              HelloWorldTestingggg::PetAPI::Category,
-              HelloWorldTestingggg::Internal::AnyHash
+              HelloWorldTestingggg::PetAPI::AcquisitionChannel::TaggedSymbol,
+              String
             )
           end
 
-        sig { returns(T.nilable(Integer)) }
-        attr_reader :id
-
-        sig { params(id: Integer).void }
-        attr_writer :id
-
-        sig { returns(T.nilable(String)) }
-        attr_reader :name
-
-        sig { params(name: String).void }
-        attr_writer :name
-
-        # Nested subcategories; the tree can recurse arbitrarily deep.
-        sig { returns(T.nilable(T::Array[T.anything])) }
-        attr_reader :subcategories
-
-        sig { params(subcategories: T::Array[T.anything]).void }
-        attr_writer :subcategories
-
-        sig do
-          params(
-            id: Integer,
-            name: String,
-            subcategories: T::Array[T.anything]
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          id: nil,
-          name: nil,
-          # Nested subcategories; the tree can recurse arbitrarily deep.
-          subcategories: nil
-        )
-        end
-
         sig do
           override.returns(
-            { id: Integer, name: String, subcategories: T::Array[T.anything] }
+            T::Array[HelloWorldTestingggg::PetAPI::AcquisitionChannel::Variants]
           )
         end
-        def to_hash
+        def self.variants
         end
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, HelloWorldTestingggg::PetAPI::AcquisitionChannel)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        BREEDER =
+          T.let(
+            :breeder,
+            HelloWorldTestingggg::PetAPI::AcquisitionChannel::TaggedSymbol
+          )
+        SHELTER =
+          T.let(
+            :shelter,
+            HelloWorldTestingggg::PetAPI::AcquisitionChannel::TaggedSymbol
+          )
+        SURRENDER =
+          T.let(
+            :surrender,
+            HelloWorldTestingggg::PetAPI::AcquisitionChannel::TaggedSymbol
+          )
+        TRANSFER =
+          T.let(
+            :transfer,
+            HelloWorldTestingggg::PetAPI::AcquisitionChannel::TaggedSymbol
+          )
       end
 
       # Microchip identifier; legacy chips used numeric identifiers.
@@ -163,36 +266,6 @@ module HelloWorldTestingggg
           )
         end
         def self.variants
-        end
-      end
-
-      class Tag < HelloWorldTestingggg::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              HelloWorldTestingggg::PetAPI::Tag,
-              HelloWorldTestingggg::Internal::AnyHash
-            )
-          end
-
-        sig { returns(T.nilable(Integer)) }
-        attr_reader :id
-
-        sig { params(id: Integer).void }
-        attr_writer :id
-
-        sig { returns(T.nilable(String)) }
-        attr_reader :name
-
-        sig { params(name: String).void }
-        attr_writer :name
-
-        sig { params(id: Integer, name: String).returns(T.attached_class) }
-        def self.new(id: nil, name: nil)
-        end
-
-        sig { override.returns({ id: Integer, name: String }) }
-        def to_hash
         end
       end
     end

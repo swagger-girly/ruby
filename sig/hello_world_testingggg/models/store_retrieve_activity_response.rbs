@@ -1,0 +1,489 @@
+module HelloWorldTestingggg
+  module Models
+    type store_retrieve_activity_response =
+      HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed
+      | HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold
+      | HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived
+      | HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred
+
+    module StoreRetrieveActivityResponse
+      extend HelloWorldTestingggg::Internal::Type::Union
+
+      type listed =
+        {
+          activity_id: String,
+          family: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::family,
+          recorded_at: Time,
+          status: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::status
+        }
+
+      class Listed < HelloWorldTestingggg::Models::PetAPI
+        def activity_id: -> String
+
+        def activity_id=: (String _) -> String
+
+        def family: -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::family
+
+        def family=: (
+          HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::family _
+        ) -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::family
+
+        def recorded_at: -> Time
+
+        def recorded_at=: (Time _) -> Time
+
+        def status: -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::status
+
+        def status=: (
+          HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::status _
+        ) -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::status
+
+        def initialize: (
+          activity_id: String,
+          family: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::family,
+          recorded_at: Time,
+          status: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::status
+        ) -> void
+
+        def to_hash: -> {
+          activity_id: String,
+          family: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::family,
+          recorded_at: Time,
+          status: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::status
+        }
+
+        type family = :listed
+
+        module Family
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          LISTED: :listed
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::family]
+        end
+
+        type status = :available | :pending | :sold | :archived
+
+        module Status
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          AVAILABLE: :available
+          PENDING: :pending
+          SOLD: :sold
+          ARCHIVED: :archived
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Listed::status]
+        end
+      end
+
+      type sold =
+        {
+          activity_id: String,
+          family: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::family,
+          recorded_at: Time,
+          status: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::status
+        }
+
+      class Sold < HelloWorldTestingggg::Models::PetAPI
+        def activity_id: -> String
+
+        def activity_id=: (String _) -> String
+
+        def family: -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::family
+
+        def family=: (
+          HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::family _
+        ) -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::family
+
+        def recorded_at: -> Time
+
+        def recorded_at=: (Time _) -> Time
+
+        def status: -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::status
+
+        def status=: (
+          HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::status _
+        ) -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::status
+
+        def initialize: (
+          activity_id: String,
+          family: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::family,
+          recorded_at: Time,
+          status: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::status
+        ) -> void
+
+        def to_hash: -> {
+          activity_id: String,
+          family: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::family,
+          recorded_at: Time,
+          status: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::status
+        }
+
+        type family = :sold
+
+        module Family
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          SOLD: :sold
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::family]
+        end
+
+        type status = :sold
+
+        module Status
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          SOLD: :sold
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Sold::status]
+        end
+      end
+
+      type archived =
+        {
+          activity_id: String,
+          family: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::family,
+          recorded_at: Time,
+          archived_reason: String,
+          status: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::status?
+        }
+
+      class Archived < HelloWorldTestingggg::Models::PetAPI
+        def activity_id: -> String
+
+        def activity_id=: (String _) -> String
+
+        def family: -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::family
+
+        def family=: (
+          HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::family _
+        ) -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::family
+
+        def recorded_at: -> Time
+
+        def recorded_at=: (Time _) -> Time
+
+        def archived_reason: -> String?
+
+        def archived_reason=: (String _) -> String
+
+        def status: -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::status?
+
+        def status=: (
+          HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::status? _
+        ) -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::status?
+
+        def initialize: (
+          activity_id: String,
+          family: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::family,
+          recorded_at: Time,
+          ?archived_reason: String,
+          ?status: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::status?
+        ) -> void
+
+        def to_hash: -> {
+          activity_id: String,
+          family: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::family,
+          recorded_at: Time,
+          archived_reason: String,
+          status: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::status?
+        }
+
+        type family = :archived
+
+        module Family
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          ARCHIVED: :archived
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::family]
+        end
+
+        type status = :sold
+
+        module Status
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          SOLD: :sold
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Archived::status]
+        end
+      end
+
+      type transferred =
+        {
+          family: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::family,
+          transferred_to: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo
+        }
+
+      class Transferred < HelloWorldTestingggg::Models::PetAPI
+        def family: -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::family
+
+        def family=: (
+          HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::family _
+        ) -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::family
+
+        def transferred_to: -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo?
+
+        def transferred_to=: (
+          HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo _
+        ) -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo
+
+        def initialize: (
+          family: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::family,
+          ?transferred_to: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo
+        ) -> void
+
+        def to_hash: -> {
+          family: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::family,
+          transferred_to: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo
+        }
+
+        type family = :transferred
+
+        module Family
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          TRANSFERRED: :transferred
+
+          def self?.values: -> ::Array[HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::family]
+        end
+
+        type transferred_to =
+          {
+            name: String,
+            address: HelloWorldTestingggg::Address,
+            contact: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact,
+            location: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Location,
+            related_address: HelloWorldTestingggg::Address,
+            related_category: top,
+            related_customer: top,
+            related_money: HelloWorldTestingggg::Money,
+            related_order: top,
+            related_pet: HelloWorldTestingggg::PetAPI,
+            related_tag: top,
+            related_user: top
+          }
+
+        class TransferredTo < HelloWorldTestingggg::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          attr_reader address: HelloWorldTestingggg::Address?
+
+          def address=: (
+            HelloWorldTestingggg::Address
+          ) -> HelloWorldTestingggg::Address
+
+          attr_reader contact: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact?
+
+          def contact=: (
+            HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact
+          ) -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact
+
+          attr_reader location: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Location?
+
+          def location=: (
+            HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Location
+          ) -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Location
+
+          attr_reader related_address: HelloWorldTestingggg::Address?
+
+          def related_address=: (
+            HelloWorldTestingggg::Address
+          ) -> HelloWorldTestingggg::Address
+
+          attr_reader related_category: top?
+
+          def related_category=: (top) -> top
+
+          attr_reader related_customer: top?
+
+          def related_customer=: (top) -> top
+
+          attr_reader related_money: HelloWorldTestingggg::Money?
+
+          def related_money=: (
+            HelloWorldTestingggg::Money
+          ) -> HelloWorldTestingggg::Money
+
+          attr_reader related_order: top?
+
+          def related_order=: (top) -> top
+
+          attr_reader related_pet: HelloWorldTestingggg::PetAPI?
+
+          def related_pet=: (
+            HelloWorldTestingggg::PetAPI
+          ) -> HelloWorldTestingggg::PetAPI
+
+          attr_reader related_tag: top?
+
+          def related_tag=: (top) -> top
+
+          attr_reader related_user: top?
+
+          def related_user=: (top) -> top
+
+          def initialize: (
+            name: String,
+            ?address: HelloWorldTestingggg::Address,
+            ?contact: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact,
+            ?location: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Location,
+            ?related_address: HelloWorldTestingggg::Address,
+            ?related_category: top,
+            ?related_customer: top,
+            ?related_money: HelloWorldTestingggg::Money,
+            ?related_order: top,
+            ?related_pet: HelloWorldTestingggg::PetAPI,
+            ?related_tag: top,
+            ?related_user: top
+          ) -> void
+
+          def to_hash: -> {
+            name: String,
+            address: HelloWorldTestingggg::Address,
+            contact: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact,
+            location: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Location,
+            related_address: HelloWorldTestingggg::Address,
+            related_category: top,
+            related_customer: top,
+            related_money: HelloWorldTestingggg::Money,
+            related_order: top,
+            related_pet: HelloWorldTestingggg::PetAPI,
+            related_tag: top,
+            related_user: top
+          }
+
+          type contact =
+            {
+              primary: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary
+            }
+
+          class Contact < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_reader primary: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary?
+
+            def primary=: (
+              HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary
+            ) -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary
+
+            def initialize: (
+              ?primary: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary
+            ) -> void
+
+            def to_hash: -> {
+              primary: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary
+            }
+
+            type primary =
+              {
+                availability: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability,
+                name: String,
+                phone: String
+              }
+
+            class Primary < HelloWorldTestingggg::Internal::Type::BaseModel
+              attr_reader availability: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability?
+
+              def availability=: (
+                HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability
+              ) -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability
+
+              attr_reader name: String?
+
+              def name=: (String) -> String
+
+              attr_reader phone: String?
+
+              def phone=: (String) -> String
+
+              def initialize: (
+                ?availability: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability,
+                ?name: String,
+                ?phone: String
+              ) -> void
+
+              def to_hash: -> {
+                availability: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability,
+                name: String,
+                phone: String
+              }
+
+              type availability =
+                {
+                  weekday: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability::Weekday,
+                  weekend: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability::Weekend?
+                }
+
+              class Availability < HelloWorldTestingggg::Internal::Type::BaseModel
+                attr_reader weekday: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability::Weekday?
+
+                def weekday=: (
+                  HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability::Weekday
+                ) -> HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability::Weekday
+
+                attr_accessor weekend: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability::Weekend?
+
+                def initialize: (
+                  ?weekday: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability::Weekday,
+                  ?weekend: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability::Weekend?
+                ) -> void
+
+                def to_hash: -> {
+                  weekday: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability::Weekday,
+                  weekend: HelloWorldTestingggg::Models::StoreRetrieveActivityResponse::Transferred::TransferredTo::Contact::Primary::Availability::Weekend?
+                }
+
+                type weekday = { close: String, open_: String }
+
+                class Weekday < HelloWorldTestingggg::Internal::Type::BaseModel
+                  attr_reader close: String?
+
+                  def close=: (String) -> String
+
+                  attr_reader open_: String?
+
+                  def open_=: (String) -> String
+
+                  def initialize: (?close: String, ?open_: String) -> void
+
+                  def to_hash: -> { close: String, open_: String }
+                end
+
+                type weekend = { close: String, open_: String }
+
+                class Weekend < HelloWorldTestingggg::Internal::Type::BaseModel
+                  attr_reader close: String?
+
+                  def close=: (String) -> String
+
+                  attr_reader open_: String?
+
+                  def open_=: (String) -> String
+
+                  def initialize: (?close: String, ?open_: String) -> void
+
+                  def to_hash: -> { close: String, open_: String }
+                end
+              end
+            end
+          end
+
+          type location = { latitude: Float, longitude: Float }
+
+          class Location < HelloWorldTestingggg::Internal::Type::BaseModel
+            attr_accessor latitude: Float
+
+            attr_accessor longitude: Float
+
+            def initialize: (latitude: Float, longitude: Float) -> void
+
+            def to_hash: -> { latitude: Float, longitude: Float }
+          end
+        end
+      end
+
+      def self?.variants: -> ::Array[HelloWorldTestingggg::Models::store_retrieve_activity_response]
+    end
+  end
+end

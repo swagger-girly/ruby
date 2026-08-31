@@ -19,6 +19,15 @@ module HelloWorldTestingggg
     # @return [String]
     attr_reader :api_key
 
+    # Username for HTTP Basic authentication.
+    # @return [String]
+    attr_reader :basic_auth_username
+
+    # Password for HTTP Basic authentication.
+    # @return [String]
+    attr_reader :basic_auth_password
+
+    # Secret used to verify incoming webhook signatures.
     # @return [String, nil]
     attr_reader :webhook_secret
 
@@ -48,6 +57,9 @@ module HelloWorldTestingggg
     # @return [HelloWorldTestingggg::Resources::Webhooks]
     attr_reader :webhooks
 
+    # @return [HelloWorldTestingggg::Resources::Notifications]
+    attr_reader :notifications
+
     # Access to Petstore orders
     # @return [HelloWorldTestingggg::Resources::Store]
     attr_reader :store
@@ -55,6 +67,12 @@ module HelloWorldTestingggg
     # Operations about user
     # @return [HelloWorldTestingggg::Resources::User]
     attr_reader :user
+
+    # @return [HelloWorldTestingggg::Resources::AI]
+    attr_reader :ai
+
+    # @return [HelloWorldTestingggg::Resources::Media]
+    attr_reader :media
 
     # Returns the current API health, including per-service statuses.
     #
@@ -96,14 +114,36 @@ module HelloWorldTestingggg
     #
     # @return [Hash{String=>String}]
     private def auth_headers
+      {**auth_api_key, **basic_auth}
+    end
+
+    # @api private
+    #
+    # @return [Hash{String=>String}]
+    private def auth_api_key
       {"api_key" => @api_key}
+    end
+
+    # @api private
+    #
+    # @return [Hash{String=>String}]
+    private def basic_auth
+      return {} if @basic_auth_username.nil? || @basic_auth_password.nil?
+
+      base64_credentials = ["#{@basic_auth_username}:#{@basic_auth_password}"].pack("m0")
+      {"authorization" => "Basic #{base64_credentials}"}
     end
 
     # Creates and returns a new client for interacting with the API.
     #
     # @param api_key [String, nil] The API key for authorization in the header. Defaults to `ENV["API_KEY"]`
     #
-    # @param webhook_secret [String, nil] Defaults to `ENV["PETSTORE_WEBHOOK_SECRET"]`
+    # @param basic_auth_username [String, nil] Username for HTTP Basic authentication. Defaults to `ENV["BASIC_AUTH_USERNAME"]`
+    #
+    # @param basic_auth_password [String, nil] Password for HTTP Basic authentication. Defaults to `ENV["BASIC_AUTH_PASSWORD"]`
+    #
+    # @param webhook_secret [String, nil] Secret used to verify incoming webhook signatures. Defaults to
+    # `ENV["PETSTORE_WEBHOOK_SECRET"]`
     #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to
@@ -118,6 +158,8 @@ module HelloWorldTestingggg
     # @param max_retry_delay [Float]
     def initialize(
       api_key: ENV["API_KEY"],
+      basic_auth_username: ENV["BASIC_AUTH_USERNAME"],
+      basic_auth_password: ENV["BASIC_AUTH_PASSWORD"],
       webhook_secret: ENV["PETSTORE_WEBHOOK_SECRET"],
       base_url: ENV["HELLO_WORLD_TESTINGGGG_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
@@ -129,6 +171,12 @@ module HelloWorldTestingggg
 
       if api_key.nil?
         raise ArgumentError.new("api_key is required, and can be set via environ: \"API_KEY\"")
+      end
+      if basic_auth_username.nil?
+        raise ArgumentError.new("basic_auth_username is required, and can be set via environ: \"BASIC_AUTH_USERNAME\"")
+      end
+      if basic_auth_password.nil?
+        raise ArgumentError.new("basic_auth_password is required, and can be set via environ: \"BASIC_AUTH_PASSWORD\"")
       end
 
       headers = {}
@@ -145,6 +193,8 @@ module HelloWorldTestingggg
       end
 
       @api_key = api_key.to_s
+      @basic_auth_username = basic_auth_username.to_s
+      @basic_auth_password = basic_auth_password.to_s
       @webhook_secret = webhook_secret&.to_s
 
       super(
@@ -163,8 +213,11 @@ module HelloWorldTestingggg
       @placements = HelloWorldTestingggg::Resources::Placements.new(client: self)
       @veterinary = HelloWorldTestingggg::Resources::Veterinary.new(client: self)
       @webhooks = HelloWorldTestingggg::Resources::Webhooks.new(client: self)
+      @notifications = HelloWorldTestingggg::Resources::Notifications.new(client: self)
       @store = HelloWorldTestingggg::Resources::Store.new(client: self)
       @user = HelloWorldTestingggg::Resources::User.new(client: self)
+      @ai = HelloWorldTestingggg::Resources::AI.new(client: self)
+      @media = HelloWorldTestingggg::Resources::Media.new(client: self)
     end
   end
 end

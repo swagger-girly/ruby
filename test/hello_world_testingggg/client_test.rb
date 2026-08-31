@@ -38,7 +38,12 @@ class HelloWorldTestinggggTest < Minitest::Test
     stub_request(:put, "http://localhost/pet").to_return_json(status: 500, body: {})
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key")
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password"
+      )
 
     assert_raises(HelloWorldTestingggg::Errors::InternalServerError) do
       hello_world_testingggg.pet.update(name: "doggie", photo_urls: ["string"])
@@ -51,7 +56,13 @@ class HelloWorldTestinggggTest < Minitest::Test
     stub_request(:put, "http://localhost/pet").to_return_json(status: 500, body: {})
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password",
+        max_retries: 3
+      )
 
     assert_raises(HelloWorldTestingggg::Errors::InternalServerError) do
       hello_world_testingggg.pet.update(name: "doggie", photo_urls: ["string"])
@@ -64,7 +75,12 @@ class HelloWorldTestinggggTest < Minitest::Test
     stub_request(:put, "http://localhost/pet").to_return_json(status: 500, body: {})
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key")
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password"
+      )
 
     assert_raises(HelloWorldTestingggg::Errors::InternalServerError) do
       hello_world_testingggg.pet.update(
@@ -81,7 +97,13 @@ class HelloWorldTestinggggTest < Minitest::Test
     stub_request(:put, "http://localhost/pet").to_return_json(status: 500, body: {})
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password",
+        max_retries: 3
+      )
 
     assert_raises(HelloWorldTestingggg::Errors::InternalServerError) do
       hello_world_testingggg.pet.update(
@@ -102,7 +124,13 @@ class HelloWorldTestinggggTest < Minitest::Test
     )
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password",
+        max_retries: 1
+      )
 
     assert_raises(HelloWorldTestingggg::Errors::InternalServerError) do
       hello_world_testingggg.pet.update(name: "doggie", photo_urls: ["string"])
@@ -122,7 +150,13 @@ class HelloWorldTestinggggTest < Minitest::Test
     )
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password",
+        max_retries: 1
+      )
 
     Thread.current.thread_variable_set(:time_now, time_now)
     assert_raises(HelloWorldTestingggg::Errors::InternalServerError) do
@@ -142,7 +176,13 @@ class HelloWorldTestinggggTest < Minitest::Test
     )
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password",
+        max_retries: 1
+      )
 
     assert_raises(HelloWorldTestingggg::Errors::InternalServerError) do
       hello_world_testingggg.pet.update(name: "doggie", photo_urls: ["string"])
@@ -156,7 +196,12 @@ class HelloWorldTestinggggTest < Minitest::Test
     stub_request(:put, "http://localhost/pet").to_return_json(status: 500, body: {})
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key")
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password"
+      )
 
     assert_raises(HelloWorldTestingggg::Errors::InternalServerError) do
       hello_world_testingggg.pet.update(name: "doggie", photo_urls: ["string"])
@@ -171,7 +216,12 @@ class HelloWorldTestinggggTest < Minitest::Test
     stub_request(:put, "http://localhost/pet").to_return_json(status: 500, body: {})
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key")
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password"
+      )
 
     assert_raises(HelloWorldTestingggg::Errors::InternalServerError) do
       hello_world_testingggg.pet.update(
@@ -190,7 +240,12 @@ class HelloWorldTestinggggTest < Minitest::Test
     stub_request(:put, "http://localhost/pet").to_return_json(status: 500, body: {})
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key")
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password"
+      )
 
     assert_raises(HelloWorldTestingggg::Errors::InternalServerError) do
       hello_world_testingggg.pet.update(
@@ -215,7 +270,12 @@ class HelloWorldTestinggggTest < Minitest::Test
     )
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key")
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password"
+      )
 
     assert_raises(HelloWorldTestingggg::Errors::APIConnectionError) do
       hello_world_testingggg.pet.update(
@@ -253,7 +313,12 @@ class HelloWorldTestinggggTest < Minitest::Test
     )
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key")
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password"
+      )
 
     assert_raises(HelloWorldTestingggg::Errors::APIConnectionError) do
       hello_world_testingggg.pet.update(
@@ -286,7 +351,12 @@ class HelloWorldTestinggggTest < Minitest::Test
     )
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key")
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password"
+      )
 
     assert_raises(HelloWorldTestingggg::Errors::APIConnectionError) do
       hello_world_testingggg.pet.update(
@@ -322,7 +392,12 @@ class HelloWorldTestinggggTest < Minitest::Test
     )
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key")
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password"
+      )
 
     assert_raises(HelloWorldTestingggg::Errors::APIConnectionError) do
       hello_world_testingggg.pet.update(
@@ -346,7 +421,12 @@ class HelloWorldTestinggggTest < Minitest::Test
     stub_request(:put, "http://localhost/pet").to_return_json(status: 200, body: {})
 
     hello_world_testingggg =
-      HelloWorldTestingggg::Client.new(base_url: "http://localhost", api_key: "My API Key")
+      HelloWorldTestingggg::Client.new(
+        base_url: "http://localhost",
+        api_key: "My API Key",
+        basic_auth_username: "My Basic Auth Username",
+        basic_auth_password: "My Basic Auth Password"
+      )
 
     hello_world_testingggg.pet.update(name: "doggie", photo_urls: ["string"])
 

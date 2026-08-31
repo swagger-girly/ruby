@@ -15,6 +15,8 @@ module HelloWorldTestingggg
   AdoptionsPolicyChangedWebhookEvent =
     HelloWorldTestingggg::Models::AdoptionsPolicyChangedWebhookEvent
 
+  AIAIQueryParams = HelloWorldTestingggg::Models::AIAIQueryParams
+
   Application = HelloWorldTestingggg::Models::Application
 
   Archive = HelloWorldTestingggg::Models::Archive
@@ -43,9 +45,30 @@ module HelloWorldTestingggg
 
   FileUploadParams = HelloWorldTestingggg::Models::FileUploadParams
 
+  MediaBinaryAndJsonParams =
+    HelloWorldTestingggg::Models::MediaBinaryAndJsonParams
+
+  MediaJsonAndXmlParams = HelloWorldTestingggg::Models::MediaJsonAndXmlParams
+
+  MediaJsonFirstParams = HelloWorldTestingggg::Models::MediaJsonFirstParams
+
+  MediaSchemaOnJsonParams =
+    HelloWorldTestingggg::Models::MediaSchemaOnJsonParams
+
+  MediaSchemaOnTextParams =
+    HelloWorldTestingggg::Models::MediaSchemaOnTextParams
+
+  MediaTextFirstParams = HelloWorldTestingggg::Models::MediaTextFirstParams
+
+  MediaTextOnlyParams = HelloWorldTestingggg::Models::MediaTextOnlyParams
+
+  MediaVendorJsonParams = HelloWorldTestingggg::Models::MediaVendorJsonParams
+
   MedicalSummary = HelloWorldTestingggg::Models::MedicalSummary
 
   Money = HelloWorldTestingggg::Models::Money
+
+  Notifications = HelloWorldTestingggg::Models::Notifications
 
   ParsedWebhookEvent = HelloWorldTestingggg::Models::ParsedWebhookEvent
 
@@ -71,6 +94,9 @@ module HelloWorldTestingggg
 
   PetListFakePageParams = HelloWorldTestingggg::Models::PetListFakePageParams
 
+  PetListLeaderboardParams =
+    HelloWorldTestingggg::Models::PetListLeaderboardParams
+
   PetListParams = HelloWorldTestingggg::Models::PetListParams
 
   PetListUnpaginatedParams =
@@ -83,6 +109,8 @@ module HelloWorldTestingggg
 
   PetRetrievePremiumParams =
     HelloWorldTestingggg::Models::PetRetrievePremiumParams
+
+  PetSearchParams = HelloWorldTestingggg::Models::PetSearchParams
 
   PetStatus = HelloWorldTestingggg::Models::PetStatus
 
@@ -135,6 +163,9 @@ module HelloWorldTestingggg
   StoreReportGeneratedWebhookEvent =
     HelloWorldTestingggg::Models::StoreReportGeneratedWebhookEvent
 
+  StoreRetrieveActivityParams =
+    HelloWorldTestingggg::Models::StoreRetrieveActivityParams
+
   SystemHealth = HelloWorldTestingggg::Models::SystemHealth
 
   TransferLeg = HelloWorldTestingggg::Models::TransferLeg
@@ -153,6 +184,9 @@ module HelloWorldTestingggg
   UserRetrieveParams = HelloWorldTestingggg::Models::UserRetrieveParams
 
   UserUpdateParams = HelloWorldTestingggg::Models::UserUpdateParams
+
+  UserVerifyIdentityParams =
+    HelloWorldTestingggg::Models::UserVerifyIdentityParams
 
   VaccinationRecord = HelloWorldTestingggg::Models::VaccinationRecord
 

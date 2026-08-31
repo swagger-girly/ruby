@@ -1,0 +1,17 @@
+module HelloWorldTestingggg
+  module Models
+    type media_json_first_response = { id: String, label: String }
+
+    class MediaJsonFirstResponse < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_reader label: String?
+
+      def label=: (String) -> String
+
+      def initialize: (id: String, ?label: String) -> void
+
+      def to_hash: -> { id: String, label: String }
+    end
+  end
+end

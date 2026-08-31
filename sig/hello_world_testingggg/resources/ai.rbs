@@ -1,0 +1,16 @@
+module HelloWorldTestingggg
+  module Resources
+    class AI
+      def ai_query: (
+        data_to_extract: ::Array[HelloWorldTestingggg::AIAIQueryParams::DataToExtract],
+        domain: String,
+        ?authentication_3ds: HelloWorldTestingggg::AIAIQueryParams::Authentication3DS,
+        ?datapoint_object_schema: ::Hash[Symbol, HelloWorldTestingggg::Models::AIAIQueryParams::datapoint_object_schema],
+        ?extraction_rules: ::Array[HelloWorldTestingggg::AIAIQueryParams::ExtractionRule],
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::AIAIQueryResponse
+
+      def initialize: (client: HelloWorldTestingggg::Client) -> void
+    end
+  end
+end

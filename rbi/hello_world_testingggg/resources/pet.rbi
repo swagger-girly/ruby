@@ -10,8 +10,23 @@ module HelloWorldTestingggg
           name: String,
           photo_urls: T::Array[String],
           id: Integer,
+          acquisition_channel:
+            T.any(
+              HelloWorldTestingggg::PetAPI::AcquisitionChannel::OrSymbol,
+              String
+            ),
           category: HelloWorldTestingggg::PetAPI::Category::OrHash,
           microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
+          related_address: HelloWorldTestingggg::Address::OrHash,
+          related_category:
+            HelloWorldTestingggg::PetAPI::RelatedCategory::OrHash,
+          related_customer:
+            HelloWorldTestingggg::PetAPI::RelatedCustomer::OrHash,
+          related_money: HelloWorldTestingggg::Money::OrHash,
+          related_order: HelloWorldTestingggg::PetAPI::RelatedOrder::OrHash,
+          related_pet: HelloWorldTestingggg::PetAPI::OrHash,
+          related_shelter: HelloWorldTestingggg::PetAPI::RelatedShelter::OrHash,
+          related_user: HelloWorldTestingggg::PetAPI::RelatedUser::OrHash,
           status: HelloWorldTestingggg::PetStatus::OrSymbol,
           tags: T::Array[HelloWorldTestingggg::PetAPI::Tag::OrHash],
           request_options: HelloWorldTestingggg::RequestOptions::OrHash
@@ -21,9 +36,20 @@ module HelloWorldTestingggg
         name:,
         photo_urls:,
         id: nil,
+        # How the pet entered the store. Open enum: known channels plus forward-compatible
+        # free-form strings.
+        acquisition_channel: nil,
         category: nil,
         # Microchip identifier; legacy chips used numeric identifiers.
         microchip_id: nil,
+        related_address: nil,
+        related_category: nil,
+        related_customer: nil,
+        related_money: nil,
+        related_order: nil,
+        related_pet: nil,
+        related_shelter: nil,
+        related_user: nil,
         # pet status in the store
         status: nil,
         tags: nil,
@@ -51,8 +77,23 @@ module HelloWorldTestingggg
           name: String,
           photo_urls: T::Array[String],
           id: Integer,
+          acquisition_channel:
+            T.any(
+              HelloWorldTestingggg::PetAPI::AcquisitionChannel::OrSymbol,
+              String
+            ),
           category: HelloWorldTestingggg::PetAPI::Category::OrHash,
           microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID::Variants,
+          related_address: HelloWorldTestingggg::Address::OrHash,
+          related_category:
+            HelloWorldTestingggg::PetAPI::RelatedCategory::OrHash,
+          related_customer:
+            HelloWorldTestingggg::PetAPI::RelatedCustomer::OrHash,
+          related_money: HelloWorldTestingggg::Money::OrHash,
+          related_order: HelloWorldTestingggg::PetAPI::RelatedOrder::OrHash,
+          related_pet: HelloWorldTestingggg::PetAPI::OrHash,
+          related_shelter: HelloWorldTestingggg::PetAPI::RelatedShelter::OrHash,
+          related_user: HelloWorldTestingggg::PetAPI::RelatedUser::OrHash,
           status: HelloWorldTestingggg::PetStatus::OrSymbol,
           tags: T::Array[HelloWorldTestingggg::PetAPI::Tag::OrHash],
           request_options: HelloWorldTestingggg::RequestOptions::OrHash
@@ -62,9 +103,20 @@ module HelloWorldTestingggg
         name:,
         photo_urls:,
         id: nil,
+        # How the pet entered the store. Open enum: known channels plus forward-compatible
+        # free-form strings.
+        acquisition_channel: nil,
         category: nil,
         # Microchip identifier; legacy chips used numeric identifiers.
         microchip_id: nil,
+        related_address: nil,
+        related_category: nil,
+        related_customer: nil,
+        related_money: nil,
+        related_order: nil,
+        related_pet: nil,
+        related_shelter: nil,
+        related_user: nil,
         # pet status in the store
         status: nil,
         tags: nil,
@@ -75,6 +127,7 @@ module HelloWorldTestingggg
       # Returns a cursor-paginated list of pets.
       sig do
         params(
+          created_at: HelloWorldTestingggg::PetListParams::CreatedAt::OrHash,
           cursor: String,
           limit: Integer,
           request_options: HelloWorldTestingggg::RequestOptions::OrHash
@@ -85,6 +138,8 @@ module HelloWorldTestingggg
         )
       end
       def list(
+        # Filter by created_at timestamp range in UTC. Accepts gt/gte/lt/lte.
+        created_at: nil,
         # Cursor from a previous response used to fetch the next page.
         cursor: nil,
         # Maximum number of pets to return.
@@ -159,6 +214,18 @@ module HelloWorldTestingggg
       def list_fake_page_inferred(request_options: {})
       end
 
+      # Returns a bare top-level array of inline objects so generators must mint a
+      # distinct element type instead of reusing the response alias name.
+      sig do
+        params(
+          request_options: HelloWorldTestingggg::RequestOptions::OrHash
+        ).returns(
+          T::Array[HelloWorldTestingggg::Models::PetListLeaderboardResponseItem]
+        )
+      end
+      def list_leaderboard(request_options: {})
+      end
+
       # Returns the same cursor-shaped pet list response without enabling SDK pagination
       # helpers.
       sig do
@@ -188,6 +255,37 @@ module HelloWorldTestingggg
       def retrieve_premium(
         # ID of pet to return the premium profile for
         pet_id,
+        request_options: {}
+      )
+      end
+
+      # Typed query-parameter probe matrix: an object-schema query param mints a typed
+      # params model, an array-of-object query param mints a singularized element type,
+      # an empty object (additionalProperties:false) stays a bare object, and a scalar
+      # stays scalar. Isolates the emitter query-parameter type-resolution branches so
+      # object/array-of-object/empty-object params are each exercised.
+      sig do
+        params(
+          filters: HelloWorldTestingggg::PetSearchParams::Filters::OrHash,
+          max_results: Integer,
+          raw_filter: T.anything,
+          tag_filters:
+            T::Array[HelloWorldTestingggg::PetSearchParams::TagFilter::OrHash],
+          request_options: HelloWorldTestingggg::RequestOptions::OrHash
+        ).returns(T::Array[HelloWorldTestingggg::PetAPI])
+      end
+      def search(
+        # Object-schema query parameter: mints a typed params model instead of collapsing
+        # to a bare object.
+        filters: nil,
+        # Scalar query parameter: stays a plain scalar (control probe).
+        max_results: nil,
+        # Empty-object query parameter (additionalProperties:false): stays a bare object,
+        # exercising the empty-object branch.
+        raw_filter: nil,
+        # Array-of-object query parameter: emitters mint a singularized element type for
+        # each item.
+        tag_filters: nil,
         request_options: {}
       )
       end

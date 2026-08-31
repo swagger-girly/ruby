@@ -114,6 +114,14 @@ module HelloWorldTestingggg
               last_name: String,
               password: String,
               phone: String,
+              related_address: HelloWorldTestingggg::Address,
+              related_category: top,
+              related_customer: top,
+              related_money: HelloWorldTestingggg::Money,
+              related_order: top,
+              related_pet: HelloWorldTestingggg::PetAPI,
+              related_shelter: top,
+              related_tag: top,
               username: String,
               user_status: Integer
             }
@@ -143,6 +151,44 @@ module HelloWorldTestingggg
 
             def phone=: (String) -> String
 
+            attr_reader related_address: HelloWorldTestingggg::Address?
+
+            def related_address=: (
+              HelloWorldTestingggg::Address
+            ) -> HelloWorldTestingggg::Address
+
+            attr_reader related_category: top?
+
+            def related_category=: (top) -> top
+
+            attr_reader related_customer: top?
+
+            def related_customer=: (top) -> top
+
+            attr_reader related_money: HelloWorldTestingggg::Money?
+
+            def related_money=: (
+              HelloWorldTestingggg::Money
+            ) -> HelloWorldTestingggg::Money
+
+            attr_reader related_order: top?
+
+            def related_order=: (top) -> top
+
+            attr_reader related_pet: HelloWorldTestingggg::PetAPI?
+
+            def related_pet=: (
+              HelloWorldTestingggg::PetAPI
+            ) -> HelloWorldTestingggg::PetAPI
+
+            attr_reader related_shelter: top?
+
+            def related_shelter=: (top) -> top
+
+            attr_reader related_tag: top?
+
+            def related_tag=: (top) -> top
+
             attr_reader username: String?
 
             def username=: (String) -> String
@@ -158,6 +204,14 @@ module HelloWorldTestingggg
               ?last_name: String,
               ?password: String,
               ?phone: String,
+              ?related_address: HelloWorldTestingggg::Address,
+              ?related_category: top,
+              ?related_customer: top,
+              ?related_money: HelloWorldTestingggg::Money,
+              ?related_order: top,
+              ?related_pet: HelloWorldTestingggg::PetAPI,
+              ?related_shelter: top,
+              ?related_tag: top,
               ?username: String,
               ?user_status: Integer
             ) -> void
@@ -169,6 +223,14 @@ module HelloWorldTestingggg
               last_name: String,
               password: String,
               phone: String,
+              related_address: HelloWorldTestingggg::Address,
+              related_category: top,
+              related_customer: top,
+              related_money: HelloWorldTestingggg::Money,
+              related_order: top,
+              related_pet: HelloWorldTestingggg::PetAPI,
+              related_shelter: top,
+              related_tag: top,
               username: String,
               user_status: Integer
             }

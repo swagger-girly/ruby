@@ -48,7 +48,12 @@ class HelloWorldTestingggg::Test::SingletonClient < HelloWorldTestingggg::Client
   TEST_API_BASE_URL = ENV.fetch("TEST_API_BASE_URL", "http://localhost:4010")
 
   def initialize
-    super(base_url: HelloWorldTestingggg::Test::SingletonClient::TEST_API_BASE_URL, api_key: "My API Key")
+    super(
+      base_url: HelloWorldTestingggg::Test::SingletonClient::TEST_API_BASE_URL,
+      api_key: "My API Key",
+      basic_auth_username: "My Basic Auth Username",
+      basic_auth_password: "My Basic Auth Password"
+    )
   end
 end
 

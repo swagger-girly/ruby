@@ -8,6 +8,14 @@ module HelloWorldTestingggg
         ?last_name: String,
         ?password: String,
         ?phone: String,
+        ?related_address: HelloWorldTestingggg::Address,
+        ?related_category: top,
+        ?related_customer: top,
+        ?related_money: HelloWorldTestingggg::Money,
+        ?related_order: top,
+        ?related_pet: HelloWorldTestingggg::PetAPI,
+        ?related_shelter: top,
+        ?related_tag: top,
         ?username: String,
         ?user_status: Integer,
         ?request_options: HelloWorldTestingggg::request_opts
@@ -26,6 +34,14 @@ module HelloWorldTestingggg
         ?last_name: String,
         ?password: String,
         ?phone: String,
+        ?related_address: HelloWorldTestingggg::Address,
+        ?related_category: top,
+        ?related_customer: top,
+        ?related_money: HelloWorldTestingggg::Money,
+        ?related_order: top,
+        ?related_pet: HelloWorldTestingggg::PetAPI,
+        ?related_shelter: top,
+        ?related_tag: top,
         ?body_username: String,
         ?user_status: Integer,
         ?request_options: HelloWorldTestingggg::request_opts
@@ -48,6 +64,11 @@ module HelloWorldTestingggg
       ) -> String
 
       def logout: (?request_options: HelloWorldTestingggg::request_opts) -> nil
+
+      def verify_identity: (
+        String username,
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::user_verify_identity_response
 
       def initialize: (client: HelloWorldTestingggg::Client) -> void
     end

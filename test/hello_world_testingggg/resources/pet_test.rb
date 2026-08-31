@@ -17,10 +17,19 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
         name: String,
         photo_urls: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[String]),
         id: Integer | nil,
-        category: HelloWorldTestingggg::PetAPI::Category | nil,
+        acquisition_channel: HelloWorldTestingggg::PetAPI::AcquisitionChannel | nil,
+        category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID | nil,
+        related_address: HelloWorldTestingggg::Address | nil,
+        related_category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_customer: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_money: HelloWorldTestingggg::Money | nil,
+        related_order: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_pet: HelloWorldTestingggg::PetAPI | nil,
+        related_shelter: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_user: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         status: HelloWorldTestingggg::PetStatus | nil,
-        tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI::Tag]) | nil
+        tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::Internal::Type::Unknown]) | nil
       }
     end
   end
@@ -39,10 +48,19 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
         name: String,
         photo_urls: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[String]),
         id: Integer | nil,
-        category: HelloWorldTestingggg::PetAPI::Category | nil,
+        acquisition_channel: HelloWorldTestingggg::PetAPI::AcquisitionChannel | nil,
+        category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID | nil,
+        related_address: HelloWorldTestingggg::Address | nil,
+        related_category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_customer: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_money: HelloWorldTestingggg::Money | nil,
+        related_order: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_pet: HelloWorldTestingggg::PetAPI | nil,
+        related_shelter: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_user: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         status: HelloWorldTestingggg::PetStatus | nil,
-        tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI::Tag]) | nil
+        tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::Internal::Type::Unknown]) | nil
       }
     end
   end
@@ -61,10 +79,19 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
         name: String,
         photo_urls: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[String]),
         id: Integer | nil,
-        category: HelloWorldTestingggg::PetAPI::Category | nil,
+        acquisition_channel: HelloWorldTestingggg::PetAPI::AcquisitionChannel | nil,
+        category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID | nil,
+        related_address: HelloWorldTestingggg::Address | nil,
+        related_category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_customer: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_money: HelloWorldTestingggg::Money | nil,
+        related_order: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_pet: HelloWorldTestingggg::PetAPI | nil,
+        related_shelter: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_user: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         status: HelloWorldTestingggg::PetStatus | nil,
-        tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI::Tag]) | nil
+        tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::Internal::Type::Unknown]) | nil
       }
     end
   end
@@ -90,10 +117,19 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
         name: String,
         photo_urls: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[String]),
         id: Integer | nil,
-        category: HelloWorldTestingggg::PetAPI::Category | nil,
+        acquisition_channel: HelloWorldTestingggg::PetAPI::AcquisitionChannel | nil,
+        category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID | nil,
+        related_address: HelloWorldTestingggg::Address | nil,
+        related_category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_customer: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_money: HelloWorldTestingggg::Money | nil,
+        related_order: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_pet: HelloWorldTestingggg::PetAPI | nil,
+        related_shelter: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_user: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         status: HelloWorldTestingggg::PetStatus | nil,
-        tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI::Tag]) | nil
+        tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::Internal::Type::Unknown]) | nil
       }
     end
   end
@@ -166,11 +202,30 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
         name: String,
         photo_urls: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[String]),
         id: Integer | nil,
-        category: HelloWorldTestingggg::PetAPI::Category | nil,
+        acquisition_channel: HelloWorldTestingggg::PetAPI::AcquisitionChannel | nil,
+        category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         microchip_id: HelloWorldTestingggg::PetAPI::MicrochipID | nil,
+        related_address: HelloWorldTestingggg::Address | nil,
+        related_category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_customer: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_money: HelloWorldTestingggg::Money | nil,
+        related_order: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_pet: HelloWorldTestingggg::PetAPI | nil,
+        related_shelter: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_user: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         status: HelloWorldTestingggg::PetStatus | nil,
-        tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI::Tag]) | nil
+        tags: ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::Internal::Type::Unknown]) | nil
       }
+    end
+  end
+
+  def test_list_leaderboard
+    skip("Mock server tests are disabled")
+
+    response = @hello_world_testingggg.pet.list_leaderboard
+
+    assert_pattern do
+      response => ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::Models::PetListLeaderboardResponseItem])
     end
   end
 
@@ -198,6 +253,16 @@ class HelloWorldTestingggg::Test::Resources::PetTest < HelloWorldTestingggg::Tes
 
     assert_pattern do
       response => HelloWorldTestingggg::Models::PetRetrievePremiumResponse
+    end
+  end
+
+  def test_search
+    skip("Mock server tests are disabled")
+
+    response = @hello_world_testingggg.pet.search
+
+    assert_pattern do
+      response => ^(HelloWorldTestingggg::Internal::Type::ArrayOf[HelloWorldTestingggg::PetAPI])
     end
   end
 

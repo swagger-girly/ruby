@@ -1,0 +1,103 @@
+module HelloWorldTestingggg
+  module Models
+    type pet_list_leaderboard_response_item =
+      {
+        pet_id: Integer,
+        badge: HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Badge,
+        docs_ref: HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::docs_ref,
+        rank: Integer,
+        roi: HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Roi,
+        seven_day_streak: Integer
+      }
+
+    class PetListLeaderboardResponseItem < HelloWorldTestingggg::Internal::Type::BaseModel
+      attr_accessor pet_id: Integer
+
+      attr_reader badge: HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Badge?
+
+      def badge=: (
+        HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Badge
+      ) -> HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Badge
+
+      attr_reader docs_ref: HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::docs_ref?
+
+      def docs_ref=: (
+        HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::docs_ref
+      ) -> HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::docs_ref
+
+      attr_reader rank: Integer?
+
+      def rank=: (Integer) -> Integer
+
+      attr_reader roi: HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Roi?
+
+      def roi=: (
+        HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Roi
+      ) -> HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Roi
+
+      attr_reader seven_day_streak: Integer?
+
+      def seven_day_streak=: (Integer) -> Integer
+
+      def initialize: (
+        pet_id: Integer,
+        ?badge: HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Badge,
+        ?docs_ref: HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::docs_ref,
+        ?rank: Integer,
+        ?roi: HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Roi,
+        ?seven_day_streak: Integer
+      ) -> void
+
+      def to_hash: -> {
+        pet_id: Integer,
+        badge: HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Badge,
+        docs_ref: HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::docs_ref,
+        rank: Integer,
+        roi: HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::Roi,
+        seven_day_streak: Integer
+      }
+
+      type badge = {  }
+
+      class Badge < HelloWorldTestingggg::Internal::Type::BaseModel
+        def initialize: -> void
+
+        def to_hash: -> {  }
+      end
+
+      type docs_ref =
+        :"https://docs.petstore.example/leaderboard#top-adopter"
+        | :"https://docs.petstore.example/leaderboard#rising-star"
+
+      module DocsRef
+        extend HelloWorldTestingggg::Internal::Type::Enum
+
+        TOP_ADOPTER: :"https://docs.petstore.example/leaderboard#top-adopter"
+        RISING_STAR: :"https://docs.petstore.example/leaderboard#rising-star"
+
+        def self?.values: -> ::Array[HelloWorldTestingggg::Models::PetListLeaderboardResponseItem::docs_ref]
+      end
+
+      type roi = { currency: String, times: Float }
+
+      class Roi < HelloWorldTestingggg::Internal::Type::BaseModel
+        attr_reader currency: String?
+
+        def currency=: (String) -> String
+
+        attr_reader times: Float?
+
+        def times=: (Float) -> Float
+
+        def initialize: (?currency: String, ?times: Float) -> void
+
+        def to_hash: -> { currency: String, times: Float }
+      end
+    end
+
+    type pet_list_leaderboard_response =
+      ::Array[HelloWorldTestingggg::Models::PetListLeaderboardResponseItem]
+
+    PetListLeaderboardResponse: HelloWorldTestingggg::Internal::Type::Converter
+  end
+end

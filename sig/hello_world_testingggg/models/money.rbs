@@ -1,15 +1,85 @@
 module HelloWorldTestingggg
   module Models
-    type money = { amount: Integer, currency: String }
+    type money =
+      {
+        amount: Integer,
+        currency: String,
+        related_address: HelloWorldTestingggg::Address,
+        related_category: top,
+        related_customer: top,
+        related_order: top,
+        related_pet: HelloWorldTestingggg::PetAPI,
+        related_shelter: top,
+        related_tag: top,
+        related_user: top
+      }
 
     class Money < HelloWorldTestingggg::Internal::Type::BaseModel
       attr_accessor amount: Integer
 
       attr_accessor currency: String
 
-      def initialize: (amount: Integer, currency: String) -> void
+      attr_reader related_address: HelloWorldTestingggg::Address?
 
-      def to_hash: -> { amount: Integer, currency: String }
+      def related_address=: (
+        HelloWorldTestingggg::Address
+      ) -> HelloWorldTestingggg::Address
+
+      attr_reader related_category: top?
+
+      def related_category=: (top) -> top
+
+      attr_reader related_customer: top?
+
+      def related_customer=: (top) -> top
+
+      attr_reader related_order: top?
+
+      def related_order=: (top) -> top
+
+      attr_reader related_pet: HelloWorldTestingggg::PetAPI?
+
+      def related_pet=: (
+        HelloWorldTestingggg::PetAPI
+      ) -> HelloWorldTestingggg::PetAPI
+
+      attr_reader related_shelter: top?
+
+      def related_shelter=: (top) -> top
+
+      attr_reader related_tag: top?
+
+      def related_tag=: (top) -> top
+
+      attr_reader related_user: top?
+
+      def related_user=: (top) -> top
+
+      def initialize: (
+        amount: Integer,
+        currency: String,
+        ?related_address: HelloWorldTestingggg::Address,
+        ?related_category: top,
+        ?related_customer: top,
+        ?related_order: top,
+        ?related_pet: HelloWorldTestingggg::PetAPI,
+        ?related_shelter: top,
+        ?related_tag: top,
+        ?related_user: top
+      ) -> void
+
+      def to_hash: -> {
+        amount: Integer,
+        currency: String,
+        related_address: HelloWorldTestingggg::Address,
+        related_category: top,
+        related_customer: top,
+        related_order: top,
+        related_pet: HelloWorldTestingggg::PetAPI,
+        related_shelter: top,
+        related_tag: top,
+        related_user: top
+      }
     end
   end
 end

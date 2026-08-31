@@ -6,7 +6,7 @@ module HelloWorldTestingggg
     class User
       # This can only be done by the logged in user.
       #
-      # @overload create(id: nil, email: nil, first_name: nil, last_name: nil, password: nil, phone: nil, username: nil, user_status: nil, request_options: {})
+      # @overload create(id: nil, email: nil, first_name: nil, last_name: nil, password: nil, phone: nil, related_address: nil, related_category: nil, related_customer: nil, related_money: nil, related_order: nil, related_pet: nil, related_shelter: nil, related_tag: nil, username: nil, user_status: nil, request_options: {})
       #
       # @param id [Integer]
       #
@@ -19,6 +19,22 @@ module HelloWorldTestingggg
       # @param password [String]
       #
       # @param phone [String]
+      #
+      # @param related_address [HelloWorldTestingggg::Models::Address]
+      #
+      # @param related_category [Object]
+      #
+      # @param related_customer [Object]
+      #
+      # @param related_money [HelloWorldTestingggg::Models::Money]
+      #
+      # @param related_order [Object]
+      #
+      # @param related_pet [HelloWorldTestingggg::Models::PetAPI]
+      #
+      # @param related_shelter [Object]
+      #
+      # @param related_tag [Object]
       #
       # @param username [String]
       #
@@ -62,7 +78,7 @@ module HelloWorldTestingggg
 
       # This can only be done by the logged in user.
       #
-      # @overload update(path_username, id: nil, email: nil, first_name: nil, last_name: nil, password: nil, phone: nil, body_username: nil, user_status: nil, request_options: {})
+      # @overload update(path_username, id: nil, email: nil, first_name: nil, last_name: nil, password: nil, phone: nil, related_address: nil, related_category: nil, related_customer: nil, related_money: nil, related_order: nil, related_pet: nil, related_shelter: nil, related_tag: nil, body_username: nil, user_status: nil, request_options: {})
       #
       # @param path_username [String] name that needs to be updated
       #
@@ -77,6 +93,22 @@ module HelloWorldTestingggg
       # @param password [String]
       #
       # @param phone [String]
+      #
+      # @param related_address [HelloWorldTestingggg::Models::Address]
+      #
+      # @param related_category [Object]
+      #
+      # @param related_customer [Object]
+      #
+      # @param related_money [HelloWorldTestingggg::Models::Money]
+      #
+      # @param related_order [Object]
+      #
+      # @param related_pet [HelloWorldTestingggg::Models::PetAPI]
+      #
+      # @param related_shelter [Object]
+      #
+      # @param related_tag [Object]
       #
       # @param body_username [String]
       #
@@ -176,6 +208,27 @@ module HelloWorldTestingggg
       # @see HelloWorldTestingggg::Models::UserLogoutParams
       def logout(params = {})
         @client.request(method: :get, path: "user/logout", model: NilClass, options: params[:request_options])
+      end
+
+      # Casing probe replicating lithic: inline oneOf response whose variant is a
+      # kebab-named component (kyb-kyc-verification) so adjacent default initialisms
+      # glue into KYBKYC in the operation-scoped variant name
+      #
+      # @overload verify_identity(username, request_options: {})
+      #
+      # @param username [String]
+      # @param request_options [HelloWorldTestingggg::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification, HelloWorldTestingggg::Models::UserVerifyIdentityResponse::BasicVerification]
+      #
+      # @see HelloWorldTestingggg::Models::UserVerifyIdentityParams
+      def verify_identity(username, params = {})
+        @client.request(
+          method: :post,
+          path: ["user/%1$s/verifyIdentity", username],
+          model: HelloWorldTestingggg::Models::UserVerifyIdentityResponse,
+          options: params[:request_options]
+        )
       end
 
       # @api private

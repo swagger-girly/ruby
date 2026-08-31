@@ -20,6 +20,14 @@ class HelloWorldTestingggg::Test::Resources::UserTest < HelloWorldTestingggg::Te
         last_name: String | nil,
         password: String | nil,
         phone: String | nil,
+        related_address: HelloWorldTestingggg::Address | nil,
+        related_category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_customer: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_money: HelloWorldTestingggg::Money | nil,
+        related_order: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_pet: HelloWorldTestingggg::PetAPI | nil,
+        related_shelter: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_tag: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         username: String | nil,
         user_status: Integer | nil
       }
@@ -43,6 +51,14 @@ class HelloWorldTestingggg::Test::Resources::UserTest < HelloWorldTestingggg::Te
         last_name: String | nil,
         password: String | nil,
         phone: String | nil,
+        related_address: HelloWorldTestingggg::Address | nil,
+        related_category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_customer: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_money: HelloWorldTestingggg::Money | nil,
+        related_order: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_pet: HelloWorldTestingggg::PetAPI | nil,
+        related_shelter: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_tag: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         username: String | nil,
         user_status: Integer | nil
       }
@@ -86,6 +102,14 @@ class HelloWorldTestingggg::Test::Resources::UserTest < HelloWorldTestingggg::Te
         last_name: String | nil,
         password: String | nil,
         phone: String | nil,
+        related_address: HelloWorldTestingggg::Address | nil,
+        related_category: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_customer: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_money: HelloWorldTestingggg::Money | nil,
+        related_order: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_pet: HelloWorldTestingggg::PetAPI | nil,
+        related_shelter: HelloWorldTestingggg::Internal::Type::Unknown | nil,
+        related_tag: HelloWorldTestingggg::Internal::Type::Unknown | nil,
         username: String | nil,
         user_status: Integer | nil
       }
@@ -109,6 +133,23 @@ class HelloWorldTestingggg::Test::Resources::UserTest < HelloWorldTestingggg::Te
 
     assert_pattern do
       response => nil
+    end
+  end
+
+  def test_verify_identity
+    skip("Mock server tests are disabled")
+
+    response = @hello_world_testingggg.user.verify_identity("username")
+
+    assert_pattern do
+      response => HelloWorldTestingggg::Models::UserVerifyIdentityResponse
+    end
+
+    assert_pattern do
+      case response
+      in HelloWorldTestingggg::Models::UserVerifyIdentityResponse::KYBKYCVerification
+      in HelloWorldTestingggg::Models::UserVerifyIdentityResponse::BasicVerification
+      end
     end
   end
 end

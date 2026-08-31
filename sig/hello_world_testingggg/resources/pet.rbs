@@ -5,8 +5,17 @@ module HelloWorldTestingggg
         name: String,
         photo_urls: ::Array[String],
         ?id: Integer,
+        ?acquisition_channel: HelloWorldTestingggg::Models::PetAPI::acquisition_channel,
         ?category: HelloWorldTestingggg::PetAPI::Category,
         ?microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id,
+        ?related_address: HelloWorldTestingggg::Address,
+        ?related_category: HelloWorldTestingggg::PetAPI::RelatedCategory,
+        ?related_customer: HelloWorldTestingggg::PetAPI::RelatedCustomer,
+        ?related_money: HelloWorldTestingggg::Money,
+        ?related_order: HelloWorldTestingggg::PetAPI::RelatedOrder,
+        ?related_pet: HelloWorldTestingggg::PetAPI,
+        ?related_shelter: HelloWorldTestingggg::PetAPI::RelatedShelter,
+        ?related_user: HelloWorldTestingggg::PetAPI::RelatedUser,
         ?status: HelloWorldTestingggg::Models::pet_status,
         ?tags: ::Array[HelloWorldTestingggg::PetAPI::Tag],
         ?request_options: HelloWorldTestingggg::request_opts
@@ -21,14 +30,24 @@ module HelloWorldTestingggg
         name: String,
         photo_urls: ::Array[String],
         ?id: Integer,
+        ?acquisition_channel: HelloWorldTestingggg::Models::PetAPI::acquisition_channel,
         ?category: HelloWorldTestingggg::PetAPI::Category,
         ?microchip_id: HelloWorldTestingggg::Models::PetAPI::microchip_id,
+        ?related_address: HelloWorldTestingggg::Address,
+        ?related_category: HelloWorldTestingggg::PetAPI::RelatedCategory,
+        ?related_customer: HelloWorldTestingggg::PetAPI::RelatedCustomer,
+        ?related_money: HelloWorldTestingggg::Money,
+        ?related_order: HelloWorldTestingggg::PetAPI::RelatedOrder,
+        ?related_pet: HelloWorldTestingggg::PetAPI,
+        ?related_shelter: HelloWorldTestingggg::PetAPI::RelatedShelter,
+        ?related_user: HelloWorldTestingggg::PetAPI::RelatedUser,
         ?status: HelloWorldTestingggg::Models::pet_status,
         ?tags: ::Array[HelloWorldTestingggg::PetAPI::Tag],
         ?request_options: HelloWorldTestingggg::request_opts
       ) -> HelloWorldTestingggg::PetAPI
 
       def list: (
+        ?created_at: HelloWorldTestingggg::PetListParams::CreatedAt,
         ?cursor: String,
         ?limit: Integer,
         ?request_options: HelloWorldTestingggg::request_opts
@@ -57,6 +76,10 @@ module HelloWorldTestingggg
         ?request_options: HelloWorldTestingggg::request_opts
       ) -> HelloWorldTestingggg::Internal::XFakeSinglePage[HelloWorldTestingggg::PetAPI]
 
+      def list_leaderboard: (
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::pet_list_leaderboard_response
+
       def list_unpaginated: (
         ?cursor: String,
         ?limit: Integer,
@@ -67,6 +90,14 @@ module HelloWorldTestingggg
         Integer pet_id,
         ?request_options: HelloWorldTestingggg::request_opts
       ) -> HelloWorldTestingggg::Models::PetRetrievePremiumResponse
+
+      def search: (
+        ?filters: HelloWorldTestingggg::PetSearchParams::Filters,
+        ?max_results: Integer,
+        ?raw_filter: top,
+        ?tag_filters: ::Array[HelloWorldTestingggg::PetSearchParams::TagFilter],
+        ?request_options: HelloWorldTestingggg::request_opts
+      ) -> HelloWorldTestingggg::Models::pet_search_response
 
       def update_with_form: (
         Integer pet_id,

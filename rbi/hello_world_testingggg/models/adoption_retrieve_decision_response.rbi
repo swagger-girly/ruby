@@ -11,7 +11,8 @@ module HelloWorldTestingggg
           T.any(
             HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved,
             HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected,
-            HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated
+            HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated,
+            HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn
           )
         end
 
@@ -27,11 +28,7 @@ module HelloWorldTestingggg
         sig { returns(Time) }
         attr_accessor :approved_at
 
-        sig do
-          returns(
-            HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::Outcome::TaggedSymbol
-          )
-        end
+        sig { returns(Symbol) }
         attr_accessor :outcome
 
         sig { returns(T.nilable(T::Array[String])) }
@@ -43,54 +40,19 @@ module HelloWorldTestingggg
         sig do
           params(
             approved_at: Time,
-            outcome:
-              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::Outcome::OrSymbol,
-            conditions: T::Array[String]
+            conditions: T::Array[String],
+            outcome: Symbol
           ).returns(T.attached_class)
         end
-        def self.new(approved_at:, outcome:, conditions: nil)
+        def self.new(approved_at:, conditions: nil, outcome: :approved)
         end
 
         sig do
           override.returns(
-            {
-              approved_at: Time,
-              outcome:
-                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::Outcome::TaggedSymbol,
-              conditions: T::Array[String]
-            }
+            { approved_at: Time, outcome: Symbol, conditions: T::Array[String] }
           )
         end
         def to_hash
-        end
-
-        module Outcome
-          extend HelloWorldTestingggg::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::Outcome
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          APPROVED =
-            T.let(
-              :approved,
-              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::Outcome::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionApproved::Outcome::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
       end
 
@@ -103,11 +65,7 @@ module HelloWorldTestingggg
             )
           end
 
-        sig do
-          returns(
-            HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::Outcome::TaggedSymbol
-          )
-        end
+        sig { returns(Symbol) }
         attr_accessor :outcome
 
         sig do
@@ -122,21 +80,19 @@ module HelloWorldTestingggg
 
         sig do
           params(
-            outcome:
-              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::Outcome::OrSymbol,
             reason:
               HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::Reason::OrSymbol,
-            appeal_deadline: T.nilable(Time)
+            appeal_deadline: T.nilable(Time),
+            outcome: Symbol
           ).returns(T.attached_class)
         end
-        def self.new(outcome:, reason:, appeal_deadline: nil)
+        def self.new(reason:, appeal_deadline: nil, outcome: :rejected)
         end
 
         sig do
           override.returns(
             {
-              outcome:
-                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::Outcome::TaggedSymbol,
+              outcome: Symbol,
               reason:
                 HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::Reason::TaggedSymbol,
               appeal_deadline: T.nilable(Time)
@@ -144,35 +100,6 @@ module HelloWorldTestingggg
           )
         end
         def to_hash
-        end
-
-        module Outcome
-          extend HelloWorldTestingggg::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::Outcome
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          REJECTED =
-            T.let(
-              :rejected,
-              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::Outcome::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionRejected::Outcome::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
 
         module Reason
@@ -239,11 +166,7 @@ module HelloWorldTestingggg
         end
         attr_writer :escalated_to
 
-        sig do
-          returns(
-            HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::Outcome::TaggedSymbol
-          )
-        end
+        sig { returns(Symbol) }
         attr_accessor :outcome
 
         sig { returns(T.nilable(Time)) }
@@ -256,12 +179,11 @@ module HelloWorldTestingggg
           params(
             escalated_to:
               HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo::OrHash,
-            outcome:
-              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::Outcome::OrSymbol,
-            review_after: Time
+            review_after: Time,
+            outcome: Symbol
           ).returns(T.attached_class)
         end
-        def self.new(escalated_to:, outcome:, review_after: nil)
+        def self.new(escalated_to:, review_after: nil, outcome: :escalated)
         end
 
         sig do
@@ -269,8 +191,7 @@ module HelloWorldTestingggg
             {
               escalated_to:
                 HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::EscalatedTo,
-              outcome:
-                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::Outcome::TaggedSymbol,
+              outcome: Symbol,
               review_after: Time
             }
           )
@@ -361,6 +282,63 @@ module HelloWorldTestingggg
             end
           end
         end
+      end
+
+      class DecisionWithdrawn < HelloWorldTestingggg::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn,
+              HelloWorldTestingggg::Internal::AnyHash
+            )
+          end
+
+        sig do
+          returns(
+            HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::Outcome::TaggedSymbol
+          )
+        end
+        attr_accessor :outcome
+
+        sig do
+          returns(
+            HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::WithdrawnBy::TaggedSymbol
+          )
+        end
+        attr_accessor :withdrawn_by
+
+        sig { returns(T.nilable(Time)) }
+        attr_reader :withdrawn_at
+
+        sig { params(withdrawn_at: Time).void }
+        attr_writer :withdrawn_at
+
+        # The applicant or shelter withdrew before a decision was finalized.
+        sig do
+          params(
+            outcome:
+              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::Outcome::OrSymbol,
+            withdrawn_by:
+              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::WithdrawnBy::OrSymbol,
+            withdrawn_at: Time
+          ).returns(T.attached_class)
+        end
+        def self.new(outcome:, withdrawn_by:, withdrawn_at: nil)
+        end
+
+        sig do
+          override.returns(
+            {
+              outcome:
+                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::Outcome::TaggedSymbol,
+              withdrawn_by:
+                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::WithdrawnBy::TaggedSymbol,
+              withdrawn_at: Time
+            }
+          )
+        end
+        def to_hash
+        end
 
         module Outcome
           extend HelloWorldTestingggg::Internal::Type::Enum
@@ -369,21 +347,65 @@ module HelloWorldTestingggg
             T.type_alias do
               T.all(
                 Symbol,
-                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::Outcome
+                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::Outcome
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          ESCALATED =
+          WITHDRAWN =
             T.let(
-              :escalated,
-              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::Outcome::TaggedSymbol
+              :withdrawn,
+              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::Outcome::TaggedSymbol
+            )
+          EXPIRED =
+            T.let(
+              :expired,
+              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::Outcome::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionEscalated::Outcome::TaggedSymbol
+                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::Outcome::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        module WithdrawnBy
+          extend HelloWorldTestingggg::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::WithdrawnBy
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          APPLICANT =
+            T.let(
+              :applicant,
+              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::WithdrawnBy::TaggedSymbol
+            )
+          SHELTER =
+            T.let(
+              :shelter,
+              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::WithdrawnBy::TaggedSymbol
+            )
+          SYSTEM =
+            T.let(
+              :system,
+              HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::WithdrawnBy::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                HelloWorldTestingggg::Models::AdoptionRetrieveDecisionResponse::DecisionWithdrawn::WithdrawnBy::TaggedSymbol
               ]
             )
           end

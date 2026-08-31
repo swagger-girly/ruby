@@ -447,7 +447,7 @@ module HelloWorldTestingggg
         #   address => {
         #     city: city,
         #     geo: geo,
-        #     state: state
+        #     related_category: related_category
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)
